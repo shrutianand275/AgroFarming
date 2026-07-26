@@ -1,0 +1,28 @@
+.hero{
+
+    padding:20px 0;
+
+}
+
+.hero h1{
+
+    font-size:55px;
+    font-weight:bold;
+    color:#1b4332;
+
+}
+
+.hero p{
+
+    margin:25px 0;
+    font-size:18px;
+    color:#555;
+
+}
+
+.hero-image{
+
+    width:100%;
+    border-radius:20px;
+
+}

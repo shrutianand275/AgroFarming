@@ -1,0 +1,123 @@
+.how-section{
+    padding:2px 0;
+    background:#fff;
+    margin-bottom:2px;
+}
+
+/* ---------- Section Title ---------- */
+
+.section-title{
+    margin-top: 0px;
+    margin-bottom:10px;
+    padding:0 10px;
+    text-align:center;
+}
+
+.section-title h2{
+    font-size:24px;
+    font-weight:500;
+    color:#1B5E20;
+    margin-bottom:8px;
+}
+
+.section-title p{
+    font-size:12px;
+    color:#6B7280;
+}
+
+/* ---------- Card ---------- */
+
+.step-card{
+    background:#fff;
+    border:1px solid #E8F3EA;
+    border-radius:18px;
+    padding:2px 5px;
+    height:100%;
+    min-height:230px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:all .3s ease;
+}
+
+.step-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(46,125,50,.15);
+}
+
+/* ---------- Number ---------- */
+
+.step-number{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#E8F5E9;
+    color:#2E7D32;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+/* ---------- Heading ---------- */
+
+.step-card h4{
+    font-size:18px;
+    font-weight:300;
+    color:#1B5E20;
+    margin-bottom:10px;
+    line-height:1.3;
+}
+
+/* ---------- Text ---------- */
+
+.step-card p{
+    font-size:12px;
+    color:#666;
+    line-height:1.6;
+    margin-bottom:0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:992px){
+
+.step-card{
+    min-height:210px;
+    padding:10px 8px;
+}
+
+.step-card h4{
+    font-size:16px;
+}
+
+.step-card p{
+    font-size:12px;
+}
+
+}
+
+@media(max-width:768px){
+
+.how-section{
+    padding:10px 0;
+}
+
+.section-title h2{
+    font-size:32px;
+}
+
+.section-title p{
+    font-size:15px;
+}
+
+.step-card{
+    margin-bottom:10px;
+}
+
+}
