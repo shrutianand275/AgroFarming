@@ -48,45 +48,45 @@ function Navbar() {
             <ul className="dropdown-menu">
 
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/crop-recommendation">
                   {t("cropRecommendation")}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/yield-prediction">
                   {t("yieldPrediction")}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/disease-prediction">
                   {t("diseasePrediction")}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/fertilizer-recommendation">
                   {t("fertilizerRecommendation")}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/weather-forecast">
                   {t("weatherForecast")}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/chatbot">
                   {t("chatbot")}
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/government-schemes">
                   {t("governmentSchemes")}
-                </a>
+                </Link>
               </li>
 
             </ul>

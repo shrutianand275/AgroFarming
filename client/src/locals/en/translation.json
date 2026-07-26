@@ -144,5 +144,34 @@
         "visionTitle": "Our Vision",
 
         "visionText": "Our vision is to empower every farmer with intelligent digital solutions that increase productivity, improve sustainability, and make modern agriculture accessible to everyone."
-    }
+    },
+
+    "crop": {
+        "title": "AI Crop Recommendation",
+        "subtitle": "Get AI-powered crop recommendations using soil nutrients and climate conditions.",
+        "state": "State",
+        "city": "City",
+        "month": "Month",
+        "temperature": "Temperature",
+        "humidity": "Humidity",
+        "rainfall": "Rainfall",
+        "nitrogen": "Nitrogen (N)",
+        "phosphorus": "Phosphorus (P)",
+        "potassium": "Potassium (K)",
+        "ph": "Soil pH",
+        "soilType": "Soil Type",
+        "recommend": "Recommend Crop",
+        "result": "Recommendation Result",
+        "confidence": "Confidence",
+        "season": "Suitable Season",
+        "tips": "Farming Tips",
+        "top3": "Top 3 Recommendations",
+    
+        "aiPowered": "AI Powered",
+        "noteTitle": "Important",
+        "note": "Climate values are automatically fetched from historical climate records. You can edit them before submitting if required.",
+        "predicting": "Analyzing soil and climate conditions...",
+        "serverError": "Unable to connect to the server. Please try again."
+}
+    
 }

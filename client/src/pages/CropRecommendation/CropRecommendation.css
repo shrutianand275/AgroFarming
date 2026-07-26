@@ -1,0 +1,287 @@
+.crop-page{
+
+    background:#f8faf9;
+
+    min-height:100vh;
+
+}
+
+/* Container */
+
+.crop-container{
+
+    padding-top:20px;
+
+    padding-bottom:25px;
+
+}
+
+/* Heading */
+
+.crop-header{
+
+    margin-bottom:20px;
+
+}
+
+.crop-badge{
+
+    display:inline-block;
+
+    padding:3px 10px;
+
+    background:#e9f8ef;
+
+    color:#198754;
+
+    font-size:11px;
+
+    border-radius:15px;
+
+    font-weight:600;
+
+}
+
+.crop-title{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-top:8px;
+
+    margin-bottom:6px;
+
+    color:#198754;
+
+}
+
+.crop-subtitle{
+
+    font-size:13px;
+
+    color:#666;
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:1.5;
+
+}
+
+/* Note */
+
+.crop-alert{
+
+    padding:10px 14px;
+
+    font-size:13px;
+
+    border-radius:8px;
+
+    margin-bottom:18px;
+
+}
+
+.crop-alert strong{
+
+    font-size:13px;
+
+}
+
+/* Card */
+
+.crop-card{
+
+    border-radius:10px;
+
+}
+
+.crop-card-body{
+
+    padding:18px;
+
+}
+
+/* Form */
+
+label{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin-bottom:4px;
+
+}
+
+.form-control,
+
+.form-select{
+
+    min-height:36px;
+
+    height:36px;
+
+    font-size:13px;
+
+    border-radius:7px;
+
+    padding:4px 10px;
+
+}
+
+.form-control:focus,
+
+.form-select:focus{
+
+    box-shadow:none;
+
+    border-color:#198754;
+
+}
+
+/* Button */
+
+.btn-success{
+
+    height:38px;
+
+    font-size:14px;
+
+    padding:0 18px;
+
+    border-radius:7px;
+
+}
+
+/* Loading */
+
+.crop-loading{
+
+    margin-top:20px;
+
+}
+
+.spinner-border{
+
+    width:2rem !important;
+
+    height:2rem !important;
+
+}
+
+.crop-loading h6{
+
+    font-size:14px;
+
+    margin-top:10px;
+
+}
+
+/* Result Card */
+
+.card-header{
+
+    padding:10px 16px;
+
+}
+
+.card-header h3{
+
+    font-size:18px;
+
+    margin:0;
+
+}
+
+.card-body h2{
+
+    font-size:24px;
+
+}
+
+.card-body h4{
+
+    font-size:17px;
+
+}
+
+.card-body h5{
+
+    font-size:15px;
+
+}
+
+.card-body p{
+
+    font-size:13px;
+
+    margin-bottom:0;
+
+}
+
+.table th{
+
+    font-size:13px;
+
+}
+
+.table td{
+
+    font-size:13px;
+
+    padding:8px;
+
+}
+
+/* Alerts */
+
+.alert-danger{
+
+    font-size:13px;
+
+    padding:10px;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.crop-title{
+
+    font-size:22px;
+
+}
+
+.crop-subtitle{
+
+    font-size:12px;
+
+}
+
+.crop-card-body{
+
+    padding:14px;
+
+}
+
+.form-control,
+
+.form-select{
+
+    height:34px;
+
+    font-size:12px;
+
+}
+
+.btn-success{
+
+    width:100%;
+
+}
+
+}
