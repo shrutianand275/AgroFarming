@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 function Navbar() {
 
@@ -21,16 +22,16 @@ function Navbar() {
         {/* Menu */}
         <ul className="navbar-nav ms-auto align-items-center">
 
-          <li className="nav-item">
-            <a className="nav-link active" href="#">
+          <li>
+            <Link className="nav-link" to="/">
               {t("home")}
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              {t("about")}
-            </a>
+            <Link className="nav-link" to="/about">
+              {t("aboutMenu")}
+            </Link>
           </li>
 
           <li className="nav-item dropdown">

@@ -3,7 +3,7 @@
 
     "home":"Home",
 
-    "about":"About",
+    "aboutMenu":"About",
 
     "aiServices":"AI Services",
 
@@ -82,10 +82,67 @@
             "description": "Receive crop recommendations, disease detection, fertilizer suggestions, weather forecasts, and other AI-powered insights."
         }
     },
-    
+
     "footer": {
         "logo": "AgroFarming",
         "description": "AI-powered Smart Farming for better crop decisions, higher productivity, and sustainable agriculture.",
         "copyright": "© 2026 AgroFarming • Smart Farming System"
+    },
+
+    "about": {
+        "tag": "About AgroFarming",
+        "title": "Empowering Agriculture with Artificial Intelligence",
+        "subtitle": "AgroFarming is an AI-powered Smart Farming System designed to help farmers make informed decisions using modern technologies such as Machine Learning, Weather Forecasting, Crop Recommendation, Disease Detection, and Fertilizer Recommendation.",
+
+        "heading": "Who We Are",
+        "description1": "AgroFarming is a digital agriculture platform that combines Artificial Intelligence and Data Analytics to provide intelligent farming solutions. Our goal is to simplify farming by delivering accurate recommendations and real-time insights.",
+
+        "description2": "The platform enables farmers to improve productivity, reduce risks, optimize resource usage, and adopt sustainable agricultural practices through easy-to-use AI tools.",
+
+        "aiTitle": "AI Powered",
+        "aiDesc": "Advanced Machine Learning models provide smart farming recommendations.",
+
+        "greenTitle": "Sustainable Agriculture",
+        "greenDesc": "Promoting environmentally friendly and efficient farming practices.",
+
+        "multiTitle": "Multilingual Support",
+        "multiDesc": "Available in both English and Hindi for better accessibility.",
+
+        "missionTitle": "Our Mission",
+        "missionSubtitle": "Creating smarter, sustainable and technology-driven agriculture for every farmer.",
+
+        "mission1": "Innovation",
+        "mission1Desc": "Leveraging Artificial Intelligence to simplify agricultural decision making.",
+
+        "mission2": "Smart Technology",
+        "mission2Desc": "Providing accurate predictions and recommendations using modern technologies.",
+
+        "mission3": "Farmer First",
+        "mission3Desc": "Building user-friendly digital solutions focused on farmers' needs.",
+
+        "offerTitle": "What We Offer",
+        "offerSubtitle": "AI-powered services for modern agriculture.",
+
+        "offer1": "Crop Recommendation",
+        "offer2": "Yield Prediction",
+        "offer3": "Disease Detection",
+        "offer4": "Fertilizer Recommendation",
+        "offer5": "Weather Forecast",
+        "offer6": "AI Chatbot",
+
+        "whyTitle": "Why Choose AgroFarming?",
+
+        "why1": "AI-powered recommendations",
+        "why2": "Accurate farming insights",
+        "why3": "Simple and user-friendly interface",
+        "why4": "Fast and secure platform",
+        "why5": "English & Hindi support",
+        "why6": "Promotes sustainable farming",
+
+        "techTitle": "Technology Stack",
+
+        "visionTitle": "Our Vision",
+
+        "visionText": "Our vision is to empower every farmer with intelligent digital solutions that increase productivity, improve sustainability, and make modern agriculture accessible to everyone."
     }
 }
