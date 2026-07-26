@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { useTranslation } from "react-i18next";
 import {
   FaFacebookF,
   FaInstagram,
@@ -8,6 +9,9 @@ import {
 } from "react-icons/fa";
 
 function Footer() {
+
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
 
@@ -16,16 +20,16 @@ function Footer() {
         <div className="footer-content">
 
           {/* Left */}
+
           <div className="footer-left">
 
             <h3>
               <FaSeedling className="footer-logo" />
-              AgroFarming
+              {t("footer.logo")}
             </h3>
 
             <p>
-              AI-powered Smart Farming for better crop decisions,
-              higher productivity and sustainable agriculture.
+              {t("footer.description")}
             </p>
 
           </div>
@@ -53,7 +57,7 @@ function Footer() {
         <hr />
 
         <div className="copyright">
-          © 2026 AgroFarming • Smart Farming System
+          {t("footer.copyright")}
         </div>
 
       </div>

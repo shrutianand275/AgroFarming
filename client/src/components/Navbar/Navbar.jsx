@@ -1,13 +1,21 @@
 import "./Navbar.css";
+import { useTranslation } from "react-i18next";
 
 function Navbar() {
+
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === "en" ? "hi" : "en");
+  };
+
   return (
     <nav className="navbar navbar-expand navbar-light bg-white shadow-sm">
       <div className="container">
 
         {/* Logo */}
         <a className="navbar-brand fw-bold text-success" href="/">
-          🌿 AgroFarming
+          🌿 {t("logo")}
         </a>
 
         {/* Menu */}
@@ -15,13 +23,13 @@ function Navbar() {
 
           <li className="nav-item">
             <a className="nav-link active" href="#">
-              Home
+              {t("home")}
             </a>
           </li>
 
           <li className="nav-item">
             <a className="nav-link" href="#">
-              About
+              {t("about")}
             </a>
           </li>
 
@@ -33,50 +41,50 @@ function Navbar() {
               role="button"
               data-bs-toggle="dropdown"
             >
-              AI Services
+              {t("aiServices")}
             </a>
 
             <ul className="dropdown-menu">
 
               <li>
                 <a className="dropdown-item" href="#">
-                  Crop Recommendation
+                  {t("cropRecommendation")}
                 </a>
               </li>
 
               <li>
                 <a className="dropdown-item" href="#">
-                  Yield Prediction
+                  {t("yieldPrediction")}
                 </a>
               </li>
 
               <li>
                 <a className="dropdown-item" href="#">
-                  Disease Prediction
+                  {t("diseasePrediction")}
                 </a>
               </li>
 
               <li>
                 <a className="dropdown-item" href="#">
-                  Fertilizer Recommendation
+                  {t("fertilizerRecommendation")}
                 </a>
               </li>
 
               <li>
                 <a className="dropdown-item" href="#">
-                  Weather Forecast
+                  {t("weatherForecast")}
                 </a>
               </li>
 
               <li>
                 <a className="dropdown-item" href="#">
-                  AI Chatbot
+                  {t("chatbot")}
                 </a>
               </li>
 
               <li>
                 <a className="dropdown-item" href="#">
-                  Government Schemes
+                  {t("governmentSchemes")}
                 </a>
               </li>
 
@@ -84,24 +92,32 @@ function Navbar() {
 
           </li>
 
-          <li className="nav-item ms-3 d-flex align-items-center">
-            <span className="me-2 fw-semibold">EN</span>
+          {/* Language Switch */}
+
+          <li className="nav-item language-switch">
+
+            <span className="lang-text">EN</span>
 
             <div className="form-check form-switch m-0">
+
               <input
                 className="form-check-input"
                 type="checkbox"
-                id="languageSwitch"
+                checked={i18n.language === "hi"}
+                onChange={toggleLanguage}
               />
+
             </div>
 
-            <span className="ms-2 fw-semibold">हिंदी</span>
+            <span className="lang-text">हिंदी</span>
+
           </li>
 
+          {/* Login */}
 
           <li className="nav-item ms-3">
             <button className="btn btn-success px-4">
-              Login
+              {t("login")}
             </button>
           </li>
 

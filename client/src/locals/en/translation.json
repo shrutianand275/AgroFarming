@@ -1,0 +1,91 @@
+{
+    "logo":"AgroFarming",
+
+    "home":"Home",
+
+    "about":"About",
+
+    "aiServices":"AI Services",
+
+    "cropRecommendation":"Crop Recommendation",
+
+    "yieldPrediction":"Yield Prediction",
+
+    "diseasePrediction":"Disease Prediction",
+
+    "fertilizerRecommendation":"Fertilizer Recommendation",
+
+    "weatherForecast":"Weather Forecast",
+
+    "governmentSchemes":"Government Schemes",
+
+    "chatbot":"AI Chatbot",
+
+    "login":"Login",
+
+    "hero": {
+        "badge": "SMART FARMING PLATFORM",
+        "description": "Empowering farmers using Artificial Intelligence with Crop Recommendation, Yield Prediction, Disease Detection, Weather Forecasting, and Smart Farming solutions."
+    },
+
+    "services": {
+        "heading": "Our AI Services",
+        "subheading": "Smart AI-powered solutions for modern farming.",
+
+        "cropRecommendation": {
+            "title": "Crop Recommendation",
+            "description": "AI-based crop suggestions using soil and weather conditions."
+        },
+
+        "yieldPrediction": {
+            "title": "Yield Prediction",
+            "description": "Predict crop production using machine learning models."
+        },
+
+        "diseaseDetection": {
+            "title": "Disease Detection",
+            "description": "Detect crop diseases from uploaded crop images."
+        },
+
+        "fertilizerGuide": {
+            "title": "Fertilizer Guide",
+            "description": "Get smart fertilizer recommendations instantly."
+        },
+
+        "weatherForecast": {
+            "title": "Weather Forecast",
+            "description": "Real-time weather updates for better farming decisions."
+        },
+
+        "aiChatbot": {
+            "title": "AI Chatbot",
+            "description": "Get instant answers to your farming questions."
+        }
+    },
+
+    "howItWorks": {
+        "heading": "How AgroFarming Works",
+        "subheading": "Three simple steps to make smarter farming decisions using AI.",
+
+        "step1": {
+            "title": "Enter Farm Details",
+            "description": "Provide your farm details such as soil type, rainfall, temperature, humidity, and upload crop images for AI analysis."
+        },
+
+        "step2": {
+            "title": "AI Analysis",
+            "description": "Our advanced machine learning models analyze your data and generate accurate farming recommendations."
+        },
+
+        "step3": {
+            "title": "Get Smart Results",
+            "description": "Receive crop recommendations, disease detection, fertilizer suggestions, weather forecasts, and other AI-powered insights."
+        }
+    },
+    
+    "footer": {
+        "logo": "AgroFarming",
+        "description": "AI-powered Smart Farming for better crop decisions, higher productivity, and sustainable agriculture.",
+        "copyright": "© 2026 AgroFarming • Smart Farming System"
+    }
+}

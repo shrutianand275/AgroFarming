@@ -1,8 +1,12 @@
 import React from "react";
 import "./Hero.css";
 import heroImage from "../../assets/images/farm-bg1.jpg";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+
+  const { t } = useTranslation();
+
   return (
     <section className="hero-section">
       <img src={heroImage} alt="Farm" className="hero-bg" />
@@ -12,15 +16,11 @@ const Hero = () => {
       <div className="container hero-content">
 
         <span className="hero-badge">
-          SMART FARMING PLATFORM
+          {t("hero.badge")}
         </span>
 
-       
-
-        <p>
-          Empowering farmers using Artificial Intelligence with
-          Crop Recommendation, Yield Prediction, Disease Detection,
-          Weather Forecasting and Smart Farming solutions.
+        <p className="hero-description">
+          {t("hero.description")}
         </p>
 
       </div>

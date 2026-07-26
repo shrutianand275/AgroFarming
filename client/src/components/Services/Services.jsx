@@ -1,5 +1,6 @@
 import React from "react";
 import "./Services.css";
+import { useTranslation } from "react-i18next";
 import {
   FaSeedling,
   FaCloudSunRain,
@@ -9,53 +10,50 @@ import {
   FaChartLine,
 } from "react-icons/fa";
 
-const services = [
-  {
-    icon: <FaSeedling />,
-    title: "Crop Recommendation",
-    description:
-      "AI-based crop suggestions using soil and weather conditions.",
-  },
-  {
-    icon: <FaChartLine />,
-    title: "Yield Prediction",
-    description:
-      "Predict crop production using machine learning models.",
-  },
-  {
-    icon: <FaBug />,
-    title: "Disease Detection",
-    description:
-      "Detect crop diseases from uploaded crop images.",
-  },
-  {
-    icon: <FaLeaf />,
-    title: "Fertilizer Guide",
-    description:
-      "Get smart fertilizer recommendations instantly.",
-  },
-  {
-    icon: <FaCloudSunRain />,
-    title: "Weather Forecast",
-    description:
-      "Real-time weather updates for better farming decisions.",
-  },
-  {
-    icon: <FaRobot />,
-    title: "AI Chatbot",
-    description:
-      "Get instant answers to your farming questions.",
-  },
-];
-
 function Services() {
+
+  const { t } = useTranslation();
+
+  const services = [
+    {
+      icon: <FaSeedling />,
+      title: t("services.cropRecommendation.title"),
+      description: t("services.cropRecommendation.description"),
+    },
+    {
+      icon: <FaChartLine />,
+      title: t("services.yieldPrediction.title"),
+      description: t("services.yieldPrediction.description"),
+    },
+    {
+      icon: <FaBug />,
+      title: t("services.diseaseDetection.title"),
+      description: t("services.diseaseDetection.description"),
+    },
+    {
+      icon: <FaLeaf />,
+      title: t("services.fertilizerGuide.title"),
+      description: t("services.fertilizerGuide.description"),
+    },
+    {
+      icon: <FaCloudSunRain />,
+      title: t("services.weatherForecast.title"),
+      description: t("services.weatherForecast.description"),
+    },
+    {
+      icon: <FaRobot />,
+      title: t("services.aiChatbot.title"),
+      description: t("services.aiChatbot.description"),
+    },
+  ];
+
   return (
     <section className="services-section">
       <div className="container">
 
         <div className="section-title text-center">
-          <h2>Our AI Services</h2>
-          <p>Smart AI-powered solutions for modern farming.</p>
+          <h2>{t("services.heading")}</h2>
+          <p>{t("services.subheading")}</p>
         </div>
 
         <div className="services-grid">

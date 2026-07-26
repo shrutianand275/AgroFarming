@@ -1,35 +1,36 @@
 import React from "react";
 import "./HowItWorks.css";
-
-const steps = [
-  {
-    number: "1",
-    title: "Enter Farm Details",
-    description:
-      "Fill the details about your farm, including soil type, rainfall, temperature, humidity, and upload crop images for AI analysis.",
-  },
-  {
-    number: "2",
-    title: "AI Analysis",
-    description:
-      "Our machine learning models process your data and generate accurate farming recommendations.",
-  },
-  {
-    number: "3",
-    title: "Get Smart Results",
-    description:
-      "Receive crop recommendations, disease detection, fertilizer suggestions, weather forecasts, etc.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 function HowItWorks() {
+
+  const { t } = useTranslation();
+
+  const steps = [
+    {
+      number: "1",
+      title: t("howItWorks.step1.title"),
+      description: t("howItWorks.step1.description"),
+    },
+    {
+      number: "2",
+      title: t("howItWorks.step2.title"),
+      description: t("howItWorks.step2.description"),
+    },
+    {
+      number: "3",
+      title: t("howItWorks.step3.title"),
+      description: t("howItWorks.step3.description"),
+    },
+  ];
+
   return (
     <section className="how-section">
       <div className="container">
 
         <div className="section-title text-center mb-5">
-          <h2>How AgroFarming Works</h2>
-          <p>Three simple steps to make smarter farming decisions using AI.</p>
+          <h2>{t("howItWorks.heading")}</h2>
+          <p>{t("howItWorks.subheading")}</p>
         </div>
 
         <div className="row g-4">
