@@ -1,4 +1,17 @@
- import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  MapPin,
+  Building2,
+  CalendarDays,
+  Sprout,
+  Thermometer,
+  Droplets,
+  CloudRain,
+  FlaskConical,
+  TestTube,
+  Gauge
+} from "lucide-react";
+
 import {
   getStates,
   getCities,
@@ -6,18 +19,9 @@ import {
 } from "../services/api";
 
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
+  "January", "February", "March", "April",
+  "May", "June", "July", "August",
+  "September", "October", "November", "December"
 ];
 
 const soilTypes = [
@@ -33,24 +37,21 @@ const ClimateForm = ({ onSubmit }) => {
 
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const [loadingClimate, setLoadingClimate] = useState(false);
 
   const [formData, setFormData] = useState({
     state: "",
     city: "",
     month: "",
+    soilType: "",
     temperature: "",
     humidity: "",
     rainfall: "",
     N: "",
     P: "",
     K: "",
-    ph: "",
-    soilType: ""
+    ph: ""
   });
-
-  // -----------------------------
-  // Load States
-  // -----------------------------
 
   useEffect(() => {
     loadStates();
@@ -58,381 +59,353 @@ const ClimateForm = ({ onSubmit }) => {
 
   const loadStates = async () => {
     try {
-      const response = await getStates();
-      setStates(response.states);
+      const res = await getStates();
+      setStates(res.states || []);
     } catch (error) {
       console.log(error);
     }
   };
-
-  // -----------------------------
-  // Load Cities
-  // -----------------------------
 
   const handleStateChange = async (e) => {
 
     const state = e.target.value;
 
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       state,
       city: ""
-    });
+    }));
+
+    setCities([]);
+
+    if (!state) return;
 
     try {
-
-      const response = await getCities(state);
-
-      setCities(response.cities);
-
+      const res = await getCities(state);
+      setCities(res.cities || []);
     } catch (error) {
-
       console.log(error);
-
     }
   };
-
-  // -----------------------------
-  // Handle Inputs
-  // -----------------------------
 
   const handleChange = (e) => {
 
-    setFormData({
-
-      ...formData,
-
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value
-
-    });
-
-  };
-
-  // -----------------------------
-  // Get Climate Data
-  // -----------------------------
-
-  const fetchClimate = async () => {
-
-    if (
-      !formData.state ||
-      !formData.city ||
-      !formData.month
-    ) return;
-
-    try {
-
-      const response = await getClimateData({
-
-        state: formData.state,
-
-        city: formData.city,
-
-        month: formData.month
-
-      });
-
-      setFormData((prev) => ({
-
-        ...prev,
-
-        temperature: response.data.temperature,
-
-        humidity: response.data.humidity,
-
-        rainfall: response.data.rainfall
-
-      }));
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
+    }));
 
   };
 
   useEffect(() => {
 
+    if (
+      !formData.state ||
+      !formData.city ||
+      !formData.month
+    ) {
+      return;
+    }
+
     fetchClimate();
 
-  }, [formData.city, formData.month]);
+  }, [
+    formData.state,
+    formData.city,
+    formData.month
+  ]);
 
-  // -----------------------------
-  // Submit
-  // -----------------------------
+  const fetchClimate = async () => {
 
-  const submit = (e) => {
+    try {
 
-    e.preventDefault();
+      setLoadingClimate(true);
 
-    onSubmit(formData);
+      const response = await getClimateData({
+        state: formData.state,
+        city: formData.city,
+        month: formData.month
+      });
+
+      setFormData(prev => ({
+        ...prev,
+        temperature: response.data?.temperature ?? "",
+        humidity: response.data?.humidity ?? "",
+        rainfall: response.data?.rainfall ?? ""
+      }));
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingClimate(false);
+    }
 
   };
 
+  const submit = (e) => {
+    e.preventDefault();
+    onSubmit(formData);
+  };
+
   return (
+    <form className="climate-form" onSubmit={submit}>
 
-    <form onSubmit={submit}>
+      <div className="climate-grid">
 
-      <div className="row">
+        {/* STATE */}
+        <div className="climate-field">
 
-        <div className="col-md-4 mb-3">
-
-          <label className="form-label">
-
-            State
-
+          <label>
+            <MapPin />
+            <span>State</span>
           </label>
 
           <select
-            className="form-select"
+            name="state"
             value={formData.state}
             onChange={handleStateChange}
           >
-
             <option value="">Select State</option>
 
-            {states.map((state) => (
-
-              <option
-                key={state}
-                value={state}
-              >
-
+            {states.map(state => (
+              <option key={state} value={state}>
                 {state}
-
               </option>
-
             ))}
 
           </select>
 
         </div>
 
-        <div className="col-md-4 mb-3">
 
-          <label className="form-label">
+        {/* CITY */}
+        <div className="climate-field">
 
-            City
-
+          <label>
+            <Building2 />
+            <span>City</span>
           </label>
 
           <select
-            className="form-select"
             name="city"
             value={formData.city}
             onChange={handleChange}
+            disabled={!formData.state}
           >
-
             <option value="">Select City</option>
 
-            {cities.map((city) => (
-
-              <option
-                key={city}
-                value={city}
-              >
-
+            {cities.map(city => (
+              <option key={city} value={city}>
                 {city}
-
               </option>
-
             ))}
 
           </select>
 
         </div>
 
-        <div className="col-md-4 mb-3">
 
-          <label className="form-label">
+        {/* MONTH */}
+        <div className="climate-field">
 
-            Month
-
+          <label>
+            <CalendarDays />
+            <span>Month</span>
           </label>
 
           <select
-            className="form-select"
             name="month"
             value={formData.month}
             onChange={handleChange}
           >
+            <option value="">Select Month</option>
 
-            <option value="">
-
-              Select Month
-
-            </option>
-
-            {months.map((month) => (
-
-              <option
-                key={month}
-                value={month}
-              >
-
+            {months.map(month => (
+              <option key={month} value={month}>
                 {month}
-
               </option>
-
             ))}
 
           </select>
 
         </div>
 
-      </div>
 
-      <div className="row">
+        {/* SOIL */}
+        <div className="climate-field">
 
-        <div className="col-md-4 mb-3">
-
-          <label>Temperature</label>
-
-          <input
-            className="form-control"
-            name="temperature"
-            value={formData.temperature}
-            onChange={handleChange}
-          />
-
-        </div>
-
-        <div className="col-md-4 mb-3">
-
-          <label>Humidity</label>
-
-          <input
-            className="form-control"
-            name="humidity"
-            value={formData.humidity}
-            onChange={handleChange}
-          />
-
-        </div>
-
-        <div className="col-md-4 mb-3">
-
-          <label>Rainfall</label>
-
-          <input
-            className="form-control"
-            name="rainfall"
-            value={formData.rainfall}
-            onChange={handleChange}
-          />
-
-        </div>
-
-      </div>
-
-      <div className="row">
-
-        <div className="col-md-3 mb-3">
-
-          <label>Nitrogen (N)</label>
-
-          <input
-            className="form-control"
-            name="N"
-            value={formData.N}
-            onChange={handleChange}
-          />
-
-        </div>
-
-        <div className="col-md-3 mb-3">
-
-          <label>Phosphorus (P)</label>
-
-          <input
-            className="form-control"
-            name="P"
-            value={formData.P}
-            onChange={handleChange}
-          />
-
-        </div>
-
-        <div className="col-md-3 mb-3">
-
-          <label>Potassium (K)</label>
-
-          <input
-            className="form-control"
-            name="K"
-            value={formData.K}
-            onChange={handleChange}
-          />
-
-        </div>
-
-        <div className="col-md-3 mb-3">
-
-          <label>pH</label>
-
-          <input
-            className="form-control"
-            name="ph"
-            value={formData.ph}
-            onChange={handleChange}
-          />
-
-        </div>
-
-      </div>
-
-      <div className="row">
-
-        <div className="col-md-6 mb-3">
-
-          <label>Soil Type</label>
+          <label>
+            <Sprout />
+            <span>Soil Type</span>
+          </label>
 
           <select
-            className="form-select"
             name="soilType"
             value={formData.soilType}
             onChange={handleChange}
           >
+            <option value="">Select Soil Type</option>
 
-            <option value="">
-
-              Select Soil
-
-            </option>
-
-            {soilTypes.map((soil) => (
-
-              <option
-                key={soil}
-                value={soil}
-              >
-
+            {soilTypes.map(soil => (
+              <option key={soil} value={soil}>
                 {soil}
-
               </option>
-
             ))}
 
           </select>
 
         </div>
 
+
+        {/* TEMPERATURE */}
+        <div className="climate-field">
+
+          <label>
+            <Thermometer />
+            <span>Temperature (°C)</span>
+          </label>
+
+          <input
+            type="number"
+            name="temperature"
+            value={formData.temperature}
+            onChange={handleChange}
+            placeholder="Auto Filled"
+          />
+
+        </div>
+
+
+        {/* HUMIDITY */}
+        <div className="climate-field">
+
+          <label>
+            <Droplets />
+            <span>Humidity (%)</span>
+          </label>
+
+          <input
+            type="number"
+            name="humidity"
+            value={formData.humidity}
+            onChange={handleChange}
+            placeholder="Auto Filled"
+          />
+
+        </div>
+
+
+        {/* RAINFALL */}
+        <div className="climate-field">
+
+          <label>
+            <CloudRain />
+            <span>Rainfall (mm)</span>
+          </label>
+
+          <input
+            type="number"
+            name="rainfall"
+            value={formData.rainfall}
+            onChange={handleChange}
+            placeholder="Auto Filled"
+          />
+
+        </div>
+
+
+        {/* NITROGEN */}
+        <div className="climate-field">
+
+          <label>
+            <FlaskConical />
+            <span>Nitrogen (N)</span>
+          </label>
+
+          <input
+            type="number"
+            name="N"
+            value={formData.N}
+            onChange={handleChange}
+            placeholder="e.g. 90"
+          />
+
+        </div>
+
+
+        {/* PHOSPHORUS */}
+        <div className="climate-field">
+
+          <label>
+            <TestTube />
+            <span>Phosphorus (P)</span>
+          </label>
+
+          <input
+            type="number"
+            name="P"
+            value={formData.P}
+            onChange={handleChange}
+            placeholder="e.g. 42"
+          />
+
+        </div>
+
+
+        {/* POTASSIUM */}
+        <div className="climate-field">
+
+          <label>
+            <TestTube />
+            <span>Potassium (K)</span>
+          </label>
+
+          <input
+            type="number"
+            name="K"
+            value={formData.K}
+            onChange={handleChange}
+            placeholder="e.g. 43"
+          />
+
+        </div>
+
+
+        {/* PH */}
+        <div className="climate-field">
+
+          <label>
+            <Gauge />
+            <span>Soil pH</span>
+          </label>
+
+          <input
+            type="number"
+            step="0.1"
+            name="ph"
+            value={formData.ph}
+            onChange={handleChange}
+            placeholder="6.5"
+          />
+
+        </div>
+
+
+        {/* BUTTON - FULL WIDTH NEW ROW */}
+        <div className="recommend-action">
+          <button
+            type="submit"
+            className="recommend-btn"
+            disabled={loadingClimate}
+          >
+            🌱 Recommend Crop
+          </button>
+        </div>
+
       </div>
 
-      <button
-        className="btn btn-success"
-        type="submit"
-      >
-
-        Recommend Crop
-
-      </button>
-
     </form>
-
   );
-
 };
 
 export default ClimateForm;

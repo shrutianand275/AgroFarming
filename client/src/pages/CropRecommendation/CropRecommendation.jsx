@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
 import ClimateForm from "../../components/ClimateForm";
 import ResultCard from "../../components/ResultCard";
 
@@ -11,7 +10,7 @@ import { recommendCrop } from "../../services/api";
 import "./CropRecommendation.css";
 
 const CropRecommendation = () => {
-
+ 
     const { t } = useTranslation();
 
     const [loading, setLoading] = useState(false);
@@ -74,23 +73,11 @@ const CropRecommendation = () => {
 
                     <div className="text-center crop-header">
 
-                        <span className="crop-badge">
-
-                            🌾 {t("crop.aiPowered")}
-
-                        </span>
-
-                        <h1 className="crop-title">
+                        <h6 className="crop-title">
 
                             {t("crop.title")}
 
-                        </h1>
-
-                        <p className="crop-subtitle">
-
-                            {t("crop.subtitle")}
-
-                        </p>
+                        </h6>
 
                     </div>
 
@@ -99,14 +86,12 @@ const CropRecommendation = () => {
                     <div className="alert alert-success crop-alert">
 
                         <strong>
-
                             {t("crop.noteTitle")}
-
-                        </strong>
-
-                        <br />
-
-                        {t("crop.note")}
+                         </strong>
+                    
+                        <span>
+                            {t("crop.note")}
+                        </span>
 
                     </div>
 
@@ -187,8 +172,6 @@ const CropRecommendation = () => {
                 </div>
 
             </section>
-
-            <Footer />
 
         </>
 

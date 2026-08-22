@@ -3,6 +3,9 @@ from flask_cors import CORS
 
 from routes.crop_routes import crop_bp
 from routes.climate_routes import climate_bp
+from routes.fertilizer_routes import fertilizer_bp
+from routes.disease_routes import disease_bp
+from routes.yield_routes import yield_bp
 
 app = Flask(__name__)
 
@@ -16,6 +19,21 @@ app.register_blueprint(
 app.register_blueprint(
     climate_bp,
     url_prefix="/api/climate"
+)
+
+app.register_blueprint(
+    fertilizer_bp,
+    url_prefix="/api/fertilizer"
+)
+
+app.register_blueprint(
+    disease_bp,
+    url_prefix="/api/disease"
+)
+
+app.register_blueprint(
+    yield_bp,
+    url_prefix="/api/yield"
 )
 
 

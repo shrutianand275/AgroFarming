@@ -1,0 +1,295 @@
+
+.disease-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 20px 16px 30px;
+}
+
+.disease-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.disease-header {
+  margin-bottom: 12px;
+  color: #1a202c;
+}
+
+.disease-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #10b981;
+}
+
+.disease-subtitle {
+  font-size: 0.8rem;
+  opacity: 0.85;
+  margin-top: 4px;
+  color: #4a5568;
+}
+
+.disease-alert {
+  background-color: #e6f7f1;
+  border-left: 4px solid #10b981;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-size: 0.8rem;
+  color: #1a202c;
+}
+
+.disease-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.disease-card-body {
+  padding: 16px;
+}
+
+/* ================================
+   FORM GRID
+   3 INPUTS IN ONE ROW
+   ================================ */
+
+.disease-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px 18px;
+  margin-bottom: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.field label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+}
+
+/* Input and Select */
+
+.form-control,
+.form-select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  height: 36px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* ================================
+   PREDICT BUTTON
+   ================================ */
+
+.predict-action {
+  text-align: center;
+  margin-top: 14px;
+}
+
+.predict-btn {
+  background: linear-gradient(
+    135deg,
+    #10b981 0%,
+    #059669 100%
+  );
+
+  color: white;
+  border: none;
+
+  padding: 10px 30px;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+
+  height: 42px;
+}
+
+.predict-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 16px rgba(16, 185, 129, 0.5);
+}
+
+.predict-btn:active {
+  transform: translateY(0);
+}
+
+/* ================================
+   LOADING
+   ================================ */
+
+.disease-loading {
+  margin-top: 20px;
+  color: #10b981;
+  text-align: center;
+}
+
+.disease-loading h6 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1a202c;
+  margin-top: 10px;
+}
+
+/* ================================
+   RESULT CARD
+   ================================ */
+
+.result-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: #e6f7f1;
+  border-bottom: 1px solid #d1fae5;
+}
+
+.result-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #065f46;
+}
+
+.result-icon {
+  font-size: 1.3rem;
+}
+
+.result-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px;
+}
+
+.result-item {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 3px solid #10b981;
+}
+
+.result-item.highlight {
+  background: #ecfdf5;
+}
+
+.item-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.result-item h5 {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  color: #374151;
+}
+
+.result-item p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.result-value {
+  font-size: 0.95rem !important;
+  font-weight: 700;
+  color: #059669 !important;
+}
+
+/* ================================
+   14-INCH LAPTOP
+   2 COLUMNS
+   ================================ */
+
+@media (max-width: 900px) {
+  .disease-container {
+    max-width: 850px;
+  }
+
+  .disease-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================================
+   MOBILE
+   ================================ */
+
+@media (max-width: 600px) {
+  .disease-page {
+    padding: 60px 12px 24px;
+  }
+
+  .disease-container {
+    max-width: 100%;
+  }
+
+  .disease-title {
+    font-size: 1.2rem;
+  }
+
+  .disease-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .disease-card-body {
+    padding: 12px;
+  }
+
+  .disease-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .result-body {
+    grid-template-columns: 1fr;
+  }
+
+  .predict-btn {
+    padding: 9px 26px;
+    font-size: 0.8rem;
+    height: 38px;
+  }
+}

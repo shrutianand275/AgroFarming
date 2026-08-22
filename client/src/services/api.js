@@ -45,4 +45,30 @@ export const recommendCrop = async (data) => {
   return response.data;
 };
 
+// ==============================
+// Fertilizer Recommendation
+// ==============================
+
+export const recommendFertilizer = async (data) => {
+  const response = await API.post(
+    "/fertilizer/recommend",
+    data
+  );
+
+  return response.data;
+};
+
+// ==============================
+// Disease Prediction
+// ==============================
+
+export const predictDisease = async (data) => {
+  const response = await API.post(
+    "/disease/predict",
+    data
+  );
+
+  return response.data;
+};
+
 export default API;

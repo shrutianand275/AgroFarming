@@ -1,0 +1,570 @@
+/* ============================================
+   YIELD PREDICTION
+   SAME COMPACT UI AS CROP RECOMMENDATION
+   14-INCH LAPTOP
+============================================ */
+
+.yield-page {
+  min-height: 100vh;
+  background: #f7faf8;
+  padding: 8px 10px 8px;
+}
+
+.yield-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* ============================================
+   TITLE
+============================================ */
+
+.yield-header {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.yield-title {
+  margin: 0;
+  color: #087b3e;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yield-title-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.yield-title-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* ============================================
+   IMPORTANT ALERT
+============================================ */
+
+.yield-alert {
+  width: 100%;
+  box-sizing: border-box;
+
+  margin: 0 0 16px !important;
+  padding: 4px 16px !important;
+
+  background: #f2faf5 !important;
+
+  border: 1px solid #cce5d5 !important;
+  border-left: 5px solid #159447 !important;
+
+  border-radius: 9px !important;
+
+  color: #075b32 !important;
+
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+
+  min-height: 38px;
+
+  display: block;
+}
+
+.yield-alert strong {
+  display: inline;
+
+  margin: 0;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.yield-alert br {
+  display: none;
+}
+
+.yield-alert span {
+  font-size: 8px;
+}
+
+
+/* ============================================
+   FORM CARD
+============================================ */
+
+.yield-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  background: #ffffff !important;
+
+  border: 1px solid #e9efeb !important;
+
+  border-radius: 15px !important;
+
+  box-shadow:
+    0 4px 15px rgba(30, 80, 50, 0.07) !important;
+
+  padding: 6px !important;
+}
+
+
+/* ============================================
+   FORM
+============================================ */
+
+.yield-form {
+  width: 100%;
+}
+
+
+/* ============================================
+   EXACTLY 4 COLUMNS
+   DO NOT CHANGE TO 8
+============================================ */
+
+.yield-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr)) !important;
+
+  column-gap: 10px !important;
+  row-gap: 10px !important;
+
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  box-sizing: border-box !important;
+
+  align-items: end !important;
+}
+
+
+/* ============================================
+   FIELD
+============================================ */
+
+.yield-field {
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  width: 100% !important;
+
+  min-width: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* ============================================
+   LABEL
+============================================ */
+
+.yield-field label {
+  display: flex !important;
+
+  align-items: center !important;
+
+  gap: 2px !important;
+
+  width: 100% !important;
+
+  height: 20px !important;
+
+  margin: 0 0 5px !important;
+  padding: 0 !important;
+
+  color: #08743b !important;
+
+  font-size: 10px !important;
+
+  font-weight: 700 !important;
+
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* ============================================
+   LABEL ICON
+============================================ */
+
+.yield-field label svg {
+  width: 14px !important;
+  height: 14px !important;
+
+  min-width: 14px !important;
+
+  color: #12944b !important;
+
+  stroke-width: 2.5 !important;
+}
+
+
+/* ============================================
+   INPUT + SELECT
+============================================ */
+
+.yield-field input,
+.yield-field select {
+  display: block !important;
+
+  width: 100% !important;
+
+  height: 38px !important;
+  min-height: 38px !important;
+
+  margin: 0 !important;
+
+  padding: 4px 10px !important;
+
+  box-sizing: border-box !important;
+
+  border: 1px solid #c8dfd1 !important;
+
+  border-radius: 6px !important;
+
+  background: #ffffff !important;
+
+  color: #173c2b !important;
+
+  font-family: inherit !important;
+
+  font-size: 10px !important;
+
+  font-weight: 400 !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+}
+
+
+/* ============================================
+   PLACEHOLDER
+============================================ */
+
+.yield-field input::placeholder {
+  color: #84928c !important;
+  opacity: 1 !important;
+}
+
+
+/* ============================================
+   SELECT
+============================================ */
+
+.yield-field select {
+  cursor: pointer !important;
+}
+
+
+/* ============================================
+   FOCUS
+============================================ */
+
+.yield-field input:focus,
+.yield-field select:focus {
+  border-color: #159447 !important;
+
+  box-shadow:
+    0 0 0 2px rgba(21, 148, 71, 0.08) !important;
+
+  outline: none !important;
+}
+
+
+/* ============================================
+   BUTTON
+   SAME AS CROP RECOMMENDATION
+============================================ */
+
+.yield-action {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 10px;
+}
+
+
+.yield-btn {
+  width: 100% !important;
+
+  height: 38px !important;
+  min-height: 38px !important;
+
+  margin: 0 !important;
+
+  padding: 6px 8px !important;
+
+  border: none !important;
+
+  border-radius: 6px !important;
+
+  background: #159447 !important;
+
+  color: #ffffff !important;
+
+  font-size: 10px !important;
+
+  font-weight: 700 !important;
+
+  cursor: pointer !important;
+
+  transition: 0.2s ease !important;
+}
+
+
+.yield-btn:hover {
+  background: #087b3e !important;
+
+  transform: translateY(-1px);
+}
+
+
+.yield-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* ============================================
+   ERROR
+============================================ */
+
+.yield-error {
+  width: 100%;
+
+  margin-top: 8px !important;
+
+  padding: 8px 10px !important;
+
+  box-sizing: border-box;
+
+  background: #fff3f3;
+
+  border: 1px solid #efcaca;
+
+  border-left: 4px solid #dc3545;
+
+  border-radius: 6px;
+
+  color: #a51d2d;
+
+  font-size: 10px;
+}
+
+
+/* ============================================
+   RESULT
+============================================ */
+
+.yield-result {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 10px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e9efeb;
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 3px 10px rgba(30, 80, 50, 0.05);
+}
+
+
+.yield-result h3 {
+  margin: 0 0 4px;
+
+  color: #087b3e;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+.yield-result p {
+  margin: 0;
+
+  color: #53636a;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+
+/* ============================================
+   14-INCH LAPTOP
+   FORCE 4 COLUMNS
+============================================ */
+
+@media screen and (min-width: 1000px) {
+
+  .yield-grid {
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr)) !important;
+
+    column-gap: 10px !important;
+
+    row-gap: 10px !important;
+  }
+
+  .yield-field {
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    min-width: 0 !important;
+  }
+}
+
+
+/* ============================================
+   TABLET
+============================================ */
+
+@media screen and (min-width: 700px) and (max-width: 999px) {
+
+  .yield-grid {
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr)) !important;
+
+    column-gap: 8px !important;
+
+    row-gap: 8px !important;
+  }
+
+  .yield-field label {
+    font-size: 9px !important;
+  }
+
+  .yield-field label svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  .yield-field input,
+  .yield-field select {
+    height: 35px !important;
+
+    min-height: 35px !important;
+
+    font-size: 9px !important;
+  }
+
+  .yield-btn {
+    height: 35px !important;
+
+    min-height: 35px !important;
+
+    font-size: 9px !important;
+  }
+}
+
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media screen and (max-width: 699px) {
+
+  .yield-page {
+    padding: 12px 10px 20px;
+  }
+
+  .yield-title {
+    font-size: 23px;
+  }
+
+  .yield-title-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .yield-alert {
+    padding: 8px 12px !important;
+
+    font-size: 11px !important;
+
+    line-height: 1.3 !important;
+  }
+
+  .yield-alert strong {
+    font-size: 12px;
+  }
+
+  .yield-alert span {
+    font-size: 11px;
+  }
+
+  .yield-card {
+    padding: 10px !important;
+
+    border-radius: 12px !important;
+  }
+
+  .yield-grid {
+    grid-template-columns: 1fr !important;
+
+    gap: 10px !important;
+  }
+
+  .yield-field label {
+    font-size: 11px !important;
+  }
+
+  .yield-field input,
+  .yield-field select {
+    height: 38px !important;
+
+    min-height: 38px !important;
+
+    font-size: 11px !important;
+  }
+
+  .yield-btn {
+    height: 38px !important;
+
+    min-height: 38px !important;
+
+    font-size: 10px !important;
+  }
+}

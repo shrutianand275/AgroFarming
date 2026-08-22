@@ -7,174 +7,124 @@ import {
   FaAward
 } from "react-icons/fa";
 
-const ResultCard = ({ result }) => {
+import "./ResultCard.css";
 
+const ResultCard = ({ result }) => {
   if (!result) return null;
 
   return (
+    <div className="result-card">
 
-    <div className="card shadow-lg border-0 mt-5">
-
-      <div className="card-header bg-success text-white">
-
-        <h3 className="mb-0">
-
+      {/* Header */}
+      <div className="result-header">
+        <h3>
           🌾 Crop Recommendation Result
-
         </h3>
-
       </div>
 
-      <div className="card-body">
+      <div className="result-content">
 
-        <div className="row">
+        {/* Left Section */}
+        <div className="result-left">
 
-          <div className="col-md-6 mb-4">
-
-            <div className="p-3 bg-light rounded">
-
-              <h5>
-
-                <FaLeaf className="me-2 text-success" />
-
-                Recommended Crop
-
-              </h5>
-
-              <h2 className="text-success fw-bold">
-
-                {result.recommended_crop}
-
-              </h2>
-
+          <div className="result-item">
+            <div className="result-label">
+              <FaLeaf />
+              <span>Recommended Crop</span>
             </div>
 
+            <div className="recommended-crop">
+              {result.recommended_crop}
+            </div>
           </div>
 
-          <div className="col-md-6 mb-4">
 
-            <div className="p-3 bg-light rounded">
-
-              <h5>
-
-                <FaChartLine className="me-2 text-primary" />
-
-                Confidence
-
-              </h5>
-
-              <h2 className="text-primary fw-bold">
-
-                {result.confidence}%
-
-              </h2>
-
+          <div className="result-item">
+            <div className="result-label">
+              <FaChartLine />
+              <span>Confidence</span>
             </div>
 
+            <div className="confidence-value">
+              {result.confidence}%
+            </div>
           </div>
 
-        </div>
 
-        <div className="row">
-
-          <div className="col-md-6 mb-4">
-
-            <div className="p-3 border rounded">
-
-              <h5>
-
-                <FaCalendarAlt className="me-2 text-warning" />
-
-                Suitable Season
-
-              </h5>
-
-              <h4>
-
-                {result.season}
-
-              </h4>
-
+          <div className="result-item">
+            <div className="result-label">
+              <FaCalendarAlt />
+              <span>Suitable Season</span>
             </div>
 
+            <p>
+              {result.season}
+            </p>
           </div>
 
-          <div className="col-md-6 mb-4">
 
-            <div className="p-3 border rounded">
-
-              <h5>
-
-                <FaLightbulb className="me-2 text-info" />
-
-                Farming Tip
-
-              </h5>
-
-              <p className="mb-0">
-
-                {result.tips}
-
-              </p>
-
+          <div className="result-item">
+            <div className="result-label">
+              <FaLightbulb />
+              <span>Farming Tip</span>
             </div>
 
+            <p>
+              {result.tips}
+            </p>
           </div>
 
         </div>
 
-        <hr />
 
-        <h4 className="mb-3">
+        {/* Right Section */}
+        <div className="result-right">
 
-          <FaAward className="me-2 text-success" />
+          <div className="top-crops-title">
+            <FaAward />
+            <span>Top 3 Crop Recommendations</span>
+          </div>
 
-          Top 3 Crop Recommendations
+          <table className="crop-result-table">
 
-        </h4>
-
-        <table className="table table-striped">
-
-          <thead>
-
-            <tr>
-
-              <th>#</th>
-
-              <th>Crop</th>
-
-              <th>Confidence</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            {result.top3.map((crop, index) => (
-
-              <tr key={index}>
-
-                <td>{index + 1}</td>
-
-                <td>{crop.crop}</td>
-
-                <td>{crop.confidence}%</td>
-
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Crop</th>
+                <th>Confidence</th>
               </tr>
+            </thead>
 
-            ))}
+            <tbody>
 
-          </tbody>
+              {result.top3?.map((crop, index) => (
+                <tr key={index}>
 
-        </table>
+                  <td>
+                    {index + 1}
+                  </td>
+
+                  <td className="crop-name">
+                    {crop.crop}
+                  </td>
+
+                  <td>
+                    {crop.confidence}%
+                  </td>
+
+                </tr>
+              ))}
+
+            </tbody>
+
+          </table>
+
+        </div>
 
       </div>
 
     </div>
-
   );
-
 };
 
 export default ResultCard;

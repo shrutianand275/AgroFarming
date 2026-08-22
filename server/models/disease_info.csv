@@ -1,0 +1,63 @@
+Disease,Plant,Symptoms,Treatment,Prevention,Severity,Temperature_Range,Humidity_Range,Season
+Early Blight,Tomato,Brown spots with concentric rings on leaves,Apply chlorothalonil or copper-based fungicide,Crop rotation and proper spacing,Moderate,24-29,80-90,Monsoon
+Late Blight,Tomato,Water-soaked lesions on leaves and stems,Apply mancozeb or metalaxyl fungicide,Remove infected plants immediately,High,18-24,90-100,Monsoon
+Leaf Mold,Tomato,Yellow patches on upper leaf surface,Improve air circulation and apply fungicide,Maintain proper ventilation,Moderate,22-26,85-95,Monsoon
+Bacterial Spot,Tomato,Small dark spots on leaves and fruits,Apply copper-based bactericide,Use disease-free seeds,Moderate,25-30,75-90,Summer
+Septoria Leaf Spot,Tomato,Circular spots with gray center on leaves,Remove infected leaves and apply fungicide,Avoid overhead irrigation,Moderate,20-25,80-90,Monsoon
+Mosaic Virus,Tomato,Mottled light and dark green on leaves,Remove infected plants,Control aphids and use resistant varieties,High,22-30,60-80,All Seasons
+Yellow Leaf Curl,Tomato,Upward curling and yellowing of leaves,Control whiteflies with insecticides,Use resistant varieties,High,25-35,50-70,Summer
+Early Blight,Potato,Dark brown spots on older leaves,Apply mancozeb or chlorothalonil,Crop rotation,Moderate,24-29,80-90,Monsoon
+Late Blight,Potato,Dark water-soaked lesions on leaves,Apply metalaxyl or mancozeb,Destroy infected tubers,High,15-22,90-100,Monsoon
+Black Scurf,Potato,Black sclerotia on tuber surface,Use treated seed potatoes,Proper storage conditions,Low,15-24,70-85,Winter
+Blast,Rice,Diamond-shaped lesions on leaves,Apply tricyclazole or isoprothiolane,Use resistant varieties,High,25-28,85-95,Monsoon
+Bacterial Blight,Rice,Water-soaked to yellowish stripes on leaves,Apply copper oxychloride,Balanced fertilization,High,25-34,70-80,Monsoon
+Sheath Blight,Rice,Oval lesions on leaf sheath,Apply validamycin or hexaconazole,Proper water management,Moderate,28-32,80-95,Monsoon
+Brown Spot,Rice,Oval brown spots on leaves and glumes,Apply mancozeb or propiconazole,Use disease-free seeds,Moderate,25-30,80-90,Monsoon
+Rust,Wheat,Orange-red pustules on leaves,Apply propiconazole or tebuconazole,Early sowing of resistant varieties,High,15-22,60-80,Winter
+Powdery Mildew,Wheat,White powdery growth on leaves,Apply sulfur or triadimefon,Avoid excess nitrogen,Moderate,15-20,70-90,Winter
+Loose Smut,Wheat,Black powdery spore masses in place of grain,Seed treatment with carboxin,Use disease-free seeds,Moderate,20-27,65-75,Winter
+Flag Smut,Wheat,Black stripes on leaves and stems,Seed treatment with vitavax,Crop rotation,Low,15-25,60-80,Winter
+Turcicum Blight,Maize,Long elliptical lesions on leaves,Apply mancozeb or propiconazole,Use resistant hybrids,High,18-27,90-100,Monsoon
+Maydis Blight,Maize,Rectangular tan lesions on leaves,Apply fungicide and remove infected debris,Crop rotation,Moderate,20-30,80-95,Monsoon
+Common Rust,Maize,Reddish-brown pustules on both leaf surfaces,Apply propiconazole or azoxystrobin,Use resistant varieties,Moderate,16-23,85-95,Monsoon
+Gray Leaf Spot,Maize,Rectangular gray lesions on leaves,Apply fungicide at early stage,Crop residue management,High,22-30,90-100,Monsoon
+Bacterial Blight,Cotton,Angular water-soaked spots on leaves,Apply copper oxychloride,Use disease-free seeds,High,25-30,80-90,Monsoon
+Fusarium Wilt,Cotton,Yellowing and wilting of leaves,No effective chemical control,Use resistant varieties and soil treatment,High,25-32,60-80,Summer
+Alternaria Blight,Cotton,Circular brown spots with concentric rings,Apply mancozeb or chlorothalonil,Crop rotation and field sanitation,Moderate,25-30,75-90,Monsoon
+Root Rot,Cotton,Wilting and rotting of roots,Apply carbendazim to soil,Improve drainage and use treated seeds,High,28-35,70-85,Summer
+Red Rot,Sugarcane,Red discoloration of internal tissues,Use disease-free setts and resistant varieties,Proper drainage,High,28-35,80-95,Monsoon
+Smut,Sugarcane,Black whip-like structure from growing point,Remove and burn whips,Use resistant varieties,Moderate,25-35,70-85,All Seasons
+Wilt,Sugarcane,Yellowing and drying of leaves,No chemical control,Use disease-free planting material,High,30-38,60-80,Summer
+Red Stripe,Sugarcane,Long red stripes on leaves,Remove infected leaves,Roguing of infected plants,Low,25-30,75-90,Monsoon
+Downy Mildew,Grape,Yellowish oily spots on upper leaf surface,Apply metalaxyl or mancozeb,Proper pruning and training,High,20-25,85-100,Monsoon
+Powdery Mildew,Grape,White powdery growth on leaves and fruits,Apply sulfur or azoxystrobin,Proper canopy management,High,20-27,40-70,Summer
+Anthracnose,Grape,Dark sunken lesions on berries,Apply copper fungicide,Remove infected parts,Moderate,24-32,80-95,Monsoon
+Black Rot,Grape,Brown circular spots on leaves and fruits,Apply mancozeb or captan,Prune infected parts,High,20-27,85-95,Monsoon
+Scab,Apple,Olive-green to black spots on leaves and fruits,Apply captan or myclobutanil,Prune for air circulation,High,16-24,90-100,Spring
+Powdery Mildew,Apple,White powdery growth on new growth,Apply sulfur or triadimefon,Remove infected shoots,Moderate,18-25,70-90,Spring
+Fire Blight,Apple,Blackened blossoms and shoots,Apply streptomycin during bloom,Prune infected branches,High,18-26,60-85,Spring
+Cedar Apple Rust,Apple,Yellow-orange spots on leaves,Apply fungicide during wet periods,Remove nearby cedar trees,Moderate,18-24,80-95,Spring
+Anthracnose,Mango,Black spots on fruits and leaves,Apply carbendazim or mancozeb,Proper pruning and sanitation,High,25-32,85-95,Monsoon
+Powdery Mildew,Mango,White powdery coating on flowers and leaves,Apply sulfur or hexaconazole,Remove infected flowers,High,20-30,50-80,Spring
+Bacterial Canker,Mango,Raised corky lesions on fruits,Apply copper oxychloride,Prune infected branches,Moderate,25-35,70-90,Summer
+Sooty Mould,Mango,Black coating on leaves and fruits,Control insects and apply soap solution,Improve air circulation,Low,25-35,80-95,Monsoon
+Panama Wilt,Banana,Yellowing and wilting of older leaves,No effective cure,Use resistant varieties,High,24-32,70-90,All Seasons
+Sigatoka,Banana,Brown streaks and spots on leaves,Apply propiconazole or azoxystrobin,Remove infected leaves,High,25-28,85-95,Monsoon
+Bunchy Top,Banana,Stunted growth with bunched leaves,Remove infected plants,Control aphids,High,22-30,70-85,All Seasons
+Bacterial Wilt,Banana,Wilting of leaves starting from margins,Remove and destroy infected plants,Disinfect tools,High,25-35,75-90,All Seasons
+Leaf Curl,Chili,Upward curling and puckering of leaves,Control whiteflies with insecticides,Use yellow sticky traps,High,25-35,60-80,Summer
+Powdery Mildew,Chili,White powdery coating on leaves,Apply sulfur or azoxystrobin,Proper spacing,Moderate,22-28,60-80,Winter
+Anthracnose,Chili,Sunken circular lesions on fruits,Apply mancozeb or carbendazim,Harvest mature fruits,High,25-30,80-95,Monsoon
+Bacterial Wilt,Chili,Sudden wilting without yellowing,No effective cure,Crop rotation and resistant varieties,High,28-35,75-90,Summer
+Rust,Soybean,Reddish-brown pustules on lower leaf surface,Apply triazole fungicides,Use early maturing varieties,Moderate,20-28,80-95,Monsoon
+Bacterial Blight,Soybean,Water-soaked lesions with yellow halo,Apply copper-based bactericide,Use disease-free seeds,Moderate,25-30,80-90,Monsoon
+Frogeye Leaf Spot,Soybean,Circular spots with gray center,Apply azoxystrobin or trifloxystrobin,Crop rotation,Moderate,22-28,75-90,Monsoon
+Pod Blight,Soybean,Dark lesions on pods,Apply fungicide during pod formation,Timely harvesting,Moderate,25-30,85-95,Monsoon
+Tikka Disease,Groundnut,Circular dark brown spots on leaves,Apply chlorothalonil or mancozeb,Crop rotation,High,25-30,80-90,Monsoon
+Rust,Groundnut,Orange pustules on lower leaf surface,Apply tebuconazole or propiconazole,Use resistant varieties,Moderate,22-28,85-95,Monsoon
+Stem Rot,Groundnut,Rotting of stem at soil level,Apply carbendazim to soil,Proper drainage,High,28-35,75-90,Monsoon
+Bud Necrosis,Groundnut,Necrotic spots on leaves and growing tips,Control thrips with insecticides,Remove infected plants,Moderate,25-32,60-80,Summer
+Purple Blotch,Onion,Purple spots with concentric rings,Apply mancozeb or chlorothalonil,Crop rotation,Moderate,20-25,85-95,Monsoon
+Stemphylium Blight,Onion,Small brown spots on leaves,Apply azoxystrobin or difenoconazole,Proper spacing,Moderate,15-25,80-95,Monsoon
+Basal Rot,Onion,Rotting of bulb from base,Proper curing and storage,Avoid injury during harvesting,Moderate,25-32,70-85,Storage
+Downy Mildew,Onion,Pale green to yellow patches on leaves,Apply metalaxyl or mancozeb,Avoid excess irrigation,High,15-22,90-100,Winter

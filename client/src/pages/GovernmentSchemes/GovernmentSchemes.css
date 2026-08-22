@@ -1,0 +1,503 @@
+/* =========================================================
+   GOVERNMENT SCHEMES
+   Compact UI - 14 inch laptop
+   Green AgroFarming theme
+   ========================================================= */
+
+.schemes-page {
+  min-height: 100vh;
+  background: #f5f8f6;
+  padding: 14px 12px 25px;
+  box-sizing: border-box;
+}
+
+.schemes-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.schemes-header {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #1a202c;
+}
+
+.schemes-title {
+  margin: 0;
+  color: #087b3e;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.schemes-subtitle {
+  margin: 3px 0 0;
+  color: #607086;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   SEARCH + FILTER
+   ========================================================= */
+
+.schemes-controls {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #d8e6df;
+  border-radius: 9px;
+  padding: 9px;
+  margin-bottom: 12px;
+
+  box-shadow: 0 3px 12px rgba(30, 100, 65, 0.05);
+  box-sizing: border-box;
+}
+
+.search-box {
+  margin-bottom: 7px;
+}
+
+.search-input {
+  width: 100%;
+  height: 30px;
+
+  padding: 0 9px;
+
+  border: 1px solid #c5dfd0;
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #10251b;
+  font-family: inherit;
+  font-size: 10px;
+
+  outline: none;
+  box-sizing: border-box;
+
+  transition: 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #82939a;
+}
+
+.search-input:focus {
+  border-color: #159c4d;
+
+  box-shadow:
+    0 0 0 2px rgba(21, 156, 77, 0.08);
+}
+
+
+/* =========================================================
+   CATEGORY BUTTONS
+   ========================================================= */
+
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.category-btn {
+  height: 24px;
+
+  padding: 0 8px;
+
+  border: 1px solid #cbded4;
+  background: #ffffff;
+
+  border-radius: 14px;
+
+  color: #43534b;
+
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.category-btn:hover {
+  border-color: #159c4d;
+  color: #087b3e;
+}
+
+.category-btn.active {
+  background: #159947;
+  border-color: #159947;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   SCHEMES GRID
+   2 CARDS PER ROW
+   ========================================================= */
+
+.schemes-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px 12px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SCHEME CARD
+   ========================================================= */
+
+.scheme-card {
+  width: 100%;
+  min-width: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #d8e6df;
+  border-radius: 9px;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow:
+    0 3px 12px rgba(30, 100, 65, 0.05);
+
+  transition: 0.2s ease;
+
+  box-sizing: border-box;
+}
+
+.scheme-card:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 16px rgba(30, 100, 65, 0.10);
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.scheme-header {
+  background: linear-gradient(
+    135deg,
+    #159947 0%,
+    #087b3e 100%
+  );
+
+  padding: 8px 10px;
+
+  color: #ffffff;
+}
+
+.scheme-name {
+  margin: 0 0 3px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1.25;
+}
+
+.scheme-category {
+  display: inline-block;
+
+  padding: 2px 6px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  border-radius: 10px;
+
+  font-size: 8px;
+  font-weight: 500;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   CARD BODY
+   ========================================================= */
+
+.scheme-body {
+  padding: 8px 10px;
+
+  flex: 1;
+
+  box-sizing: border-box;
+}
+
+.scheme-description {
+  margin: 0 0 7px;
+
+  color: #53636a;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   DETAILS
+   ========================================================= */
+
+.scheme-details {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.detail-item {
+  font-size: 8.5px;
+  line-height: 1.3;
+}
+
+.detail-item strong {
+  display: block;
+
+  margin-bottom: 1px;
+
+  color: #159947;
+
+  font-size: 8.5px;
+  font-weight: 700;
+}
+
+.detail-item p {
+  margin: 0;
+
+  color: #53636a;
+
+  font-size: 8.5px;
+
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   META
+   ========================================================= */
+
+.scheme-meta {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-top: 7px;
+  padding-top: 6px;
+
+  border-top: 1px solid #e2e8e5;
+
+  color: #718096;
+
+  font-size: 8px;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+   ========================================================= */
+
+.scheme-footer {
+  padding: 6px 10px;
+
+  background: #f7faf8;
+
+  border-top: 1px solid #e2e8e5;
+
+  box-sizing: border-box;
+}
+
+.apply-link {
+  display: inline-block;
+
+  color: #159947;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.apply-link:hover {
+  color: #087b3e;
+  transform: translateX(2px);
+}
+
+
+/* =========================================================
+   NO RESULTS
+   ========================================================= */
+
+.no-results {
+  width: 100%;
+
+  text-align: center;
+
+  padding: 25px 10px;
+
+  color: #607086;
+
+  font-size: 10px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   14-INCH LAPTOP
+   Keep 2 cards in one row
+   ========================================================= */
+
+@media (min-width: 601px) {
+
+  .schemes-container {
+    max-width: 1180px;
+  }
+
+  .schemes-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 10px 12px;
+  }
+
+  .scheme-card {
+    min-width: 0;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) and (min-width: 601px) {
+
+  .schemes-page {
+    padding: 13px 10px 22px;
+  }
+
+  .schemes-grid {
+    gap: 9px 10px;
+  }
+
+  .scheme-header {
+    padding: 7px 9px;
+  }
+
+  .scheme-body {
+    padding: 7px 9px;
+  }
+
+  .scheme-name {
+    font-size: 10px;
+  }
+
+  .scheme-description,
+  .detail-item,
+  .detail-item p {
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .schemes-page {
+    padding: 12px 9px 20px;
+  }
+
+  .schemes-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .schemes-title {
+    font-size: 16px;
+  }
+
+  .schemes-subtitle {
+    font-size: 9px;
+  }
+
+  .schemes-controls {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .search-input {
+    height: 29px;
+    font-size: 9px;
+  }
+
+  .category-filter {
+    gap: 4px;
+  }
+
+  .category-btn {
+    height: 23px;
+    padding: 0 7px;
+    font-size: 8px;
+  }
+
+  .schemes-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .scheme-name {
+    font-size: 10px;
+  }
+
+  .scheme-description {
+    font-size: 8.5px;
+  }
+
+  .detail-item,
+  .detail-item strong,
+  .detail-item p {
+    font-size: 8px;
+  }
+
+  .scheme-meta {
+    font-size: 7.5px;
+  }
+
+  .apply-link {
+    font-size: 8.5px;
+  }
+}

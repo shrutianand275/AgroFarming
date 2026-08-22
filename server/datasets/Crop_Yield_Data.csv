@@ -1,0 +1,86 @@
+Crop,Season,State,Area_hectares,Annual_Rainfall_mm,Fertilizer_kg,Pesticide_kg,Temperature_C,Irrigation,Soil_Type,Yield_kg_per_hectare
+Rice,Kharif,Punjab,2.5,1200,180,5.2,28,Yes,Alluvial,4500
+Wheat,Rabi,Haryana,3.0,600,150,3.8,18,Yes,Loamy,3800
+Cotton,Kharif,Gujarat,4.5,800,200,8.5,32,Yes,Black,2200
+Sugarcane,Year-round,Maharashtra,2.0,1500,250,6.0,26,Yes,Red,65000
+Maize,Kharif,Karnataka,3.5,900,120,4.2,24,Yes,Red,3500
+Rice,Kharif,West Bengal,2.8,1400,190,5.5,29,Yes,Alluvial,4700
+Wheat,Rabi,Uttar Pradesh,2.2,550,140,3.5,17,Yes,Loamy,3600
+Cotton,Kharif,Telangana,5.0,750,210,9.0,33,Yes,Black,2100
+Sugarcane,Year-round,Uttar Pradesh,1.8,1600,260,6.5,27,Yes,Alluvial,68000
+Maize,Kharif,Madhya Pradesh,4.0,850,110,4.0,23,No,Red,3200
+Rice,Kharif,Andhra Pradesh,3.2,1300,185,5.8,30,Yes,Clayey,4600
+Wheat,Rabi,Rajasthan,2.5,500,135,3.2,16,No,Sandy,2800
+Cotton,Kharif,Maharashtra,4.8,820,195,8.8,31,Yes,Black,2300
+Sugarcane,Year-round,Tamil Nadu,2.2,1450,245,5.8,28,Yes,Red,66000
+Maize,Kharif,Bihar,3.8,920,125,4.5,25,Yes,Alluvial,3400
+Rice,Kharif,Odisha,2.6,1350,175,5.0,29,Yes,Laterite,4400
+Wheat,Rabi,Madhya Pradesh,2.8,580,145,3.6,18,Yes,Black,3700
+Cotton,Kharif,Karnataka,4.2,780,205,8.2,32,Yes,Red,2250
+Sugarcane,Year-round,Karnataka,2.1,1550,255,6.2,27,Yes,Red,67000
+Maize,Kharif,Rajasthan,3.2,800,115,3.8,22,No,Sandy,2900
+Rice,Kharif,Tamil Nadu,3.0,1250,180,5.3,28,Yes,Clayey,4550
+Wheat,Rabi,Punjab,3.2,620,155,4.0,19,Yes,Alluvial,4000
+Cotton,Kharif,Andhra Pradesh,4.6,810,200,8.6,33,Yes,Black,2280
+Sugarcane,Year-round,Gujarat,1.9,1580,265,6.8,28,Yes,Alluvial,69000
+Maize,Kharif,Uttar Pradesh,3.6,880,120,4.3,24,Yes,Loamy,3450
+Rice,Kharif,Kerala,2.4,1450,195,6.0,30,Yes,Laterite,4800
+Wheat,Rabi,Haryana,3.1,590,150,3.7,18,Yes,Loamy,3850
+Cotton,Kharif,Madhya Pradesh,5.2,760,215,9.2,34,No,Black,2050
+Sugarcane,Year-round,Bihar,2.3,1520,250,6.0,26,Yes,Alluvial,66500
+Maize,Kharif,Maharashtra,3.4,870,118,4.1,23,Yes,Black,3350
+Rice,Kharif,Chhattisgarh,2.9,1280,182,5.4,29,Yes,Red,4600
+Wheat,Rabi,Bihar,2.6,570,142,3.4,17,Yes,Alluvial,3650
+Cotton,Kharif,Punjab,4.4,790,198,8.4,31,Yes,Alluvial,2320
+Sugarcane,Year-round,Andhra Pradesh,2.0,1480,248,5.9,27,Yes,Clayey,67500
+Maize,Kharif,Telangana,3.7,860,122,4.4,24,Yes,Red,3380
+Rice,Kharif,Jharkhand,2.7,1320,178,5.2,28,Yes,Red,4450
+Wheat,Rabi,Uttarakhand,2.4,610,148,3.8,18,Yes,Loamy,3750
+Cotton,Kharif,Rajasthan,4.9,770,208,8.9,33,No,Sandy,2150
+Sugarcane,Year-round,Madhya Pradesh,2.1,1510,253,6.1,27,Yes,Black,66800
+Maize,Kharif,Gujarat,3.3,890,116,4.0,23,Yes,Alluvial,3300
+Rice,Kharif,Assam,2.5,1380,188,5.6,29,Yes,Alluvial,4650
+Wheat,Rabi,Gujarat,2.7,560,138,3.3,17,Yes,Alluvial,3550
+Cotton,Kharif,Haryana,4.7,800,202,8.7,32,Yes,Loamy,2270
+Sugarcane,Year-round,Punjab,1.95,1540,258,6.3,28,Yes,Alluvial,68500
+Maize,Kharif,Andhra Pradesh,3.5,875,121,4.2,24,Yes,Clayey,3420
+Rice,Rabi,Karnataka,2.3,700,165,4.8,22,Yes,Red,3900
+Wheat,Rabi,Tamil Nadu,2.9,530,150,3.5,19,Yes,Red,3800
+Cotton,Kharif,West Bengal,4.3,820,197,8.3,31,Yes,Alluvial,2300
+Sugarcane,Year-round,West Bengal,2.05,1560,260,6.4,27,Yes,Alluvial,68200
+Maize,Rabi,Punjab,3.1,650,110,3.9,20,Yes,Alluvial,3100
+Rice,Kharif,Maharashtra,2.8,1280,183,5.4,29,Yes,Black,4580
+Wheat,Rabi,Karnataka,2.5,580,145,3.6,18,Yes,Red,3680
+Cotton,Kharif,Chhattisgarh,4.8,780,204,8.8,32,Yes,Red,2240
+Sugarcane,Year-round,Haryana,2.15,1490,252,6.0,26,Yes,Loamy,67200
+Maize,Kharif,West Bengal,3.45,895,119,4.1,24,Yes,Alluvial,3400
+Rice,Kharif,Madhya Pradesh,2.65,1310,180,5.3,28,Yes,Black,4520
+Wheat,Rabi,Maharashtra,2.7,570,143,3.5,17,Yes,Black,3620
+Cotton,Kharif,Bihar,4.55,795,199,8.5,31,Yes,Alluvial,2290
+Sugarcane,Year-round,Chhattisgarh,2.08,1535,256,6.2,27,Yes,Red,67800
+Maize,Kharif,Haryana,3.55,885,123,4.3,24,Yes,Loamy,3440
+Rice,Kharif,Uttar Pradesh,2.75,1290,181,5.35,29,Yes,Alluvial,4560
+Wheat,Rabi,Telangana,2.65,560,141,3.4,17,Yes,Black,3580
+Cotton,Kharif,Uttar Pradesh,4.65,805,201,8.65,32,Yes,Loamy,2310
+Sugarcane,Year-round,Telangana,2.12,1525,254,6.15,27,Yes,Black,67600
+Maize,Kharif,Tamil Nadu,3.42,880,120,4.15,23,Yes,Red,3360
+Rice,Rabi,Punjab,2.4,720,170,4.9,23,Yes,Alluvial,4100
+Wheat,Rabi,Andhra Pradesh,2.8,575,146,3.65,18,Yes,Clayey,3720
+Cotton,Kharif,Tamil Nadu,4.4,785,196,8.35,31,Yes,Red,2260
+Sugarcane,Year-round,Odisha,2.02,1555,259,6.35,27,Yes,Laterite,68300
+Maize,Rabi,Karnataka,3.25,670,112,3.95,21,Yes,Red,3150
+Rice,Kharif,Gujarat,2.85,1270,184,5.45,28,Yes,Alluvial,4540
+Wheat,Rabi,West Bengal,2.55,585,144,3.55,18,Yes,Alluvial,3700
+Cotton,Kharif,Odisha,4.75,775,206,8.75,32,Yes,Laterite,2220
+Sugarcane,Year-round,Jharkhand,2.18,1515,251,6.05,26,Yes,Red,67000
+Maize,Kharif,Chhattisgarh,3.48,890,117,4.05,23,Yes,Red,3320
+Jute,Kharif,West Bengal,2.2,1400,80,2.5,28,Yes,Alluvial,2800
+Jute,Kharif,Bihar,2.4,1350,85,2.8,29,Yes,Alluvial,2750
+Bajra,Kharif,Rajasthan,3.5,450,70,2.0,30,No,Sandy,1800
+Bajra,Kharif,Haryana,3.2,500,75,2.2,29,No,Loamy,1950
+Groundnut,Kharif,Gujarat,2.8,800,100,3.5,28,Yes,Sandy,2200
+Groundnut,Kharif,Andhra Pradesh,3.0,850,105,3.8,29,Yes,Red,2300
+Soybean,Kharif,Madhya Pradesh,4.0,900,120,4.0,26,Yes,Black,2500
+Soybean,Kharif,Maharashtra,3.8,880,115,3.8,27,Yes,Black,2450
+Pulses,Rabi,Madhya Pradesh,2.5,600,60,1.8,20,No,Black,1200
+Pulses,Rabi,Rajasthan,2.8,550,65,2.0,19,No,Sandy,1150

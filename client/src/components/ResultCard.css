@@ -1,0 +1,332 @@
+/* =========================================
+   COMPACT RESULT CARD - 14 INCH LAPTOP
+========================================= */
+
+.result-card {
+  width: 100%;
+  margin: 12px auto 0;
+  background: #fff;
+  border: 1px solid #e2ebe6;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 80, 40, 0.06);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.result-header {
+  margin: 10px 12px 0;
+  padding: 9px 14px;
+  background: #e8f7ef;
+  border-bottom: 2px solid #dceaf4;
+}
+
+.result-header h3 {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+  color: #173d2b;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.result-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 14px 16px 16px;
+}
+
+
+/* =========================================
+   LEFT SIDE
+========================================= */
+
+.result-left {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+
+/* Individual small box */
+
+.result-item {
+  background: #f7faf9;
+  border-left: 3px solid #19ad7b;
+  border-radius: 7px;
+  padding: 8px 9px;
+  min-height: 58px;
+  margin: 0 !important;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.result-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 0 5px !important;
+
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+
+  color: #173d2b;
+}
+
+.result-label svg {
+  width: 12px !important;
+  height: 12px !important;
+  font-size: 12px !important;
+  color: #159354;
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   VALUES
+========================================= */
+
+.result-item p {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  font-size: 9px !important;
+  line-height: 1.35 !important;
+
+  color: #444;
+}
+
+
+.recommended-crop {
+  padding: 0 !important;
+
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+
+  font-weight: 700 !important;
+  color: #11965a;
+  text-transform: capitalize;
+}
+
+
+.confidence-value {
+  padding: 0 !important;
+
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+
+  font-weight: 700 !important;
+  color: #11965a;
+}
+
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.result-right {
+  padding-left: 12px;
+  border-left: 1px solid #e1eae5;
+  min-width: 0;
+}
+
+
+/* =========================================
+   TOP 3 TITLE
+========================================= */
+
+.top-crops-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  margin: 0 0 7px !important;
+
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+
+  color: #173d2b;
+}
+
+.top-crops-title svg {
+  width: 12px !important;
+  height: 12px !important;
+  font-size: 12px !important;
+  color: #159354;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.crop-result-table {
+  width: 100%;
+  margin: 0 !important;
+  border-collapse: collapse;
+
+  font-size: 9px !important;
+}
+
+
+/* Table header */
+
+.crop-result-table th {
+  padding: 5px 6px !important;
+
+  background: #f0f8f4;
+
+  color: #173d2b;
+
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+
+  text-align: left;
+
+  border-bottom: 1px solid #dce9e2;
+}
+
+
+/* Table cells */
+
+.crop-result-table td {
+  padding: 5px 6px !important;
+
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+
+  color: #444;
+
+  border-bottom: 1px solid #edf2ef;
+}
+
+
+/* Crop name */
+
+.crop-name {
+  color: #16894d !important;
+  font-weight: 600 !important;
+  text-transform: capitalize;
+}
+
+
+/* =========================================
+   14-INCH LAPTOP
+========================================= */
+
+@media (max-width: 1400px) {
+
+  .result-card {
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+
+  .result-header {
+    margin: 8px 10px 0;
+    padding: 8px 12px;
+  }
+
+  .result-header h3 {
+    font-size: 13px !important;
+  }
+
+  .result-content {
+    gap: 14px;
+    padding: 12px 14px 14px;
+  }
+
+  .result-left {
+    gap: 7px;
+  }
+
+  .result-item {
+    padding: 7px 8px;
+    min-height: 52px;
+  }
+
+  .result-label {
+    font-size: 8.5px !important;
+  }
+
+  .result-item p {
+    font-size: 8.5px !important;
+  }
+
+  .recommended-crop {
+    font-size: 12px !important;
+  }
+
+  .confidence-value {
+    font-size: 11px !important;
+  }
+
+  .top-crops-title {
+    font-size: 9px !important;
+  }
+
+  .crop-result-table th,
+  .crop-result-table td {
+    font-size: 8.5px !important;
+    padding: 4px 5px !important;
+  }
+
+}
+
+
+/* =========================================
+   SMALL SCREEN
+========================================= */
+
+@media (max-width: 768px) {
+
+  .result-content {
+    grid-template-columns: 1fr;
+  }
+
+  .result-left {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .result-right {
+    border-left: none;
+    border-top: 1px solid #e1eae5;
+    padding: 10px 0 0;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .result-left {
+    grid-template-columns: 1fr;
+  }
+
+  .result-header h3 {
+    font-size: 12px !important;
+  }
+
+  .result-content {
+    padding: 10px;
+  }
+
+}
