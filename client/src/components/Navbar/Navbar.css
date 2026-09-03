@@ -1,195 +1,339 @@
-/* ================================
+/* =========================================================
    NAVBAR
-================================ */
+   Responsive AgroFarming UI
+   ========================================================= */
 
 .navbar {
-  height: 30px;
-  padding: 0;
-  background: #ffffff !important;
-  border-bottom: 1px solid #e5eee8;
-  box-shadow: 0 2px 8px rgba(25, 100, 55, 0.08) !important;
-  position: relative;
-  z-index: 1000;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e5eee8;
+    box-shadow: 0 2px 8px rgba(25, 100, 55, 0.08) !important;
+    position: relative;
+    z-index: 1000;
+    box-sizing: border-box;
 }
 
-/* Main container */
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
 .navbar .container {
-  max-width: 1200px;
-  height: 100%;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
 }
 
-/* ================================
+
+/* =========================================================
    LOGO
-================================ */
+   ========================================================= */
 
 .navbar-brand {
-  font-size: 18px !important;
-  color: #198754 !important;
-  margin: 0;
-  padding: 0;
-  white-space: nowrap;
-  line-height: 1;
+    margin: 0;
+    padding: 0;
+
+    color: #198754 !important;
+    font-size: 18px !important;
+    font-weight: 600;
+
+    line-height: 1;
+    white-space: nowrap;
 }
 
 .navbar-brand:hover {
-  color: #157347 !important;
+    color: #157347 !important;
 }
 
 
-/* ================================
+/* =========================================================
    NAVIGATION
-================================ */
+   ========================================================= */
 
 .navbar-nav {
-  gap: 2px;
+    gap: 2px;
 }
 
 .navbar-nav .nav-link {
-  font-size: 12px;
-  font-weight: 500;
-  color: #174d2c !important;
-  padding: 7px 9px !important;
-  margin: 0;
-  white-space: nowrap;
-  transition: all 0.2s ease;
+    margin: 0;
+    padding: 7px 9px !important;
+
+    color: #174d2c !important;
+    font-size: 15px;
+    font-weight: 500;
+
+    line-height: 1.2;
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #198754 !important;
+    color: #198754 !important;
 }
 
 
-/* ================================
+/* =========================================================
    DROPDOWN
-================================ */
+   ========================================================= */
 
 .navbar .dropdown-menu {
-  min-width: 190px;
-  padding: 5px 0;
-  margin-top: 5px;
-  border: 1px solid #dcebe1;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(25, 100, 55, 0.12);
+    min-width: 190px;
+    margin-top: 5px;
+    padding: 5px 0;
+
+    border: 1px solid #dcebe1;
+    border-radius: 8px;
+
+    box-shadow: 0 6px 18px rgba(25, 100, 55, 0.12);
 }
 
 .navbar .dropdown-item {
-  font-size: 12px;
-  color: #174d2c;
-  padding: 7px 12px;
+    padding: 7px 12px;
+
+    color: #174d2c;
+    font-size: 12px;
 }
 
 .navbar .dropdown-item:hover {
-  background: #edf8f1;
-  color: #198754;
+    background: #edf8f1;
+    color: #198754;
+}
+
+.navbar .dropdown-toggle::after {
+    margin-left: 4px;
+    vertical-align: 2px;
 }
 
 
-/* ================================
+/* =========================================================
    LANGUAGE SWITCH
-================================ */
+   ========================================================= */
 
 .language-switch {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-left: 8px;
-  padding: 0 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-left: 8px;
+    padding: 0 6px;
+
+    white-space: nowrap;
 }
 
 .lang-text {
-  font-size: 11px;
-  font-weight: 500;
-  color: #27623b;
-  white-space: nowrap;
+    color: #174d2c;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
 }
 
 
-/* Bootstrap switch */
+/* Bootstrap Switch */
+
 .language-switch .form-check {
-  padding-left: 0;
+    display: flex;
+    align-items: center;
+
+    margin: 0;
+    padding-left: 0;
 }
 
 .language-switch .form-check-input {
-  width: 30px;
-  height: 16px;
-  margin: 0;
-  cursor: pointer;
-  background-color: #d8e9dd;
-  border-color: #c4ddcc;
+    width: 32px;
+    height: 17px;
+
+    margin: 0;
+
+    cursor: pointer;
+
+    background-color: #d8e9dd;
+    border: 1px solid #c4ddcc;
+
+    transition: all 0.2s ease;
 }
 
 .language-switch .form-check-input:checked {
-  background-color: #198754;
-  border-color: #198754;
+    background-color: #198754;
+    border-color: #198754;
 }
 
 .language-switch .form-check-input:focus {
-  box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.12);
+    box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.12);
 }
 
 
-/* ================================
+/* =========================================================
    LOGIN BUTTON
-================================ */
+   ========================================================= */
 
 .navbar .btn-success {
-  font-size: 11px;
-  font-weight: 500;
-  padding: 6px 14px !important;
-  border-radius: 6px;
-  background: #198754;
-  border-color: #198754;
-  margin-left: 6px;
+    margin-left: 8px;
+    padding: 6px 13px !important;
+
+    border: 1px solid #198754;
+    border-radius: 6px;
+
+    background: #198754;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    line-height: 1.2;
 }
 
 .navbar .btn-success:hover {
-  background: #157347;
-  border-color: #157347;
+    background: #157347;
+    border-color: #157347;
 }
 
 
-/* ================================
-   DROPDOWN ARROW
-================================ */
+/* =========================================================
+   14-INCH LAPTOP
+   ========================================================= */
 
-.navbar .dropdown-toggle::after {
-  margin-left: 4px;
-  vertical-align: 2px;
+@media (max-width: 1400px) {
+
+    .navbar {
+        height: 50px;
+    }
+
+    .navbar .container {
+        padding: 0 18px;
+    }
+
+    .navbar-brand {
+        font-size: 17px !important;
+    }
+
+    .navbar-nav {
+        gap: 1px;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 7px 8px !important;
+        font-size: 14px;
+    }
+
+    .language-switch {
+        gap: 5px;
+        margin-left: 6px;
+        padding: 0 5px;
+    }
+
+    .lang-text {
+        font-size: 11px;
+    }
+
+    .language-switch .form-check-input {
+        width: 30px;
+        height: 16px;
+    }
+
+    .navbar .btn-success {
+        margin-left: 6px;
+        padding: 6px 12px !important;
+        font-size: 11px;
+    }
 }
 
 
-/* ================================
-   RESPONSIVE
-================================ */
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 900px) {
 
-  .navbar .container {
-    padding: 0 10px;
-  }
+    .navbar .container {
+        padding: 0 10px;
+    }
 
-  .navbar-brand {
-    font-size: 16px !important;
-  }
+    .navbar-brand {
+        font-size: 16px !important;
+    }
 
-  .navbar-nav .nav-link {
-    font-size: 11px;
-    padding: 6px 6px !important;
-  }
+    .navbar-nav .nav-link {
+        padding: 6px !important;
+        font-size: 11px;
+    }
 
-  .language-switch {
-    margin-left: 4px;
-  }
+    .language-switch {
+        gap: 4px;
+        margin-left: 4px;
+        padding: 0 4px;
+    }
 
-  .lang-text {
-    font-size: 10px;
-  }
+    .lang-text {
+        font-size: 10px;
+    }
 
-  .navbar .btn-success {
-    font-size: 10px;
-    padding: 5px 10px !important;
-  }
+    .language-switch .form-check-input {
+        width: 28px;
+        height: 15px;
+    }
+
+    .navbar .btn-success {
+        margin-left: 4px;
+        padding: 5px 10px !important;
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: auto;
+        min-height: 50px;
+    }
+
+    .navbar .container {
+        padding: 8px 12px;
+    }
+
+    .navbar-brand {
+        font-size: 16px !important;
+    }
+
+    .navbar-nav {
+        gap: 0;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 7px 5px !important;
+        font-size: 11px;
+    }
+
+    .language-switch {
+        margin-left: 3px;
+        padding: 0;
+    }
+
+    .lang-text {
+        font-size: 9px;
+    }
+
+    .language-switch .form-check-input {
+        width: 27px;
+        height: 15px;
+    }
+
+    .navbar .btn-success {
+        margin-left: 3px;
+        padding: 5px 8px !important;
+        font-size: 10px;
+    }
 }

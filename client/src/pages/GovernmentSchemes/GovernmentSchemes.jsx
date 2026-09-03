@@ -45,9 +45,6 @@ const GovernmentSchemes = () => {
             <h6 className="schemes-title">
               {t("schemes.title")}
             </h6>
-            <p className="schemes-subtitle">
-              {t("schemes.subtitle")}
-            </p>
           </div>
 
           {/* Search and Filter */}

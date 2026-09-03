@@ -1,606 +1,334 @@
-/* ============================================
-   CROP RECOMMENDATION
-   COMPACT 14-INCH LAPTOP UI
-============================================ */
+/* =========================================================
+   CROP RECOMMENDATION PAGE
+========================================================= */
 
 .crop-page {
-  min-height: 100vh;
-  background: #f7faf8;
-  padding: 8px 10px 8px;
+    width: 100%;
+    min-height: 100vh;
+    padding: 18px 10px 30px;
+    background: #f5f8f6;
+    box-sizing: border-box;
 }
 
 .crop-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
 }
 
 
-/* ============================================
-   TITLE
-============================================ */
+/* =========================================================
+   HEADER
+========================================================= */
 
 .crop-header {
-  text-align: center;
-  margin-bottom: 6px;
+    margin-bottom: 18px;
+    text-align: center;
 }
 
 .crop-title {
-  margin: 0;
-  color: #087b3e;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.2;
+    margin: 0 0 6px;
+    color: #087b3e;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.25;
 }
 
 
-
-/* ============================================
+/* =========================================================
    IMPORTANT BOX
-============================================ */
+========================================================= */
 
 .crop-alert {
-  margin: 0 0 16px !important;
+    margin: 0 0 14px;
+    padding: 11px 14px;
 
-  padding: 4px 16px !important;
+    background: #e6f7f1;
+    border: 1px solid #cce5d5;
+    border-left: 4px solid #10b981;
+    border-radius: 8px;
 
-  background: #f2faf5 !important;
+    color: #1a202c;
+    font-size: 12px;
+    line-height: 1.5;
 
-  border: 1px solid #cce5d5 !important;
-
-  border-left: 5px solid #159447 !important;
-
-  border-radius: 9px !important;
-
-  color: #075b32 !important;
-
-  font-size: 8px !important;
-
-  line-height: 1 !important;
+    box-sizing: border-box;
 }
 
 .crop-alert strong {
-  display: block;
-  margin-bottom: 2px;
-  font-size: 10px;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 13px;
 }
 
 
-/* ============================================
+/* =========================================================
    FORM CARD
-============================================ */
+========================================================= */
 
 .crop-card {
-  width: 100%;
-  background: #ffffff !important;
+    width: 100%;
 
-  border: 1px solid #e9efeb !important;
+    background: #ffffff;
+    border: 1px solid #e9efeb;
+    border-radius: 14px;
 
-  border-radius: 15px !important;
+    box-shadow: 0 5px 18px rgba(30, 100, 65, 0.08);
 
-  box-shadow:
-    0 4px 15px rgba(30, 80, 50, 0.07) !important;
+    box-sizing: border-box;
 }
 
 .crop-card-body {
-  padding: 6px !important;
+    padding: 18px;
 }
 
 
-/* ============================================
-   CLIMATE FORM
-============================================ */
-
-.crop-page .climate-form {
-  width: 100%;
-}
-
-
-/* ============================================
-   3 COLUMNS
-============================================ */
+/* =========================================================
+   FORM GRID
+========================================================= */
 
 .crop-page .climate-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
-  display: grid !important;
+    gap: 16px 20px;
 
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr)) !important;
+    width: 100%;
+    margin-bottom: 18px;
 
-  gap: 10px 20px !important;
-
-  width: 100% !important;
-
-  align-items: end !important;
-
+    box-sizing: border-box;
 }
 
 
-/* ============================================
+/* =========================================================
    FIELD
-============================================ */
+========================================================= */
 
 .crop-page .climate-field {
+    min-width: 0;
 
-  display: flex !important;
-
-  flex-direction: column !important;
-
-  width: 100% !important;
-
-  min-width: 0 !important;
-
+    display: flex;
+    flex-direction: column;
 }
 
 
-/* ============================================
+/* =========================================================
    LABEL
-============================================ */
+========================================================= */
 
 .crop-page .climate-field label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 
-  display: flex !important;
+    margin-bottom: 6px;
 
-  align-items: center !important;
-
-  gap: 2px !important;
-
-  width: 100% !important;
-
-  height: 20px !important;
-
-  margin: 0 0 5px !important;
-
-  padding: 0 !important;
-
-  color: #08743b !important;
-
-  font-size: 10px !important;
-
-  font-weight: 700 !important;
-
-  line-height: 1 !important;
-
-  white-space: nowrap !important;
-
+    color: #08743b;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
 }
-
-
-/* ICON */
 
 .crop-page .climate-field label svg {
-
-  width: 14px !important;
-
-  height: 14px !important;
-
-  min-width: 14px !important;
-
-  color: #12944b !important;
-
-  stroke-width: 2.5 !important;
-
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: #159447;
 }
 
 
-/* ============================================
-   INPUT
-============================================ */
+/* =========================================================
+   INPUT / SELECT
+========================================================= */
 
-.crop-page .climate-field input {
+.crop-page .climate-field input,
+.crop-page .climate-field select {
+    width: 100%;
+    height: 40px;
 
-  display: block !important;
+    padding: 7px 11px;
 
-  width: 100% !important;
+    background: #ffffff;
+    border: 1px solid #c9ded2;
+    border-radius: 7px;
 
-  height: 38px !important;
+    color: #123b29;
+    font-size: 12px;
+    font-family: inherit;
 
-  min-height: 30px !important;
+    outline: none;
+    box-sizing: border-box;
 
-  margin: 0 !important;
-
-  padding: 6px 10px !important;
-
-  box-sizing: border-box !important;
-
-  border: 1px solid #c8dfd1 !important;
-
-  border-radius: 6px !important;
-
-  background: #ffffff !important;
-
-  color: #173c2b !important;
-
-  font-size: 12px !important;
-
-  outline: none !important;
+    transition: 0.2s ease;
 }
 
 .crop-page .climate-field input::placeholder {
-  color: #84928c !important;
+    color: #8a9a94;
 }
-
-
-/* ============================================
-   SELECT
-============================================ */
-
-.crop-page .climate-field select {
-
-  display: block !important;
-
-  width: 100% !important;
-
-  height: 38px !important;
-
-  min-height: 30px !important;
-
-  margin: 0 !important;
-
-  padding: 2px 10px !important;
-
-  box-sizing: border-box !important;
-
-  border: 1px solid #c8dfd1 !important;
-
-  border-radius: 6px !important;
-
-  background-color: #ffffff !important;
-
-  color: #173c2b !important;
-
-  font-size: 10px !important;
-
-  font-family: inherit !important;
-
-  outline: none !important;
-
-  cursor: pointer !important;
-}
-
-
-/* ============================================
-   FOCUS
-============================================ */
 
 .crop-page .climate-field input:focus,
 .crop-page .climate-field select:focus {
+    border-color: #159447;
+    box-shadow: 0 0 0 3px rgba(21, 148, 71, 0.08);
+}
 
-  border-color: #159447 !important;
-
-  box-shadow:
-    0 0 0 2px rgba(21, 148, 71, 0.08) !important;
+.crop-page .climate-field select {
+    cursor: pointer;
 }
 
 
-/* ============================================
-   DISABLED CITY
-============================================ */
+/* =========================================================
+   DISABLED SELECT
+========================================================= */
 
 .crop-page .climate-field select:disabled {
-
-  background: #f5f8f6 !important;
-
-  color: #8b9892 !important;
-
-  cursor: not-allowed !important;
+    background: #f5f8f6;
+    color: #8b9892;
+    cursor: not-allowed;
 }
 
 
-/* ============================================
-   BUTTON
-============================================ */
+/* =========================================================
+   RECOMMEND BUTTON
+========================================================= */
+
+.crop-page .recommend-action {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
+}
 
 .crop-page .recommend-btn {
+    width: auto;
+    min-width: 190px;
+    height: 44px;
 
-  display: block !important;
+    padding: 0 28px;
 
-  width: 100% !important;
+    background: linear-gradient(
+        135deg,
+        #10b981,
+        #059669
+    );
 
-  height: 38px !important;
+    border: none;
+    border-radius: 50px;
 
-  min-height: 38px !important;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
 
-  margin: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 
-  padding: 6px 8px !important;
+    cursor: pointer;
 
-  border: none !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 
-  border-radius: 6px !important;
-
-  background: #159447 !important;
-
-  color: #ffffff !important;
-
-  font-size: 10px !important;
-
-  font-weight: 700 !important;
-
-  cursor: pointer !important;
-
-  transition: 0.2s ease !important;
+    transition: all 0.2s ease;
 }
 
 .crop-page .recommend-btn:hover {
+    background: linear-gradient(
+        135deg,
+        #059669,
+        #047857
+    );
 
-  background: #087b3e !important;
+    transform: translateY(-2px);
 
-  transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+}
+
+.crop-page .recommend-btn:active {
+    transform: translateY(0);
 }
 
 .crop-page .recommend-btn:disabled {
-
-  opacity: 0.6;
-
-  cursor: not-allowed;
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
 }
 
 
-/* ============================================
-   EMPTY LABEL ABOVE BUTTON
-============================================ */
-
-.crop-page .empty-label {
-
-  visibility: hidden !important;
-}
-
-
-/* ============================================
+/* =========================================================
    LOADING
-============================================ */
+========================================================= */
 
 .crop-loading {
-  margin-top: 8px;
-  color: #087b3e;
+    margin-top: 20px;
+    color: #087b3e;
+    text-align: center;
 }
 
 .crop-loading h6 {
-  font-size: 10px;
+    margin-top: 10px;
+    color: #1a202c;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 
-/* ============================================
+/* =========================================================
    ERROR
-============================================ */
+========================================================= */
 
 .crop-page .alert-danger {
+    margin-top: 15px;
+    padding: 9px 12px;
 
-  margin-top: 8px !important;
-
-  padding: 8px 10px !important;
-
-  font-size: 10px !important;
-
-  border-radius: 6px !important;
+    border-radius: 7px;
+    font-size: 11px;
 }
 
 
-/* ============================================
-   14-INCH LAPTOP
-   1366 x 768
-============================================ */
-
-@media screen and (min-width: 1000px) {
-
-  .crop-page .climate-grid {
-
-    grid-template-columns:
-      repeat(4, minmax(0, 1fr)) !important;
-
-    gap: 8px 10px !important;
-
-  }
-
-}
-
-
-/* ============================================
+/* =========================================================
    TABLET
-============================================ */
+========================================================= */
 
-@media screen and (min-width: 700px) and (max-width: 999px) {
+@media (max-width: 900px) {
 
-  .crop-page .climate-grid {
+    .crop-container {
+        max-width: 850px;
+    }
 
-    grid-template-columns:
-      repeat(4, minmax(0, 1fr)) !important;
-
-    gap: 8px 10px !important;
-
-  }
-
-  .crop-page .climate-field label {
-    font-size: 11px !important;
-  }
-
-  .crop-page .climate-field input,
-  .crop-page .climate-field select {
-
-    height: 35px !important;
-    min-height: 35px !important;
-
-    font-size: 11px !important;
-
-  }
-
-  .crop-page .recommend-btn {
-
-    height: 35px !important;
-    min-height: 35px !important;
-
-    font-size: 10px !important;
-
-  }
-
+    .crop-page .climate-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
 }
 
 
-/* ============================================
+/* =========================================================
    MOBILE
-============================================ */
+========================================================= */
 
-@media screen and (max-width: 699px) {
+@media (max-width: 600px) {
 
-  .crop-page {
+    .crop-page {
+        padding: 15px 10px 25px;
+    }
 
-    padding: 12px 10px 20px;
+    .crop-title {
+        font-size: 23px;
+    }
 
-  }
+    .crop-card-body {
+        padding: 14px;
+    }
 
-  .crop-title {
+    .crop-page .climate-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
 
-    font-size: 23px;
-
-  }
-
-  .crop-card-body {
-
-    padding: 12px !important;
-
-  }
-
-  .crop-page .climate-grid {
-
-    grid-template-columns:
-      repeat(4, minmax(0, 1fr)) !important;
-
-    gap: 8px !important;
-
-  }
-
-}
-
-/* ================================
-   CLIMATE FORM
-================================ */
-
-.climate-form {
-  width: 100%;
-}
-
-.climate-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 10px;
-  row-gap: 10px;
-  width: 100%;
-}
-
-.climate-field {
-  min-width: 0;
-}
-
-.climate-field label {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  margin-bottom: 2px;
-  color: #087f3f;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.climate-field label svg {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
-.climate-field input,
-.climate-field select {
-  width: 100%;
-  height: 38px;
-  padding: 4px 10px;
-  border: 1px solid #c9ded2;
-  border-radius: 7px;
-  background: #fff;
-  color: #123b29;
-  font-size: 8px;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.climate-field input::placeholder {
-  color: #8a9a94;
-}
-
-.climate-field input:focus,
-.climate-field select:focus {
-  border-color: #159447;
-  box-shadow: 0 0 0 2px rgba(21, 148, 71, 0.08);
-}
-
-/* ================================
-   BUTTON - FULL ROW + CENTER
-================================ */
-
-.recommend-action {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2px;
-}
-
-.recommend-btn {
-  width: 190px;
-  height: 38px;
-  border: none;
-  border-radius: 7px;
-  background: #159447;
-  color: white;
-  font-size: 10px;
-  font-weight: 400;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.recommend-btn:hover {
-  background: #0d7d3a;
-  transform: translateY(-1px);
-}
-
-.recommend-btn:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* ================================
-   14-INCH LAPTOP
-================================ */
-
-@media (min-width: 768px) and (max-width: 1400px) {
-
-  .climate-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 4px;
-    row-gap: 4px;
-  }
-
-  .climate-field label {
-    font-size: 8px;
-    margin-bottom: 2px;
-  }
-
-  .climate-field label svg {
-    width: 15px;
-    height: 15px;
-  }
-
-  .climate-field input,
-  .climate-field select {
-    height: 36px;
-    font-size: 6px;
-    padding: 6px 9px;
-  }
-
-  .recommend-btn {
-    width: 180px;
-    height: 36px;
-    font-size: 6px;
-  }
+    .crop-page .recommend-btn {
+        width: 180px;
+        height: 42px;
+        font-size: 13px;
+    }
 }

@@ -1,332 +1,428 @@
-/* =========================================
-   COMPACT RESULT CARD - 14 INCH LAPTOP
-========================================= */
+/* ============================================
+   CROP RECOMMENDATION RESULT
+   INCREASED FONT SIZE
+============================================ */
 
 .result-card {
-  width: 100%;
-  margin: 12px auto 0;
-  background: #fff;
-  border: 1px solid #e2ebe6;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 80, 40, 0.06);
+    width: 100%;
+    margin: 18px auto 0;
+
+    background: #ffffff;
+
+    border: 1px solid #e2ebe6;
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 14px rgba(30, 80, 50, 0.06);
+
+    box-sizing: border-box;
 }
 
 
-/* =========================================
+/* ============================================
    HEADER
-========================================= */
+============================================ */
 
 .result-header {
-  margin: 10px 12px 0;
-  padding: 9px 14px;
-  background: #e8f7ef;
-  border-bottom: 2px solid #dceaf4;
+    margin: 10px 12px 0;
+    padding: 11px 15px;
+
+    background: #eaf8f2;
+
+    border-bottom: 2px solid #dcebe3;
+    border-radius: 7px 7px 0 0;
 }
 
 .result-header h3 {
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 14px !important;
-  line-height: 1.2 !important;
-  font-weight: 600 !important;
-  color: #173d2b;
+    margin: 0;
+    padding: 0;
+
+    color: #173d2b;
+
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
 }
 
 
-/* =========================================
+/* ============================================
    MAIN CONTENT
-========================================= */
+============================================ */
 
 .result-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  padding: 14px 16px 16px;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+
+    padding: 17px 19px 19px;
+
+    box-sizing: border-box;
 }
 
 
-/* =========================================
+/* ============================================
    LEFT SIDE
-========================================= */
+============================================ */
 
 .result-left {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 11px;
+
+    min-width: 0;
 }
 
 
-/* Individual small box */
+/* ============================================
+   RESULT ITEM
+============================================ */
 
 .result-item {
-  background: #f7faf9;
-  border-left: 3px solid #19ad7b;
-  border-radius: 7px;
-  padding: 8px 9px;
-  min-height: 58px;
-  margin: 0 !important;
+    min-width: 0;
+    min-height: 66px;
+
+    margin: 0;
+    padding: 10px 12px;
+
+    background: #f7faf9;
+
+    border-left: 3px solid #19ad7b;
+    border-radius: 8px;
+
+    box-sizing: border-box;
 }
 
 
-/* =========================================
+/* ============================================
    LABEL
-========================================= */
+============================================ */
 
 .result-label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin: 0 0 5px !important;
+    display: flex;
+    align-items: center;
 
-  font-size: 9px !important;
-  line-height: 1.2 !important;
-  font-weight: 600 !important;
+    gap: 6px;
 
-  color: #173d2b;
+    margin: 0 0 7px;
+    padding: 0;
+
+    color: #173d2b;
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .result-label svg {
-  width: 12px !important;
-  height: 12px !important;
-  font-size: 12px !important;
-  color: #159354;
-  flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+
+    color: #159354;
+
+    flex-shrink: 0;
 }
 
 
-/* =========================================
+/* ============================================
    VALUES
-========================================= */
+============================================ */
 
 .result-item p {
-  margin: 0 !important;
-  padding: 0 !important;
+    margin: 0;
+    padding: 0;
 
-  font-size: 9px !important;
-  line-height: 1.35 !important;
+    color: #444;
 
-  color: #444;
+    font-size: 12px;
+    line-height: 1.45;
 }
 
+
+/* ============================================
+   RECOMMENDED CROP
+============================================ */
 
 .recommended-crop {
-  padding: 0 !important;
+    margin: 0;
+    padding: 0;
 
-  font-size: 13px !important;
-  line-height: 1.2 !important;
+    color: #11965a;
 
-  font-weight: 700 !important;
-  color: #11965a;
-  text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+
+    text-transform: capitalize;
 }
 
+
+/* ============================================
+   CONFIDENCE
+============================================ */
 
 .confidence-value {
-  padding: 0 !important;
+    margin: 0;
+    padding: 0;
 
-  font-size: 12px !important;
-  line-height: 1.2 !important;
+    color: #11965a;
 
-  font-weight: 700 !important;
-  color: #11965a;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
 }
 
 
-/* =========================================
+/* ============================================
    RIGHT SIDE
-========================================= */
+============================================ */
 
 .result-right {
-  padding-left: 12px;
-  border-left: 1px solid #e1eae5;
-  min-width: 0;
+    min-width: 0;
+
+    padding-left: 18px;
+
+    border-left: 1px solid #e1eae5;
+
+    box-sizing: border-box;
 }
 
 
-/* =========================================
-   TOP 3 TITLE
-========================================= */
+/* ============================================
+   TOP CROPS TITLE
+============================================ */
 
 .top-crops-title {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+    display: flex;
+    align-items: center;
 
-  margin: 0 0 7px !important;
+    gap: 6px;
 
-  font-size: 10px !important;
-  line-height: 1.2 !important;
-  font-weight: 600 !important;
+    margin: 0 0 10px;
+    padding: 0;
 
-  color: #173d2b;
+    color: #173d2b;
+
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .top-crops-title svg {
-  width: 12px !important;
-  height: 12px !important;
-  font-size: 12px !important;
-  color: #159354;
+    width: 15px;
+    height: 15px;
+
+    color: #159354;
+
+    flex-shrink: 0;
 }
 
 
-/* =========================================
+/* ============================================
    TABLE
-========================================= */
+============================================ */
 
 .crop-result-table {
-  width: 100%;
-  margin: 0 !important;
-  border-collapse: collapse;
+    width: 100%;
 
-  font-size: 9px !important;
+    margin: 0;
+
+    border-collapse: collapse;
+
+    font-size: 12px;
 }
 
 
-/* Table header */
+/* ============================================
+   TABLE HEADER
+============================================ */
 
 .crop-result-table th {
-  padding: 5px 6px !important;
+    padding: 8px 9px;
 
-  background: #f0f8f4;
+    background: #f0f8f4;
 
-  color: #173d2b;
+    color: #173d2b;
 
-  font-size: 9px !important;
-  line-height: 1.2 !important;
-  font-weight: 600 !important;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
 
-  text-align: left;
+    text-align: left;
 
-  border-bottom: 1px solid #dce9e2;
+    border-bottom: 1px solid #dce9e2;
 }
 
 
-/* Table cells */
+/* ============================================
+   TABLE CELLS
+============================================ */
 
 .crop-result-table td {
-  padding: 5px 6px !important;
+    padding: 8px 9px;
 
-  font-size: 9px !important;
-  line-height: 1.2 !important;
+    color: #444;
 
-  color: #444;
+    font-size: 12px;
+    line-height: 1.35;
 
-  border-bottom: 1px solid #edf2ef;
+    border-bottom: 1px solid #edf2ef;
 }
 
 
-/* Crop name */
+/* ============================================
+   CROP NAME
+============================================ */
 
 .crop-name {
-  color: #16894d !important;
-  font-weight: 600 !important;
-  text-transform: capitalize;
+    color: #16894d;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-transform: capitalize;
 }
 
 
-/* =========================================
-   14-INCH LAPTOP
-========================================= */
+/* ============================================
+   LAPTOP
+============================================ */
 
-@media (max-width: 1400px) {
+@media screen and (max-width: 1200px) {
 
-  .result-card {
-    margin-top: 10px;
-    border-radius: 10px;
-  }
+    .result-card {
+        margin-top: 16px;
+    }
 
-  .result-header {
-    margin: 8px 10px 0;
-    padding: 8px 12px;
-  }
+    .result-content {
+        gap: 18px;
+        padding: 15px 16px 17px;
+    }
 
-  .result-header h3 {
-    font-size: 13px !important;
-  }
+    .result-left {
+        gap: 9px;
+    }
 
-  .result-content {
-    gap: 14px;
-    padding: 12px 14px 14px;
-  }
+    .result-item {
+        min-height: 62px;
+        padding: 9px 10px;
+    }
 
-  .result-left {
-    gap: 7px;
-  }
+    .result-label {
+        font-size: 11px;
+    }
 
-  .result-item {
-    padding: 7px 8px;
-    min-height: 52px;
-  }
+    .result-item p {
+        font-size: 11px;
+    }
 
-  .result-label {
-    font-size: 8.5px !important;
-  }
+    .recommended-crop {
+        font-size: 15px;
+    }
 
-  .result-item p {
-    font-size: 8.5px !important;
-  }
+    .confidence-value {
+        font-size: 14px;
+    }
 
-  .recommended-crop {
-    font-size: 12px !important;
-  }
+    .top-crops-title {
+        font-size: 12px;
+    }
 
-  .confidence-value {
-    font-size: 11px !important;
-  }
-
-  .top-crops-title {
-    font-size: 9px !important;
-  }
-
-  .crop-result-table th,
-  .crop-result-table td {
-    font-size: 8.5px !important;
-    padding: 4px 5px !important;
-  }
-
+    .crop-result-table th,
+    .crop-result-table td {
+        font-size: 11px;
+        padding: 7px 8px;
+    }
 }
 
 
-/* =========================================
-   SMALL SCREEN
-========================================= */
+/* ============================================
+   TABLET
+============================================ */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
-  .result-content {
-    grid-template-columns: 1fr;
-  }
+    .result-content {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
 
-  .result-left {
-    grid-template-columns: 1fr 1fr;
-  }
+    .result-left {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-  .result-right {
-    border-left: none;
-    border-top: 1px solid #e1eae5;
-    padding: 10px 0 0;
-  }
+    .result-right {
+        padding: 15px 0 0;
 
+        border-left: none;
+        border-top: 1px solid #e1eae5;
+    }
 }
 
 
-/* =========================================
+/* ============================================
    MOBILE
-========================================= */
+============================================ */
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
 
-  .result-left {
-    grid-template-columns: 1fr;
-  }
+    .result-card {
+        margin-top: 14px;
+        border-radius: 10px;
+    }
 
-  .result-header h3 {
-    font-size: 12px !important;
-  }
+    .result-header {
+        margin: 8px 9px 0;
+        padding: 10px 12px;
+    }
 
-  .result-content {
-    padding: 10px;
-  }
+    .result-header h3 {
+        font-size: 15px;
+    }
 
+    .result-content {
+        padding: 13px;
+        gap: 15px;
+    }
+
+    .result-left {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .result-item {
+        min-height: 60px;
+        padding: 9px 11px;
+    }
+
+    .result-label {
+        font-size: 12px;
+    }
+
+    .result-item p {
+        font-size: 11px;
+    }
+
+    .recommended-crop {
+        font-size: 14px;
+    }
+
+    .confidence-value {
+        font-size: 13px;
+    }
+
+    .top-crops-title {
+        font-size: 12px;
+    }
+
+    .crop-result-table th,
+    .crop-result-table td {
+        padding: 7px;
+        font-size: 11px;
+    }
 }

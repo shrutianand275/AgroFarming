@@ -271,5 +271,72 @@
         "totalProduction": "Total Production",
         "yieldCategory": "Yield Category",
         "recommendations": "Recommendations"
+    },
+
+    
+    "weather": {
+        "title": "Weather Forecast",
+        "subtitle": "Check weather conditions and get farming recommendations",
+
+        "city": "City",
+        "state": "State",
+
+        "cityPlaceholder": "Enter city",
+        "statePlaceholder": "Enter state",
+
+        "getWeather": "Get Weather",
+        "loading": "Loading...",
+
+        "locationNotFound": "Location not found. Please check the city and state.",
+        "enterCityState": "Please enter both city and state.",
+        "weatherError": "Unable to fetch weather data. Please try again.",
+
+        "currentWeather": "Current Weather",
+        "temperature": "Temperature",
+        "humidity": "Humidity",
+        "rainProbability": "Rain Probability",
+        "windSpeed": "Wind Speed",
+        "rainfall": "Rainfall",
+        "weatherCondition": "Weather Condition",
+
+        "sevenDayForecast": "7-Day Forecast",
+        "upcomingWeather": "Upcoming weather conditions",
+
+        "today": "Today",
+
+        "conditions": {
+        "clearSky": "Clear Sky",
+        "mainlyClear": "Mainly Clear",
+        "partlyCloudy": "Partly Cloudy",
+        "cloudy": "Cloudy",
+        "foggy": "Foggy",
+        "drizzle": "Drizzle",
+        "rain": "Rain",
+        "snow": "Snow",
+        "thunderstorm": "Thunderstorm",
+        "unknown": "Unknown"
+        },
+
+        "farmingAdvisory": "Crop & Farming Advisory",
+        "advisorySubtitle": "Recommendations based on current weather",
+
+        "advice": {
+        "rainExpected": "Rain is likely. Avoid unnecessary irrigation and postpone spraying pesticides or fertilizers.",
+        "hotDry": "Hot and dry conditions are expected. Irrigate crops adequately, preferably during morning or evening.",
+        "normal": "Weather conditions are generally suitable for normal farm activities.",
+        "highHumidity": "High humidity may increase fungal disease risk. Monitor crops for leaf spots and fungal infections.",
+        "highTemperature": "Very high temperature detected. Provide sufficient irrigation and protect sensitive crops from heat stress.",
+        "strongWind": "Strong winds are expected. Avoid spraying pesticides and secure young plants or support structures.",
+        "heavyRain": "Consider delaying fertilizer application until heavy rainfall has passed."
+        },
+
+        "units": {
+        "celsius": "°C",
+        "kmh": "km/h",
+        "mm": "mm",
+        "percent": "%"
+        }
     }
+    
 }
+

@@ -1,503 +1,457 @@
 /* =========================================================
    GOVERNMENT SCHEMES
-   Compact UI - 14 inch laptop
-   Green AgroFarming theme
-   ========================================================= */
+   Same UI style as other AgroFarming pages
+========================================================= */
 
 .schemes-page {
-  min-height: 100vh;
-  background: #f5f8f6;
-  padding: 14px 12px 25px;
-  box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    padding: 18px 10px 30px;
+    background: #f5f8f6;
+    box-sizing: border-box;
 }
 
 .schemes-container {
-  width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 .schemes-header {
-  text-align: center;
-  margin-bottom: 10px;
-  color: #1a202c;
+    text-align: center;
+    margin-bottom: 18px;
 }
 
 .schemes-title {
-  margin: 0;
-  color: #087b3e;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.2;
+    margin: 0;
+    color: #087b3e;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .schemes-subtitle {
-  margin: 3px 0 0;
-  color: #607086;
-  font-size: 10px;
-  line-height: 1.3;
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.4;
 }
 
 
 /* =========================================================
    SEARCH + FILTER
-   ========================================================= */
+========================================================= */
 
 .schemes-controls {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #d8e6df;
-  border-radius: 9px;
-  padding: 9px;
-  margin-bottom: 12px;
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 18px;
 
-  box-shadow: 0 3px 12px rgba(30, 100, 65, 0.05);
-  box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #d8e6df;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 14px rgba(30, 100, 65, 0.06);
+    box-sizing: border-box;
 }
 
 .search-box {
-  margin-bottom: 7px;
+    width: 100%;
+    margin-bottom: 12px;
 }
 
 .search-input {
-  width: 100%;
-  height: 30px;
+    width: 100%;
+    height: 42px;
 
-  padding: 0 9px;
+    padding: 0 13px;
 
-  border: 1px solid #c5dfd0;
-  border-radius: 6px;
+    border: 1px solid #cfe2d6;
+    border-radius: 8px;
 
-  background: #ffffff;
+    background: #ffffff;
+    color: #173c2b;
 
-  color: #10251b;
-  font-family: inherit;
-  font-size: 10px;
+    font-family: inherit;
+    font-size: 13px;
 
-  outline: none;
-  box-sizing: border-box;
+    outline: none;
+    box-sizing: border-box;
 
-  transition: 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .search-input::placeholder {
-  color: #82939a;
+    color: #899991;
 }
 
 .search-input:focus {
-  border-color: #159c4d;
-
-  box-shadow:
-    0 0 0 2px rgba(21, 156, 77, 0.08);
+    border-color: #159447;
+    box-shadow: 0 0 0 3px rgba(21, 148, 71, 0.08);
 }
 
 
 /* =========================================================
    CATEGORY BUTTONS
-   ========================================================= */
+========================================================= */
 
 .category-filter {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
 }
 
 .category-btn {
-  height: 24px;
+    height: 32px;
+    padding: 0 13px;
 
-  padding: 0 8px;
+    border: 1px solid #cfe2d6;
+    border-radius: 50px;
 
-  border: 1px solid #cbded4;
-  background: #ffffff;
+    background: #ffffff;
+    color: #43534b;
 
-  border-radius: 14px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
 
-  color: #43534b;
-
-  font-family: inherit;
-  font-size: 9px;
-  font-weight: 500;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .category-btn:hover {
-  border-color: #159c4d;
-  color: #087b3e;
+    border-color: #159447;
+    color: #087b3e;
 }
 
 .category-btn.active {
-  background: #159947;
-  border-color: #159947;
-  color: #ffffff;
+    background: #159947;
+    border-color: #159947;
+    color: #ffffff;
 }
 
 
 /* =========================================================
    SCHEMES GRID
-   2 CARDS PER ROW
-   ========================================================= */
+========================================================= */
 
 .schemes-grid {
-  width: 100%;
+    width: 100%;
 
-  display: grid;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+    gap: 16px;
 
-  gap: 10px 12px;
-
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
 /* =========================================================
    SCHEME CARD
-   ========================================================= */
+========================================================= */
 
 .scheme-card {
-  width: 100%;
-  min-width: 0;
+    width: 100%;
+    min-width: 0;
 
-  background: #ffffff;
+    display: flex;
+    flex-direction: column;
 
-  border: 1px solid #d8e6df;
-  border-radius: 9px;
+    background: #ffffff;
 
-  overflow: hidden;
+    border: 1px solid #d8e6df;
+    border-radius: 12px;
 
-  display: flex;
-  flex-direction: column;
+    overflow: hidden;
 
-  box-shadow:
-    0 3px 12px rgba(30, 100, 65, 0.05);
+    box-shadow: 0 4px 14px rgba(30, 100, 65, 0.06);
 
-  transition: 0.2s ease;
+    box-sizing: border-box;
 
-  box-sizing: border-box;
+    transition: 0.2s ease;
 }
 
 .scheme-card:hover {
-  transform: translateY(-1px);
-
-  box-shadow:
-    0 6px 16px rgba(30, 100, 65, 0.10);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(30, 100, 65, 0.10);
 }
 
 
 /* =========================================================
    CARD HEADER
-   ========================================================= */
+========================================================= */
 
 .scheme-header {
-  background: linear-gradient(
-    135deg,
-    #159947 0%,
-    #087b3e 100%
-  );
+    padding: 13px 15px;
 
-  padding: 8px 10px;
+    background: linear-gradient(
+        135deg,
+        #159947 0%,
+        #087b3e 100%
+    );
 
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .scheme-name {
-  margin: 0 0 3px;
+    margin: 0 0 6px;
 
-  font-size: 11px;
-  font-weight: 700;
-
-  line-height: 1.25;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
 }
 
 .scheme-category {
-  display: inline-block;
+    display: inline-block;
 
-  padding: 2px 6px;
+    padding: 4px 9px;
 
-  background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.18);
 
-  border-radius: 10px;
+    border-radius: 50px;
 
-  font-size: 8px;
-  font-weight: 500;
-
-  line-height: 1.2;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
 }
 
 
 /* =========================================================
    CARD BODY
-   ========================================================= */
+========================================================= */
 
 .scheme-body {
-  padding: 8px 10px;
-
-  flex: 1;
-
-  box-sizing: border-box;
+    flex: 1;
+    padding: 14px 15px;
+    box-sizing: border-box;
 }
 
 .scheme-description {
-  margin: 0 0 7px;
+    margin: 0 0 12px;
 
-  color: #53636a;
+    color: #53636a;
 
-  font-size: 9px;
-
-  line-height: 1.4;
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 
 /* =========================================================
    DETAILS
-   ========================================================= */
+========================================================= */
 
 .scheme-details {
-  display: flex;
-  flex-direction: column;
-
-  gap: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
 }
 
 .detail-item {
-  font-size: 8.5px;
-  line-height: 1.3;
+    font-size: 11px;
+    line-height: 1.4;
 }
 
 .detail-item strong {
-  display: block;
+    display: block;
 
-  margin-bottom: 1px;
+    margin-bottom: 2px;
 
-  color: #159947;
+    color: #159947;
 
-  font-size: 8.5px;
-  font-weight: 700;
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .detail-item p {
-  margin: 0;
+    margin: 0;
 
-  color: #53636a;
+    color: #53636a;
 
-  font-size: 8.5px;
-
-  line-height: 1.3;
+    font-size: 11px;
+    line-height: 1.4;
 }
 
 
 /* =========================================================
    META
-   ========================================================= */
+========================================================= */
 
 .scheme-meta {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
 
-  gap: 7px;
+    margin-top: 12px;
+    padding-top: 9px;
 
-  margin-top: 7px;
-  padding-top: 6px;
+    border-top: 1px solid #e2e8e5;
 
-  border-top: 1px solid #e2e8e5;
+    color: #718096;
 
-  color: #718096;
-
-  font-size: 8px;
-
-  line-height: 1.2;
+    font-size: 10px;
+    line-height: 1.3;
 }
 
 
 /* =========================================================
    CARD FOOTER
-   ========================================================= */
+========================================================= */
 
 .scheme-footer {
-  padding: 6px 10px;
+    padding: 10px 15px;
 
-  background: #f7faf8;
+    background: #f7faf8;
 
-  border-top: 1px solid #e2e8e5;
+    border-top: 1px solid #e2e8e5;
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .apply-link {
-  display: inline-block;
+    display: inline-block;
 
-  color: #159947;
+    color: #159947;
 
-  font-size: 9px;
-  font-weight: 600;
+    font-size: 12px;
+    font-weight: 600;
 
-  text-decoration: none;
+    text-decoration: none;
 
-  transition: 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .apply-link:hover {
-  color: #087b3e;
-  transform: translateX(2px);
+    color: #087b3e;
+    transform: translateX(2px);
 }
 
 
 /* =========================================================
    NO RESULTS
-   ========================================================= */
+========================================================= */
 
 .no-results {
-  width: 100%;
+    width: 100%;
 
-  text-align: center;
+    padding: 35px 15px;
 
-  padding: 25px 10px;
+    text-align: center;
 
-  color: #607086;
+    color: #607086;
 
-  font-size: 10px;
+    font-size: 13px;
 
-  box-sizing: border-box;
-}
-
-
-/* =========================================================
-   14-INCH LAPTOP
-   Keep 2 cards in one row
-   ========================================================= */
-
-@media (min-width: 601px) {
-
-  .schemes-container {
-    max-width: 1180px;
-  }
-
-  .schemes-grid {
-    grid-template-columns:
-      repeat(3, minmax(0, 1fr));
-
-    gap: 10px 12px;
-  }
-
-  .scheme-card {
-    min-width: 0;
-  }
+    box-sizing: border-box;
 }
 
 
 /* =========================================================
    TABLET
-   ========================================================= */
+========================================================= */
 
-@media (max-width: 900px) and (min-width: 601px) {
+@media screen and (max-width: 900px) {
 
-  .schemes-page {
-    padding: 13px 10px 22px;
-  }
+    .schemes-page {
+        padding: 16px 10px 25px;
+    }
 
-  .schemes-grid {
-    gap: 9px 10px;
-  }
+    .schemes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
 
-  .scheme-header {
-    padding: 7px 9px;
-  }
-
-  .scheme-body {
-    padding: 7px 9px;
-  }
-
-  .scheme-name {
-    font-size: 10px;
-  }
-
-  .scheme-description,
-  .detail-item,
-  .detail-item p {
-    font-size: 8px;
-  }
+    .schemes-title {
+        font-size: 25px;
+    }
 }
 
 
 /* =========================================================
    MOBILE
-   ========================================================= */
+========================================================= */
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
 
-  .schemes-page {
-    padding: 12px 9px 20px;
-  }
+    .schemes-page {
+        padding: 14px 10px 22px;
+    }
 
-  .schemes-container {
-    width: 100%;
-    padding: 0;
-  }
+    .schemes-title {
+        font-size: 22px;
+    }
 
-  .schemes-title {
-    font-size: 16px;
-  }
+    .schemes-subtitle {
+        font-size: 12px;
+    }
 
-  .schemes-subtitle {
-    font-size: 9px;
-  }
+    .schemes-controls {
+        padding: 12px;
+        margin-bottom: 14px;
+    }
 
-  .schemes-controls {
-    padding: 8px;
-    margin-bottom: 10px;
-  }
+    .search-input {
+        height: 42px;
+        font-size: 12px;
+    }
 
-  .search-input {
-    height: 29px;
-    font-size: 9px;
-  }
+    .category-filter {
+        gap: 6px;
+    }
 
-  .category-filter {
-    gap: 4px;
-  }
+    .category-btn {
+        height: 30px;
+        padding: 0 11px;
+        font-size: 11px;
+    }
 
-  .category-btn {
-    height: 23px;
-    padding: 0 7px;
-    font-size: 8px;
-  }
+    .schemes-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
 
-  .schemes-grid {
-    grid-template-columns: 1fr;
-    gap: 9px;
-  }
+    .scheme-header {
+        padding: 12px 14px;
+    }
 
-  .scheme-name {
-    font-size: 10px;
-  }
+    .scheme-name {
+        font-size: 14px;
+    }
 
-  .scheme-description {
-    font-size: 8.5px;
-  }
+    .scheme-category {
+        font-size: 10px;
+    }
 
-  .detail-item,
-  .detail-item strong,
-  .detail-item p {
-    font-size: 8px;
-  }
+    .scheme-body {
+        padding: 13px 14px;
+    }
 
-  .scheme-meta {
-    font-size: 7.5px;
-  }
+    .scheme-description {
+        font-size: 11px;
+    }
 
-  .apply-link {
-    font-size: 8.5px;
-  }
+    .detail-item,
+    .detail-item strong,
+    .detail-item p {
+        font-size: 10.5px;
+    }
+
+    .scheme-meta {
+        font-size: 9px;
+    }
+
+    .scheme-footer {
+        padding: 9px 14px;
+    }
+
+    .apply-link {
+        font-size: 11px;
+    }
 }

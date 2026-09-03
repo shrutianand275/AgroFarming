@@ -7,6 +7,7 @@ import FertilizerRecommendation from "./pages/FertilizerRecommendation/Fertilize
 import DiseasePrediction from "./pages/DiseasePrediction/DiseasePrediction";
 import GovernmentSchemes from "./pages/GovernmentSchemes/GovernmentSchemes";
 import YieldPrediction from "./pages/YieldPrediction/YieldPrediction";
+import WeatherForecast from "./pages/WeatherForecast/WeatherForecast";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
       <Route path="/disease-prediction" element={<DiseasePrediction />} />
 
       <Route path="/government-schemes" element={<GovernmentSchemes />} />
+
+      <Route path="/weather-forecast" element={<WeatherForecast />} />
 
     </Routes>
   );

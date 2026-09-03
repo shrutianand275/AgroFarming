@@ -1,28 +1,66 @@
-.hero{
-
-    padding:20px 0;
-
+.hero {
+    padding: 30px 0;
 }
 
-.hero h1{
-
-    font-size:55px;
-    font-weight:bold;
-    color:#1b4332;
-
+.hero h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1b4332;
+    line-height: 1.1;
 }
 
-.hero p{
-
-    margin:25px 0;
-    font-size:18px;
-    color:#555;
-
+.hero p {
+    margin: 20px 10px;
+    font-size: 17px;
+    color: #555;
+    line-height: 1.5;
 }
 
-.hero-image{
+.hero-image {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 20px;
+}
 
-    width:100%;
-    border-radius:20px;
+/* 14-inch / smaller laptop */
+@media (max-width: 1400px) {
+    .hero {
+        padding: 20px 0;
+    }
 
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        margin: 15px 0;
+        font-size: 16px;
+    }
+
+    .hero-image {
+        max-height: 400px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-image {
+        margin-top: 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
 }
