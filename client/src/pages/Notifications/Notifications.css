@@ -1,0 +1,348 @@
+.notifications-page {
+  min-height: calc(100vh - 50px);
+  background: #f5f8f6;
+  padding: 28px 20px 45px;
+}
+
+/* ================= HEADER ================= */
+
+.notifications-header {
+  max-width: 1050px;
+  margin: 0 auto 15px;
+  background: #198754;
+  color: white;
+  border-radius: 12px;
+  padding: 19px 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.notifications-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.notifications-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifications-header h1 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.notifications-header p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: .9;
+}
+
+/* ================= CLEAR ================= */
+
+.clear-notifications-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: transparent;
+  color: white;
+  border-radius: 7px;
+  padding: 8px 13px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.clear-notifications-btn:hover {
+  background: rgba(255,255,255,.12);
+}
+
+/* ================= UNREAD ================= */
+
+.unread-info {
+  max-width: 1050px;
+  margin: 0 auto 13px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  background: #eaf6ef;
+  color: #198754;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ================= LIST ================= */
+
+.notifications-list {
+  max-width: 1050px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+/* ================= CARD ================= */
+
+.notification-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  gap: 14px;
+  border: 1px solid #edf0ee;
+  box-shadow: 0 4px 17px rgba(0,0,0,.045);
+}
+
+.notification-card.unread {
+  border-left: 3px solid #198754;
+}
+
+.notification-card.read {
+  opacity: .78;
+}
+
+.notification-card-icon {
+  width: 43px;
+  height: 43px;
+  min-width: 43px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #198754;
+  background: #eaf6ef;
+}
+
+.notification-card-icon.success {
+  color: #198754;
+  background: #eaf6ef;
+}
+
+.notification-card-icon.warning {
+  color: #997404;
+  background: #fff8df;
+}
+
+.notification-card-icon.farming {
+  color: #198754;
+  background: #eaf6ef;
+}
+
+/* ================= CONTENT ================= */
+
+.notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.notification-top h3 {
+  display: inline-block;
+  margin: 0;
+  color: #333;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+/* ================= NEW ================= */
+
+.new-badge {
+  display: inline-block;
+  margin-left: 7px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #198754;
+  color: white;
+  font-size: 8px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+/* ================= MESSAGE ================= */
+
+.notification-content p {
+  margin: 6px 0 8px;
+  color: #666;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ================= DELETE ================= */
+
+.delete-notification-btn {
+  border: none;
+  background: transparent;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.delete-notification-btn:hover {
+  color: #dc3545;
+  background: #fff0f1;
+}
+
+/* ================= BOTTOM ================= */
+
+.notification-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.notification-date {
+  color: #999;
+  font-size: 10px;
+}
+
+.mark-read-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  background: transparent;
+  color: #198754;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mark-read-btn:hover {
+  text-decoration: underline;
+}
+
+/* ================= EMPTY ================= */
+
+.notifications-empty {
+  max-width: 1050px;
+  min-height: 300px;
+  margin: auto;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  color: #777;
+  box-shadow: 0 4px 18px rgba(0,0,0,.05);
+}
+
+.empty-bell {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #eaf6ef;
+  color: #198754;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.notifications-empty h2 {
+  margin: 0 0 7px;
+  color: #333;
+  font-size: 20px;
+}
+
+.notifications-empty h3 {
+  color: #333;
+  font-size: 16px;
+}
+
+.notifications-empty p {
+  max-width: 450px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ================= ERROR ================= */
+
+.notifications-error {
+  max-width: 1050px;
+  margin: 0 auto 13px;
+  padding: 10px 13px;
+  border-radius: 7px;
+  background: #f8d7da;
+  color: #842029;
+  font-size: 13px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 650px) {
+
+  .notifications-page {
+    padding: 20px 14px 35px;
+  }
+
+  .notifications-header {
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .notifications-header h1 {
+    font-size: 20px;
+  }
+
+  .notifications-header p {
+    font-size: 11px;
+  }
+
+  .notifications-icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .notification-card {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+
+  .notifications-header {
+    flex-direction: column;
+  }
+
+  .clear-notifications-btn {
+    align-self: flex-end;
+  }
+
+  .notification-card-icon {
+    width: 39px;
+    min-width: 39px;
+    height: 39px;
+  }
+
+  .notification-top h3 {
+    font-size: 14px;
+  }
+
+  .notification-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

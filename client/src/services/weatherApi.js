@@ -1,20 +1,20 @@
-const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+const GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search";
+const WEATHER_URL = "https://api.open-meteo.com/v1/forecast";
 
-const BASE_URL = "https://api.openweathermap.org";
+/* =========================================
+   GET CITY + STATE COORDINATES
+========================================= */
 
-/* ================================
-   GET CITY COORDINATES
-================================ */
 export const getCoordinates = async (city, state) => {
-  if (!API_KEY) {
-    throw new Error("OpenWeather API key is missing.");
-  }
+  const query = `${city}, ${state}, India`;
 
   const url =
-    `${BASE_URL}/geo/1.0/direct` +
-    `?q=${encodeURIComponent(city)}` +
-    `&limit=5` +
-    `&appid=${API_KEY}`;
+    `${GEOCODING_URL}` +
+    `?name=${encodeURIComponent(query)}` +
+    `&count=10` +
+    `&language=en` +
+    `&countryCode=IN` +
+    `&format=json`;
 
   const response = await fetch(url);
 
@@ -24,73 +24,76 @@ export const getCoordinates = async (city, state) => {
 
   const data = await response.json();
 
-  if (!data || data.length === 0) {
+  if (!data.results || data.results.length === 0) {
     throw new Error("Location not found.");
   }
 
-  // Match state entered by user
   const enteredState = state.trim().toLowerCase();
 
-  const stateMatch = data.find(
-    (location) =>
-      location.state &&
-      location.state.toLowerCase().includes(enteredState)
-  );
+  // Try to find the result matching the entered state
+  const stateMatch = data.results.find((location) => {
+    const admin1 = location.admin1?.toLowerCase() || "";
 
-  // If state doesn't match exactly, use first city result
-  return stateMatch || data[0];
+    return (
+      admin1.includes(enteredState) ||
+      enteredState.includes(admin1)
+    );
+  });
+
+  return stateMatch || data.results[0];
 };
 
 
-/* ================================
-   GET WEATHER DATA
-================================ */
+/* =========================================
+   GET REAL WEATHER DATA
+========================================= */
+
 export const getWeather = async (
   latitude,
-  longitude,
-  language = "en"
+  longitude
 ) => {
-  if (!API_KEY) {
-    throw new Error("OpenWeather API key is missing.");
-  }
 
   const url =
-    `${BASE_URL}/data/3.0/onecall` +
-    `?lat=${latitude}` +
-    `&lon=${longitude}` +
-    `&exclude=minutely,hourly` +
-    `&units=metric` +
-    `&lang=${language}` +
-    `&appid=${API_KEY}`;
+    `${WEATHER_URL}` +
+    `?latitude=${latitude}` +
+    `&longitude=${longitude}` +
+    `&current=` +
+    `temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m` +
+    `&daily=` +
+    `temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,precipitation_probability_max,weather_code,wind_speed_10m_max` +
+    `&temperature_unit=celsius` +
+    `&wind_speed_unit=kmh` +
+    `&precipitation_unit=mm` +
+    `&forecast_days=7` +
+    `&timezone=auto`;
 
   const response = await fetch(url);
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => null);
-
-    throw new Error(
-      errorData?.message || "Unable to fetch weather data."
-    );
+    throw new Error("Unable to fetch weather data.");
   }
 
   return await response.json();
 };
 
 
-/* ================================
+/* =========================================
    GET WEATHER BY CITY + STATE
-================================ */
+========================================= */
+
 export const getWeatherByLocation = async (
   city,
-  state,
-  language = "en"
+  state
 ) => {
-  const location = await getCoordinates(city, state);
+
+  const location = await getCoordinates(
+    city,
+    state
+  );
 
   const weather = await getWeather(
-    location.lat,
-    location.lon,
-    language
+    location.latitude,
+    location.longitude
   );
 
   return {

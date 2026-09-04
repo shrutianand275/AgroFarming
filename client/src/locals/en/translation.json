@@ -336,7 +336,54 @@
         "mm": "mm",
         "percent": "%"
         }
-    }
-    
+    },
+
+    "chatbot": {
+        "name": "AgroFarming Chatbot",
+        "title": "AgroFarming AI",
+        "subtitle": "Your intelligent farming companion",
+
+        "welcome": "Namaste! 🌱 I’m your AgroFarming AI Assistant. Ask me anything about crops, fertilizers, diseases, soil, irrigation, weather, farming techniques and more.",
+
+        "welcomeTitle": "How can I help you today?",
+
+        "welcomeSubtitle": "Ask your farming questions in English, Hindi or Hinglish.",
+
+        "suggestion1": "Best fertilizer for wheat?",
+
+        "suggestion2": "How can I protect crops from heavy rain?",
+
+        "suggestion3": "How to control pests naturally?",
+
+        "suggestion4": "Which crop is suitable for my soil?",
+
+        "clearChat": "Clear chat",
+
+        "you": "You",
+
+        "aiName": "AgroFarming AI",
+
+        "placeholder": "Ask anything about farming...",
+
+        "listening": "Listening...",
+
+        "voiceInput": "Voice input",
+
+        "stopListening": "Stop listening",
+
+        "send": "Send",
+
+        "languageSupport": "English • हिंदी • Hinglish",
+
+        "enterToSend": "Press Enter to send",
+
+        "voiceNotSupported": "Voice input is not supported in this browser. Please use Google Chrome.",
+
+        "microphoneDenied": "Microphone permission was denied. Please allow microphone access.",
+
+        "connectionError": "Sorry, I couldn't connect to the AgroFarming server. Please make sure the Flask backend is running.",
+
+        "disclaimer": "🌱 AgroFarming AI provides farming information to assist you. Always consider local soil, weather and agricultural conditions before making important decisions."
+    }  
 }
 

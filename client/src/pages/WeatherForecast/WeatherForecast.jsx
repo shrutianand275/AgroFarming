@@ -24,6 +24,7 @@ import "./WeatherForecast.css";
 
 
 const WeatherForecast = () => {
+
   const { t, i18n } = useTranslation();
 
   const [city, setCity] = useState("");
@@ -34,189 +35,356 @@ const WeatherForecast = () => {
   const [error, setError] = useState("");
 
 
-  /* ================================
-     WEATHER ICON
-  ================================= */
-  const getWeatherIcon = (weatherId, size = 32) => {
+  /* =========================================
+     WMO WEATHER CODE
+  ========================================= */
 
-    if (weatherId >= 200 && weatherId < 300) {
-      return <CloudLightning size={size} />;
+  const getWeatherInfo = (code) => {
+
+    if (code === 0) {
+      return {
+        key: "clearSky",
+        icon: <Sun />
+      };
     }
 
-    if (weatherId >= 300 && weatherId < 400) {
-      return <CloudRain size={size} />;
+    if (code === 1) {
+      return {
+        key: "mainlyClear",
+        icon: <Sun />
+      };
     }
 
-    if (weatherId >= 500 && weatherId < 600) {
-      return <CloudRain size={size} />;
+    if (code === 2) {
+      return {
+        key: "partlyCloudy",
+        icon: <CloudSun />
+      };
     }
 
-    if (weatherId >= 600 && weatherId < 700) {
-      return <Snowflake size={size} />;
+    if (code === 3) {
+      return {
+        key: "cloudy",
+        icon: <Cloud />
+      };
     }
 
-    if (weatherId >= 700 && weatherId < 800) {
-      return <Cloud size={size} />;
+    if (code === 45 || code === 48) {
+      return {
+        key: "foggy",
+        icon: <Cloud />
+      };
     }
 
-    if (weatherId === 800) {
-      return <Sun size={size} />;
+    if (
+      code === 51 ||
+      code === 53 ||
+      code === 55 ||
+      code === 56 ||
+      code === 57
+    ) {
+      return {
+        key: "drizzle",
+        icon: <CloudRain />
+      };
     }
 
-    if (weatherId === 801) {
-      return <CloudSun size={size} />;
+    if (
+      code === 61 ||
+      code === 63 ||
+      code === 65 ||
+      code === 66 ||
+      code === 67 ||
+      code === 80 ||
+      code === 81 ||
+      code === 82
+    ) {
+      return {
+        key: "rain",
+        icon: <CloudRain />
+      };
     }
 
-    if (weatherId > 801) {
-      return <Cloud size={size} />;
+    if (
+      code === 71 ||
+      code === 73 ||
+      code === 75 ||
+      code === 77 ||
+      code === 85 ||
+      code === 86
+    ) {
+      return {
+        key: "snow",
+        icon: <Snowflake />
+      };
     }
 
-    return <Sun size={size} />;
+    if (
+      code === 95 ||
+      code === 96 ||
+      code === 99
+    ) {
+      return {
+        key: "thunderstorm",
+        icon: <CloudLightning />
+      };
+    }
+
+    return {
+      key: "unknown",
+      icon: <Cloud />
+    };
   };
 
 
-  /* ================================
+  /* =========================================
      FARMING ADVISORY
-  ================================= */
+  ========================================= */
+
   const getAdvisory = (current, today) => {
 
-    const temperature = current.temp;
-    const humidity = current.humidity;
-    const windSpeed = current.wind_speed * 3.6;
+    const temperature = current.temperature_2m;
 
-    const rainProbability = (today.pop || 0) * 100;
-    const rainfall = today.rain || 0;
+    const humidity =
+      current.relative_humidity_2m;
+
+    const windSpeed =
+      current.wind_speed_10m;
+
+    const rainProbability =
+      today.precipitation_probability_max || 0;
+
+    const rainfall =
+      today.rain_sum || 0;
 
     const advice = [];
 
-    if (rainProbability >= 60 || rainfall > 5) {
-      advice.push(t("weather.advice.rainExpected"));
+
+    if (
+      rainProbability >= 60 ||
+      rainfall > 5
+    ) {
+      advice.push(
+        t("weather.advice.rainExpected")
+      );
     }
 
-    if (rainProbability <= 20 && temperature >= 30) {
-      advice.push(t("weather.advice.hotDry"));
+
+    if (
+      rainProbability <= 20 &&
+      temperature >= 30
+    ) {
+      advice.push(
+        t("weather.advice.hotDry")
+      );
     }
+
 
     if (humidity >= 80) {
-      advice.push(t("weather.advice.highHumidity"));
+      advice.push(
+        t("weather.advice.highHumidity")
+      );
     }
+
 
     if (temperature >= 35) {
-      advice.push(t("weather.advice.highTemperature"));
+      advice.push(
+        t("weather.advice.highTemperature")
+      );
     }
+
 
     if (windSpeed >= 30) {
-      advice.push(t("weather.advice.strongWind"));
+      advice.push(
+        t("weather.advice.strongWind")
+      );
     }
+
 
     if (rainProbability >= 70) {
-      advice.push(t("weather.advice.heavyRain"));
+      advice.push(
+        t("weather.advice.heavyRain")
+      );
     }
 
+
     if (advice.length === 0) {
-      advice.push(t("weather.advice.normal"));
+      advice.push(
+        t("weather.advice.normal")
+      );
     }
+
 
     return advice;
   };
 
 
-  /* ================================
+  /* =========================================
      SEARCH WEATHER
-  ================================= */
+  ========================================= */
+
   const handleSearch = async (e) => {
+
     e.preventDefault();
 
     if (!city.trim() || !state.trim()) {
-      setError(t("weather.enterCityState"));
+
+      setError(
+        t("weather.enterCityState")
+      );
+
       return;
     }
+
 
     setLoading(true);
     setWeatherData(null);
     setError("");
 
+
     try {
 
-      const language =
-        i18n.language?.startsWith("hi")
-          ? "hi"
-          : "en";
-
-      const result = await getWeatherByLocation(
-        city.trim(),
-        state.trim(),
-        language
-      );
+      const result =
+        await getWeatherByLocation(
+          city.trim(),
+          state.trim()
+        );
 
       setWeatherData(result);
 
     } catch (err) {
 
-      console.error("Weather Error:", err);
+      console.error(
+        "Weather Error:",
+        err
+      );
 
       if (
-        err.message?.toLowerCase().includes("location")
+        err.message
+          ?.toLowerCase()
+          .includes("location")
       ) {
-        setError(t("weather.locationNotFound"));
-      } else {
+
         setError(
-          err.message || t("weather.weatherError")
+          t("weather.locationNotFound")
+        );
+
+      } else {
+
+        setError(
+          err.message ||
+          t("weather.weatherError")
         );
       }
 
     } finally {
+
       setLoading(false);
+
     }
   };
 
 
-  /* ================================
-     DATA
-  ================================= */
-  const current = weatherData?.weather?.current;
-  const daily = weatherData?.weather?.daily || [];
+  /* =========================================
+     WEATHER DATA
+  ========================================= */
 
-  const today = daily[0];
+  const current =
+    weatherData?.weather?.current;
 
-  const currentTemperature = current
-    ? Math.round(current.temp)
-    : null;
-
-  const humidity = current
-    ? current.humidity
-    : null;
-
-  const windSpeed = current
-    ? Math.round(current.wind_speed * 3.6)
-    : null;
-
-  const rainProbability = today
-    ? Math.round((today.pop || 0) * 100)
-    : null;
-
-  const rainfall = current
-    ? Number(current.rain?.["1h"] || 0).toFixed(1)
-    : null;
+  const daily =
+    weatherData?.weather?.daily;
 
 
-  const advisory =
-    current && today
-      ? getAdvisory(current, today)
-      : [];
+  /* =========================================
+     CURRENT VALUES
+  ========================================= */
+
+  const temperature =
+    current?.temperature_2m;
+
+  const humidity =
+    current?.relative_humidity_2m;
+
+  const windSpeed =
+    current?.wind_speed_10m;
+
+  const rainfall =
+    current?.rain ?? current?.precipitation ?? 0;
+
+  const today =
+    daily?.time?.length
+      ? {
+          precipitation_probability_max:
+            daily.precipitation_probability_max?.[0] || 0,
+
+          rain_sum:
+            daily.rain_sum?.[0] || 0
+        }
+      : null;
 
 
-  /* ================================
+  const rainProbability =
+    today?.precipitation_probability_max || 0;
+
+
+  /* =========================================
+     CURRENT WEATHER INFO
+  ========================================= */
+
+  const currentWeatherInfo =
+    current
+      ? getWeatherInfo(
+          current.weather_code
+        )
+      : null;
+
+
+  /* =========================================
+     7 DAY FORECAST
+  ========================================= */
+
+  const forecast = daily?.time
+    ? daily.time.map((date, index) => ({
+        date,
+
+        maxTemp:
+          daily.temperature_2m_max?.[index],
+
+        minTemp:
+          daily.temperature_2m_min?.[index],
+
+        rainfall:
+          daily.rain_sum?.[index] || 0,
+
+        rainProbability:
+          daily.precipitation_probability_max?.[
+            index
+          ] || 0,
+
+        windSpeed:
+          daily.wind_speed_10m_max?.[
+            index
+          ] || 0,
+
+        weatherCode:
+          daily.weather_code?.[index]
+      }))
+    : [];
+
+
+  /* =========================================
      DATE FORMAT
-  ================================= */
-  const formatDate = (timestamp) => {
+  ========================================= */
+
+  const formatDate = (date) => {
 
     const locale =
       i18n.language?.startsWith("hi")
         ? "hi-IN"
         : "en-IN";
 
-    return new Date(timestamp * 1000).toLocaleDateString(
+    return new Date(date).toLocaleDateString(
       locale,
       {
         weekday: "short",
@@ -225,6 +393,19 @@ const WeatherForecast = () => {
       }
     );
   };
+
+
+  /* =========================================
+     FARMING ADVISORY
+  ========================================= */
+
+  const advisory =
+    current && today
+      ? getAdvisory(
+          current,
+          today
+        )
+      : [];
 
 
   return (
@@ -236,6 +417,7 @@ const WeatherForecast = () => {
         <div className="weather-container">
 
           {/* ================= HEADER ================= */}
+
           <div className="weather-header">
 
             <h1 className="weather-title">
@@ -250,6 +432,7 @@ const WeatherForecast = () => {
 
 
           {/* ================= SEARCH CARD ================= */}
+
           <div className="weather-card">
 
             <form
@@ -260,11 +443,15 @@ const WeatherForecast = () => {
               <div className="weather-grid">
 
                 {/* CITY */}
+
                 <div className="weather-field">
 
                   <label>
+
                     <MapPin size={16} />
+
                     {t("weather.city")}
+
                   </label>
 
                   <input
@@ -282,11 +469,15 @@ const WeatherForecast = () => {
 
 
                 {/* STATE */}
+
                 <div className="weather-field">
 
                   <label>
+
                     <MapPin size={16} />
+
                     {t("weather.state")}
+
                   </label>
 
                   <input
@@ -329,13 +520,16 @@ const WeatherForecast = () => {
 
 
           {/* ================= ERROR ================= */}
+
           {error && (
 
             <div className="weather-error">
 
               <AlertCircle size={20} />
 
-              <span>{error}</span>
+              <span>
+                {error}
+              </span>
 
             </div>
 
@@ -343,66 +537,88 @@ const WeatherForecast = () => {
 
 
           {/* ================= RESULTS ================= */}
+
           {weatherData && current && (
 
             <>
 
               {/* LOCATION */}
+
               <div className="weather-location">
 
                 <MapPin size={18} />
 
                 <span>
+
                   {weatherData.location.name}
-                  {weatherData.location.state
-                    ? `, ${weatherData.location.state}`
+
+                  {weatherData.location.admin1
+                    ? `, ${weatherData.location.admin1}`
                     : ""}
+
                 </span>
 
               </div>
 
 
               {/* ================= CURRENT WEATHER ================= */}
+
               <section className="weather-card current-weather-card">
 
                 <div className="section-header">
 
-                  <div>
-                    <h2>
-                      {t("weather.currentWeather")}
-                    </h2>
-                  </div>
+                  <h2>
+                    {t(
+                      "weather.currentWeather"
+                    )}
+                  </h2>
 
                 </div>
 
 
                 <div className="current-weather-main">
 
-                  {/* TEMPERATURE */}
+                  {/* SUMMARY */}
+
                   <div className="current-weather-summary">
 
                     <div className="current-weather-icon">
 
-                      {getWeatherIcon(
-                        current.weather?.[0]?.id,
-                        58
-                      )}
+                      {currentWeatherInfo &&
+                        React.cloneElement(
+                          currentWeatherInfo.icon,
+                          {
+                            size: 58
+                          }
+                        )}
 
                     </div>
+
 
                     <div>
 
                       <div className="current-temperature">
 
-                        {currentTemperature}
-                        {t("weather.units.celsius")}
+                        {Math.round(
+                          temperature
+                        )}
+
+                        {t(
+                          "weather.units.celsius"
+                        )}
 
                       </div>
 
+
                       <div className="current-condition">
 
-                        {current.weather?.[0]?.description ||
-                          t("weather.conditions.unknown")}
+                        {currentWeatherInfo
+                          ? t(
+                              `weather.conditions.${currentWeatherInfo.key}`
+                            )
+                          : t(
+                              "weather.conditions.unknown"
+                            )}
 
                       </div>
 
@@ -412,77 +628,128 @@ const WeatherForecast = () => {
 
 
                   {/* DETAILS */}
+
                   <div className="weather-details">
+
+                    {/* HUMIDITY */}
 
                     <div className="weather-detail">
 
                       <Droplets size={21} />
 
                       <div>
+
                         <span>
-                          {t("weather.humidity")}
+                          {t(
+                            "weather.humidity"
+                          )}
                         </span>
 
                         <strong>
+
                           {humidity}
-                          {t("weather.units.percent")}
+
+                          {t(
+                            "weather.units.percent"
+                          )}
+
                         </strong>
+
                       </div>
 
                     </div>
 
+
+                    {/* RAIN PROBABILITY */}
 
                     <div className="weather-detail">
 
                       <CloudRain size={21} />
 
                       <div>
+
                         <span>
-                          {t("weather.rainProbability")}
+                          {t(
+                            "weather.rainProbability"
+                          )}
                         </span>
 
                         <strong>
+
                           {rainProbability}
-                          {t("weather.units.percent")}
+
+                          {t(
+                            "weather.units.percent"
+                          )}
+
                         </strong>
+
                       </div>
 
                     </div>
 
+
+                    {/* WIND */}
 
                     <div className="weather-detail">
 
                       <Wind size={21} />
 
                       <div>
+
                         <span>
-                          {t("weather.windSpeed")}
+                          {t(
+                            "weather.windSpeed"
+                          )}
                         </span>
 
                         <strong>
-                          {windSpeed}
+
+                          {Math.round(
+                            windSpeed
+                          )}
+
                           {" "}
-                          {t("weather.units.kmh")}
+
+                          {t(
+                            "weather.units.kmh"
+                          )}
+
                         </strong>
+
                       </div>
 
                     </div>
 
+
+                    {/* RAINFALL */}
 
                     <div className="weather-detail">
 
                       <CloudRain size={21} />
 
                       <div>
+
                         <span>
-                          {t("weather.rainfall")}
+                          {t(
+                            "weather.rainfall"
+                          )}
                         </span>
 
                         <strong>
-                          {rainfall}
+
+                          {Number(
+                            rainfall
+                          ).toFixed(1)}
+
                           {" "}
-                          {t("weather.units.mm")}
+
+                          {t(
+                            "weather.units.mm"
+                          )}
+
                         </strong>
+
                       </div>
 
                     </div>
@@ -495,108 +762,126 @@ const WeatherForecast = () => {
 
 
               {/* ================= 7 DAY FORECAST ================= */}
+
               <section className="forecast-section">
 
                 <div className="section-header">
 
-                  <div>
+                  <h2>
+                    {t(
+                      "weather.sevenDayForecast"
+                    )}
+                  </h2>
 
-                    <h2>
-                      {t("weather.sevenDayForecast")}
-                    </h2>
-
-                    <p>
-                      {t("weather.upcomingWeather")}
-                    </p>
-
-                  </div>
+                  <p>
+                    {t(
+                      "weather.upcomingWeather"
+                    )}
+                  </p>
 
                 </div>
 
 
                 <div className="forecast-grid">
 
-                  {daily.slice(0, 7).map((day, index) => {
+                  {forecast.map(
+                    (day, index) => {
 
-                    const weather =
-                      day.weather?.[0];
+                      const weatherInfo =
+                        getWeatherInfo(
+                          day.weatherCode
+                        );
 
-                    const maxTemp =
-                      Math.round(day.temp.max);
+                      return (
 
-                    const minTemp =
-                      Math.round(day.temp.min);
+                        <div
+                          className={`forecast-card ${
+                            index === 0
+                              ? "forecast-today"
+                              : ""
+                          }`}
+                          key={day.date}
+                        >
 
-                    const rain =
-                      Math.round((day.pop || 0) * 100);
+                          <div className="forecast-day">
 
-                    return (
+                            {index === 0
+                              ? t(
+                                  "weather.today"
+                                )
+                              : formatDate(
+                                  day.date
+                                )}
 
-                      <div
-                        className={`forecast-card ${
-                          index === 0
-                            ? "forecast-today"
-                            : ""
-                        }`}
-                        key={day.dt}
-                      >
-
-                        <div className="forecast-day">
-
-                          {index === 0
-                            ? t("weather.today")
-                            : formatDate(day.dt)}
-
-                        </div>
+                          </div>
 
 
-                        <div className="forecast-icon">
+                          <div className="forecast-icon">
 
-                          {getWeatherIcon(
-                            weather?.id,
-                            38
-                          )}
-
-                        </div>
-
-
-                        <div className="forecast-condition">
-
-                          {weather?.description ||
-                            t(
-                              "weather.conditions.unknown"
+                            {React.cloneElement(
+                              weatherInfo.icon,
+                              {
+                                size: 38
+                              }
                             )}
 
+                          </div>
+
+
+                          <div className="forecast-condition">
+
+                            {t(
+                              `weather.conditions.${weatherInfo.key}`
+                            )}
+
+                          </div>
+
+
+                          <div className="forecast-temperature">
+
+                            <strong>
+
+                              {Math.round(
+                                day.maxTemp
+                              )}
+                              °
+
+                            </strong>
+
+                            <span>
+
+                              {Math.round(
+                                day.minTemp
+                              )}
+                              °
+
+                            </span>
+
+                          </div>
+
+
+                          <div className="forecast-rain">
+
+                            <CloudRain
+                              size={15}
+                            />
+
+                            {Math.round(
+                              day.rainProbability
+                            )}
+
+                            {t(
+                              "weather.units.percent"
+                            )}
+
+                          </div>
+
                         </div>
 
+                      );
 
-                        <div className="forecast-temperature">
-
-                          <strong>
-                            {maxTemp}°
-                          </strong>
-
-                          <span>
-                            {minTemp}°
-                          </span>
-
-                        </div>
-
-
-                        <div className="forecast-rain">
-
-                          <CloudRain size={15} />
-
-                          {rain}
-                          {t("weather.units.percent")}
-
-                        </div>
-
-                      </div>
-
-                    );
-
-                  })}
+                    }
+                  )}
 
                 </div>
 
@@ -604,6 +889,7 @@ const WeatherForecast = () => {
 
 
               {/* ================= FARMING ADVISORY ================= */}
+
               <section className="weather-card farming-advisory">
 
                 <div className="advisory-header">
@@ -614,14 +900,19 @@ const WeatherForecast = () => {
 
                   </div>
 
+
                   <div>
 
                     <h2>
-                      {t("weather.farmingAdvisory")}
+                      {t(
+                        "weather.farmingAdvisory"
+                      )}
                     </h2>
 
                     <p>
-                      {t("weather.advisorySubtitle")}
+                      {t(
+                        "weather.advisorySubtitle"
+                      )}
                     </p>
 
                   </div>
@@ -631,22 +922,28 @@ const WeatherForecast = () => {
 
                 <div className="advisory-list">
 
-                  {advisory.map((item, index) => (
+                  {advisory.map(
+                    (item, index) => (
 
-                    <div
-                      className="advisory-item"
-                      key={index}
-                    >
+                      <div
+                        className="advisory-item"
+                        key={index}
+                      >
 
-                      <span className="advisory-number">
-                        {index + 1}
-                      </span>
+                        <span className="advisory-number">
 
-                      <p>{item}</p>
+                          {index + 1}
 
-                    </div>
+                        </span>
 
-                  ))}
+                        <p>
+                          {item}
+                        </p>
+
+                      </div>
+
+                    )
+                  )}
 
                 </div>
 

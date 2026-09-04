@@ -1,5 +1,8 @@
 from flask import Blueprint, request, jsonify
+
 from services.recommendation_service import recommend_crop
+from utils.history import save_history_if_logged_in
+
 
 crop_bp = Blueprint("crop", __name__)
 
@@ -8,8 +11,7 @@ crop_bp = Blueprint("crop", __name__)
 def crop_recommendation():
 
     try:
-
-        data = request.get_json()
+        data = request.get_json() or {}
 
         required_fields = [
             "N",
@@ -21,8 +23,8 @@ def crop_recommendation():
             "rainfall"
         ]
 
-        # Check missing fields
         for field in required_fields:
+
             if field not in data:
                 return jsonify({
                     "success": False,
@@ -37,6 +39,14 @@ def crop_recommendation():
             float(data["humidity"]),
             float(data["ph"]),
             float(data["rainfall"])
+        )
+
+        # Save history only if user is logged in
+        save_history_if_logged_in(
+            history_type="crop",
+            title="Crop Recommendation",
+            input_data=data,
+            result=result
         )
 
         return jsonify({

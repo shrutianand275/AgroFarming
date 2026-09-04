@@ -1,6 +1,9 @@
 import axios from "axios";
 
-// Backend Base URL
+// ==========================================
+// BACKEND BASE URL
+// ==========================================
+
 const API = axios.create({
   baseURL: "http://127.0.0.1:5000/api",
   headers: {
@@ -8,33 +11,135 @@ const API = axios.create({
   },
 });
 
-// ==============================
-// Climate APIs
-// ==============================
+
+// ==========================================
+// AUTH TOKEN
+// ==========================================
+
+// Automatically attach the logged-in user's
+// JWT token to API requests.
+
+API.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("agroToken");
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+
+// ==========================================
+// AUTH APIs
+// ==========================================
+
+// Register
+export const registerUser = async (data) => {
+  const response = await API.post(
+    "/auth/register",
+    data
+  );
+
+  return response.data;
+};
+
+
+// Login
+export const loginUser = async (data) => {
+  const response = await API.post(
+    "/auth/login",
+    data
+  );
+
+  return response.data;
+};
+
+
+// Get currently logged-in user
+export const getCurrentUser = async () => {
+  const response = await API.get(
+    "/auth/me"
+  );
+
+  return response.data;
+};
+
+
+// Logout
+export const logoutUser = () => {
+  localStorage.removeItem("agroToken");
+  localStorage.removeItem("agroUser");
+};
+
+
+// ==========================================
+// CLIMATE APIs
+// ==========================================
 
 // Get all states
 export const getStates = async () => {
-  const response = await API.get("/climate/states");
+  const response = await API.get(
+    "/climate/states"
+  );
+
   return response.data;
 };
+
 
 // Get cities by state
 export const getCities = async (state) => {
   const response = await API.get(
     `/climate/cities/${encodeURIComponent(state)}`
   );
+
   return response.data;
 };
+
 
 // Get climate data
 export const getClimateData = async (data) => {
-  const response = await API.post("/climate/data", data);
+  const response = await API.post(
+    "/climate/data",
+    data
+  );
+
   return response.data;
 };
 
-// ==============================
-// Crop Recommendation
-// ==============================
+// ==========================================
+// PROFILE APIs
+// ==========================================
+
+// Get profile
+export const getProfile = async () => {
+  const response = await API.get(
+    "/profile"
+  );
+
+  return response.data;
+};
+
+
+// Update profile
+export const updateProfile = async (data) => {
+  const response = await API.put(
+    "/profile",
+    data
+  );
+
+  return response.data;
+};
+
+
+// ==========================================
+// CROP RECOMMENDATION
+// ==========================================
 
 export const recommendCrop = async (data) => {
   const response = await API.post(
@@ -45,9 +150,10 @@ export const recommendCrop = async (data) => {
   return response.data;
 };
 
-// ==============================
-// Fertilizer Recommendation
-// ==============================
+
+// ==========================================
+// FERTILIZER RECOMMENDATION
+// ==========================================
 
 export const recommendFertilizer = async (data) => {
   const response = await API.post(
@@ -58,9 +164,10 @@ export const recommendFertilizer = async (data) => {
   return response.data;
 };
 
-// ==============================
-// Disease Prediction
-// ==============================
+
+// ==========================================
+// DISEASE PREDICTION
+// ==========================================
 
 export const predictDisease = async (data) => {
   const response = await API.post(
@@ -70,5 +177,10 @@ export const predictDisease = async (data) => {
 
   return response.data;
 };
+
+
+// ==========================================
+// DEFAULT API
+// ==========================================
 
 export default API;
