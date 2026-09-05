@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { predictYield } from "../../services/api";
 
 import {
   Sprout,
@@ -20,21 +20,22 @@ import "./YieldPrediction.css";
 
 
 const crops = [
-  "Rice",
-  "Wheat",
-  "Maize",
+  "Bajra",
   "Cotton",
-  "Sugarcane",
-  "Barley",
-  "Millets",
+  "Groundnut",
+  "Jute",
+  "Maize",
   "Pulses",
-  "Ground Nuts"
+  "Rice",
+  "Soybean",
+  "Sugarcane",
+  "Wheat"
 ];
 
 const seasons = [
   "Kharif",
   "Rabi",
-  "Zaid"
+  "Year-round"
 ];
 
 const states = [
@@ -52,14 +53,7 @@ const states = [
   "West Bengal"
 ];
 
-const irrigationTypes = [
-  "Rainfed",
-  "Canal",
-  "Well",
-  "Tube Well",
-  "Drip",
-  "Sprinkler"
-];
+const irrigationTypes = ["Yes", "No"];
 
 const soilTypes = [
   "Sandy",
@@ -86,15 +80,13 @@ export default function YieldPrediction() {
   });
 
   const [loading, setLoading] = useState(false);
-
   const [result, setResult] = useState(null);
-
   const [error, setError] = useState("");
 
 
-  /* =====================================================
-     HANDLE INPUT CHANGE
-  ===================================================== */
+  // =====================================================
+  // HANDLE INPUT
+  // =====================================================
 
   const handleChange = (e) => {
 
@@ -103,12 +95,13 @@ export default function YieldPrediction() {
       [e.target.name]: e.target.value
     }));
 
+    setError("");
   };
 
 
-  /* =====================================================
-     CATEGORY COLOR
-  ===================================================== */
+  // =====================================================
+  // CATEGORY COLOR
+  // =====================================================
 
   const getCategoryColor = (category) => {
 
@@ -129,13 +122,12 @@ export default function YieldPrediction() {
       default:
         return "#159447";
     }
-
   };
 
 
-  /* =====================================================
-     HANDLE SUBMIT
-  ===================================================== */
+  // =====================================================
+  // HANDLE SUBMIT
+  // =====================================================
 
   const handleSubmit = async (e) => {
 
@@ -147,42 +139,92 @@ export default function YieldPrediction() {
 
     try {
 
-      const response = await axios.post(
-        "http://localhost:5000/api/yield/predict",
-        {
-          crop: formData.crop,
-          season: formData.season,
-          state: formData.state,
+      // =================================================
+      // VALIDATE NUMERIC VALUES
+      // =================================================
 
-          area: Number(formData.area),
-
-          rainfall: Number(formData.rainfall),
-
-          fertilizer: Number(formData.fertilizer),
-
-          pesticide: Number(formData.pesticide),
-
-          temperature: Number(formData.temperature),
-
-          irrigation: formData.irrigation,
-
-          soil_type: formData.soilType
-        }
-      );
+      const area = Number(formData.area);
+      const rainfall = Number(formData.rainfall);
+      const fertilizer = Number(formData.fertilizer);
+      const pesticide = Number(formData.pesticide);
+      const temperature = Number(formData.temperature);
 
 
-      if (response.data.success) {
+      if (area <= 0) {
+        setError("Area must be greater than 0.");
+        setLoading(false);
+        return;
+      }
 
-        setResult(response.data.data);
+
+      if (rainfall < 0) {
+        setError("Rainfall cannot be negative.");
+        setLoading(false);
+        return;
+      }
+
+
+      if (fertilizer < 0) {
+        setError("Fertilizer cannot be negative.");
+        setLoading(false);
+        return;
+      }
+
+
+      if (pesticide < 0) {
+        setError("Pesticide cannot be negative.");
+        setLoading(false);
+        return;
+      }
+
+
+      // =================================================
+      // SEND TO BACKEND
+      // =================================================
+
+      const response = await predictYield({
+
+        crop: formData.crop,
+
+        season: formData.season,
+
+        state: formData.state,
+
+        area: area,
+
+        rainfall: rainfall,
+
+        fertilizer: fertilizer,
+
+        pesticide: pesticide,
+
+        temperature: temperature,
+
+        irrigation: formData.irrigation,
+
+        soil_type: formData.soilType
+      });
+
+
+      // =================================================
+      // SUCCESS
+      // =================================================
+
+      if (response.success) {
+
+        // IMPORTANT:
+        // Backend returns "prediction", not "data"
+
+        setResult(response.prediction);
 
       } else {
 
         setError(
-          response.data.message ||
+          response.message ||
           "Unable to predict crop yield."
         );
-
       }
+
 
     } catch (err) {
 
@@ -191,16 +233,22 @@ export default function YieldPrediction() {
         err
       );
 
+
+      // Show actual backend error if available
+
+      const backendMessage =
+        err.response?.data?.message;
+
+
       setError(
+        backendMessage ||
         "Unable to connect to server. Please try again."
       );
 
     } finally {
 
       setLoading(false);
-
     }
-
   };
 
 
@@ -389,6 +437,7 @@ export default function YieldPrediction() {
                   <input
                     type="number"
                     step="0.01"
+                    min="0.01"
                     name="area"
                     value={formData.area}
                     onChange={handleChange}
@@ -411,6 +460,7 @@ export default function YieldPrediction() {
                   <input
                     type="number"
                     step="0.01"
+                    min="0"
                     name="rainfall"
                     value={formData.rainfall}
                     onChange={handleChange}
@@ -433,6 +483,7 @@ export default function YieldPrediction() {
                   <input
                     type="number"
                     step="0.01"
+                    min="0"
                     name="fertilizer"
                     value={formData.fertilizer}
                     onChange={handleChange}
@@ -455,6 +506,7 @@ export default function YieldPrediction() {
                   <input
                     type="number"
                     step="0.01"
+                    min="0"
                     name="pesticide"
                     value={formData.pesticide}
                     onChange={handleChange}
@@ -614,7 +666,7 @@ export default function YieldPrediction() {
 
             <div className="yield-error">
               {error}
-            </div>
+          </div>
 
           )}
 
@@ -660,7 +712,9 @@ export default function YieldPrediction() {
 
                     <p className="result-value">
 
-                      {result.predicted_yield}
+                      {Number(
+                        result.predicted_yield
+                      ).toLocaleString()}
 
                       {" kg/hectare"}
 
@@ -741,8 +795,6 @@ export default function YieldPrediction() {
                     </h5>
 
 
-                    {/* English / Hindi object response */}
-
                     {result.recommendations &&
                     typeof result.recommendations === "object" ? (
 
@@ -750,7 +802,6 @@ export default function YieldPrediction() {
 
                         {(
                           result.recommendations.en ||
-                          result.recommendations.hi ||
                           []
                         ).map(
                           (tip, index) => (

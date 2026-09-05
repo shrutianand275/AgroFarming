@@ -7,8 +7,7 @@ import {
   Send,
   Trash2,
   Leaf,
-  User,
-  Sparkles
+  User
 } from "lucide-react";
 import "./Chatbot.css";
 
@@ -23,34 +22,18 @@ const Chatbot = () => {
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
 
-  // =========================================
-  // CURRENT LANGUAGE FROM MAIN NAVBAR
-  // =========================================
-
   const currentLanguage = i18n.language?.startsWith("hi")
     ? "hi-IN"
     : "en-IN";
-
-  // =========================================
-  // WELCOME MESSAGE
-  // =========================================
 
   const getWelcomeMessage = () => ({
     role: "assistant",
     content: t("chatbot.welcome")
   });
 
-  // =========================================
-  // INITIAL MESSAGE
-  // =========================================
-
   useEffect(() => {
     setMessages([getWelcomeMessage()]);
   }, [i18n.language]);
-
-  // =========================================
-  // AUTO SCROLL
-  // =========================================
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({
@@ -58,9 +41,47 @@ const Chatbot = () => {
     });
   }, [messages, loading]);
 
-  // =========================================
-  // SEND MESSAGE
-  // =========================================
+  /* =========================================
+     CLEAN AI RESPONSE
+  ========================================= */
+
+  const cleanAIResponse = (text) => {
+    if (!text) return "";
+
+    return text
+      // Remove markdown headings
+      .replace(/^#{1,6}\s*/gm, "")
+
+      // Remove bold / italic markdown
+      .replace(/\*\*(.*?)\*\*/g, "$1")
+      .replace(/__(.*?)__/g, "$1")
+      .replace(/\*(.*?)\*/g, "$1")
+      .replace(/_(.*?)_/g, "$1")
+
+      // Remove inline code
+      .replace(/`([^`]+)`/g, "$1")
+
+      // Remove markdown links but keep text
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+
+      // Remove bullet symbols
+      .replace(/^\s*[-*+]\s+/gm, "")
+
+      // Remove unnecessary horizontal lines
+      .replace(/^\s*[-_*]{3,}\s*$/gm, "")
+
+      // Remove excessive blank lines
+      .replace(/\n{3,}/g, "\n\n")
+
+      // Remove spaces before punctuation
+      .replace(/\s+([,.!?;:])/g, "$1")
+
+      .trim();
+  };
+
+  /* =========================================
+     SEND MESSAGE
+  ========================================= */
 
   const sendMessage = async (customMessage = null) => {
     const message = (
@@ -109,13 +130,18 @@ const Chatbot = () => {
         );
       }
 
+      const cleanAnswer = cleanAIResponse(
+        data.answer
+      );
+
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: data.answer
+          content: cleanAnswer
         }
       ]);
+
     } catch (error) {
       console.error("Chatbot error:", error);
 
@@ -126,14 +152,15 @@ const Chatbot = () => {
           content: t("chatbot.connectionError")
         }
       ]);
+
     } finally {
       setLoading(false);
     }
   };
 
-  // =========================================
-  // ENTER TO SEND
-  // =========================================
+  /* =========================================
+     ENTER TO SEND
+  ========================================= */
 
   const handleKeyDown = (event) => {
     if (
@@ -145,9 +172,9 @@ const Chatbot = () => {
     }
   };
 
-  // =========================================
-  // VOICE INPUT
-  // =========================================
+  /* =========================================
+     VOICE INPUT
+  ========================================= */
 
   const startVoiceInput = () => {
     const SpeechRecognition =
@@ -167,11 +194,7 @@ const Chatbot = () => {
     const recognition =
       new SpeechRecognition();
 
-    // Uses the language selected
-    // from the MAIN NAVBAR
-
     recognition.lang = currentLanguage;
-
     recognition.continuous = false;
     recognition.interimResults = false;
 
@@ -212,9 +235,9 @@ const Chatbot = () => {
     recognition.start();
   };
 
-  // =========================================
-  // CLEAR CHAT
-  // =========================================
+  /* =========================================
+     CLEAR CHAT
+  ========================================= */
 
   const clearChat = () => {
     setMessages([
@@ -224,9 +247,9 @@ const Chatbot = () => {
     setInput("");
   };
 
-  // =========================================
-  // SUGGESTIONS
-  // =========================================
+  /* =========================================
+     SUGGESTIONS
+  ========================================= */
 
   const suggestions = [
     {
@@ -249,21 +272,13 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Existing Navbar */}
-
       <Navbar />
-
-      {/* =====================================
-          CHATBOT PAGE
-      ===================================== */}
 
       <section className="chatbot-page">
 
         <div className="chatbot-main">
 
-          {/* =================================
-              HEADER
-          ================================= */}
+          {/* HEADER */}
 
           <div className="chatbot-heading">
 
@@ -293,19 +308,13 @@ const Chatbot = () => {
 
           </div>
 
-          {/* =================================
-              CHAT CARD
-          ================================= */}
+          {/* CHAT CARD */}
 
           <div className="chat-card">
 
-            {/* ===============================
-                SCROLLABLE CHAT AREA
-            =============================== */}
-
             <div className="messages-area">
 
-              {/* Welcome */}
+              {/* WELCOME */}
 
               {messages.length === 1 &&
                 !loading && (
@@ -349,7 +358,7 @@ const Chatbot = () => {
 
                 )}
 
-              {/* Messages */}
+              {/* MESSAGES */}
 
               {messages.map(
                 (message, index) => (
@@ -414,7 +423,7 @@ const Chatbot = () => {
                 )
               )}
 
-              {/* Loading */}
+              {/* LOADING */}
 
               {loading && (
 
@@ -448,9 +457,7 @@ const Chatbot = () => {
 
             </div>
 
-            {/* ===============================
-                FIXED INPUT
-            =============================== */}
+            {/* INPUT */}
 
             <div className="chat-input-section">
 
@@ -478,17 +485,13 @@ const Chatbot = () => {
                   rows={1}
                 />
 
-                {/* Microphone */}
-
                 <button
                   className={`voice-button ${
                     listening
                       ? "listening"
                       : ""
                   }`}
-                  onClick={
-                    startVoiceInput
-                  }
+                  onClick={startVoiceInput}
                   title={
                     listening
                       ? t(
@@ -501,8 +504,6 @@ const Chatbot = () => {
                 >
                   <Mic size={19} />
                 </button>
-
-                {/* Send */}
 
                 <button
                   className="send-button"
@@ -542,9 +543,7 @@ const Chatbot = () => {
 
           </div>
 
-          {/* =================================
-              DISCLAIMER
-          ================================= */}
+          {/* DISCLAIMER */}
 
           <p className="chatbot-disclaimer">
             {t("chatbot.disclaimer")}

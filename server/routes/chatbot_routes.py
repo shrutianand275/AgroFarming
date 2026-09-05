@@ -87,6 +87,17 @@ When giving farming recommendations, consider:
 Do not claim that you physically inspected a farm, crop, or soil.
 
 Answer the user's actual question directly.
+
+ANSWER STYLE:
+
+Give a complete answer to the user's question.
+Do not stop the answer halfway.
+Keep answers concise but complete.
+Use simple paragraphs and short numbered points when useful.
+Do not use Markdown symbols such as *, #, -, _, or backticks.
+Do not use decorative symbols.
+Do not repeat the user's question.
+Answer only what is relevant to the user's question.
 """
 
 
@@ -172,7 +183,7 @@ def chat():
 
             temperature=0.3,
 
-            max_output_tokens=1000
+            max_output_tokens=4000
         )
 
 

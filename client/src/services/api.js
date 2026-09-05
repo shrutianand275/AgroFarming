@@ -16,9 +16,6 @@ const API = axios.create({
 // AUTH TOKEN
 // ==========================================
 
-// Automatically attach the logged-in user's
-// JWT token to API requests.
-
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("agroToken");
@@ -112,6 +109,7 @@ export const getClimateData = async (data) => {
   return response.data;
 };
 
+
 // ==========================================
 // PROFILE APIs
 // ==========================================
@@ -172,6 +170,32 @@ export const recommendFertilizer = async (data) => {
 export const predictDisease = async (data) => {
   const response = await API.post(
     "/disease/predict",
+    data
+  );
+
+  return response.data;
+};
+
+
+// ==========================================
+// YIELD PREDICTION
+// ==========================================
+
+// Get available crops, seasons, states,
+// soil types and irrigation methods
+export const getYieldOptions = async () => {
+  const response = await API.get(
+    "/yield/options"
+  );
+
+  return response.data;
+};
+
+
+// Predict crop yield
+export const predictYield = async (data) => {
+  const response = await API.post(
+    "/yield/predict",
     data
   );
 

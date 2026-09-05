@@ -9,10 +9,38 @@ fertilizer_bp = Blueprint("fertilizer", __name__)
 
 @fertilizer_bp.route("/recommend", methods=["POST"])
 def recommend_fertilizer():
-
     try:
+        print("\n" + "=" * 70)
+        print("FERTILIZER RECOMMENDATION REQUEST")
+        print("=" * 70)
 
-        data = request.get_json() or {}
+        data = request.get_json(silent=True)
+
+        print("Received data:", data)
+
+        if not data:
+            print("ERROR: No JSON data received")
+
+            return jsonify({
+                "success": False,
+                "message": "No fertilizer data received."
+            }), 400
+
+        input_data = {
+            "Temperature": data.get("Temperature"),
+            "Humidity": data.get("Humidity"),
+            "Moisture": data.get("Moisture"),
+            "Soil_Type": data.get("Soil_Type"),
+            "Crop_Type": data.get("Crop_Type"),
+            "Nitrogen": data.get("Nitrogen"),
+            "Phosphorous": data.get("Phosphorous"),
+            "Potassium": data.get("Potassium")
+        }
+
+        language = data.get("language", "en")
+
+        print("Processed input:", input_data)
+        print("Language:", language)
 
         required_fields = [
             "Temperature",
@@ -28,53 +56,54 @@ def recommend_fertilizer():
         missing_fields = [
             field
             for field in required_fields
-            if field not in data
+            if input_data.get(field) is None
+            or input_data.get(field) == ""
         ]
 
         if missing_fields:
+            print("Missing fields:", missing_fields)
 
             return jsonify({
                 "success": False,
-                "message": (
-                    "Missing required fields: "
-                    + ", ".join(missing_fields)
-                )
+                "message": "Please fill all required fields.",
+                "missing_fields": missing_fields
             }), 400
 
-        language = data.get("language", "en")
-
-        if language not in ["en", "hi"]:
-            language = "en"
+        print("Calling fertilizer prediction service...")
 
         result = predict_fertilizer(
-            data,
-            language
+            input_data,
+            language=language
         )
 
-        # Save history only for logged-in users
+        print("FERTILIZER RESULT:", result)
+
+        # Save history only when user is logged in
         save_history_if_logged_in(
-            history_type="fertilizer",
-            title="Fertilizer Recommendation",
-            input_data=data,
-            result=result
+            "fertilizer",
+            "Fertilizer Recommendation",
+            input_data,
+            result
         )
+
+        print("=" * 70)
 
         return jsonify({
             "success": True,
-            "data": result,
-            "message": "Fertilizer recommendation generated successfully"
+            "data": result
         }), 200
-
-    except ValueError as ve:
-
-        return jsonify({
-            "success": False,
-            "message": f"Invalid input: {str(ve)}"
-        }), 400
 
     except Exception as e:
 
+        print("\n" + "=" * 70)
+        print("!!! FERTILIZER PREDICTION ERROR !!!")
+        print("ERROR TYPE:", type(e).__name__)
+        print("ERROR:", str(e))
+        print("ERROR REPR:", repr(e))
+        print("=" * 70)
+
         return jsonify({
             "success": False,
-            "message": f"Server error: {str(e)}"
+            "message": str(e),
+            "error_type": type(e).__name__
         }), 500

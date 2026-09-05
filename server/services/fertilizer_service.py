@@ -22,6 +22,10 @@ try:
         crop_type_encoder = pickle.load(f)
     
     print("✅ Fertilizer models loaded successfully!")
+    print("Fertilizer Crop classes:", crop_type_encoder.classes_)
+    print("Fertilizer Soil classes:", soil_type_encoder.classes_)
+    print("Fertilizer labels:", fertilizer_label_encoder.classes_)
+
 except Exception as e:
     print(f"⚠️ Warning: Fertilizer models not loaded - {str(e)}")
     fertilizer_model = None

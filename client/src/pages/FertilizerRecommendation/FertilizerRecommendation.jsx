@@ -44,14 +44,31 @@ const FertilizerRecommendation = () => {
       if (response.success) {
         setResult(response.data);
       } else {
-        setError(response.message);
+        setError(
+          response.message ||
+          "Unable to get fertilizer recommendation."
+        );
       }
-    } catch (err) {
-      console.error(err);
-      setError(t("fertilizer.serverError"));
-    }
 
-    setLoading(false);
+    } catch (err) {
+      console.error(
+        "Fertilizer recommendation error:",
+        err
+      );
+
+      const backendMessage =
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        err.response?.data?.details;
+
+      setError(
+        backendMessage ||
+        "Unable to connect to server. Please try again."
+      );
+
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -66,7 +83,6 @@ const FertilizerRecommendation = () => {
             <h1 className="fertilizer-title">
               {t("fertilizer.title")}
             </h1>
-
           </div>
 
           {/* INFORMATION */}
@@ -75,6 +91,7 @@ const FertilizerRecommendation = () => {
               {t("fertilizer.noteTitle")}
             </strong>
             <br />
+
             <span>
               {t("fertilizer.note")}
             </span>
@@ -117,7 +134,6 @@ const FertilizerRecommendation = () => {
 
         </div>
       </main>
-
     </>
   );
 };

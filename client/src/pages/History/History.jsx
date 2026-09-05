@@ -8,7 +8,9 @@ import {
   Wheat,
   Trash2,
   Clock,
-  History as HistoryIcon
+  History as HistoryIcon,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -22,6 +24,7 @@ function History() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [expanded, setExpanded] = useState({});
 
   const isHindi = i18n.language === "hi";
 
@@ -86,6 +89,13 @@ function History() {
           : "Unable to clear history."
       );
     }
+  };
+
+  const toggleExpanded = (id) => {
+    setExpanded((previous) => ({
+      ...previous,
+      [id]: !previous[id]
+    }));
   };
 
   const getIcon = (type) => {
@@ -157,7 +167,80 @@ function History() {
     );
   };
 
-  const getResultText = (item) => {
+  const formatLabel = (key) => {
+    const labels = {
+      N: "Nitrogen",
+      P: "Phosphorus",
+      K: "Potassium",
+      ph: "pH",
+      temperature: "Temperature",
+      humidity: "Humidity",
+      rainfall: "Rainfall",
+      moisture: "Moisture",
+      soilType: "Soil Type",
+      cropType: "Crop Type",
+      fertilizer: "Fertilizer",
+      pesticide: "Pesticide",
+      area: "Area",
+      season: "Season",
+      state: "State",
+      irrigation: "Irrigation",
+      soil_type: "Soil Type",
+      predicted_yield: "Predicted Yield",
+      total_production: "Total Production",
+      yield_category: "Yield Category",
+      confidence: "Confidence"
+    };
+
+    return labels[key] || key;
+  };
+
+  const formatValue = (key, value) => {
+    if (value === null || value === undefined || value === "") {
+      return "-";
+    }
+
+    if (typeof value === "number") {
+      return Number.isInteger(value)
+        ? value
+        : value.toFixed(2);
+    }
+
+    return String(value);
+  };
+
+  const getInputEntries = (item) => {
+    if (!item.input || typeof item.input !== "object") {
+      return [];
+    }
+
+    return Object.entries(item.input).filter(
+      ([key]) => key !== "language"
+    );
+  };
+
+  const getResultDetails = (item) => {
+    const result = item.result;
+
+    if (!result || typeof result !== "object") {
+      return [];
+    }
+
+    const excluded = [
+      "description",
+      "benefits",
+      "applicationTips",
+      "tips",
+      "top3",
+      "recommendations"
+    ];
+
+    return Object.entries(result).filter(
+      ([key]) => !excluded.includes(key)
+    );
+  };
+
+  const getMainResult = (item) => {
     const result = item.result;
 
     if (!result) return "";
@@ -167,36 +250,64 @@ function History() {
     }
 
     if (result.recommended_crop) {
-      return `${isHindi ? "सुझाई गई फसल" : "Recommended Crop"}: ${
-        result.recommended_crop
-      }`;
-    }
-
-    if (result.crop) {
-      return `${isHindi ? "फसल" : "Crop"}: ${result.crop}`;
+      return result.recommended_crop;
     }
 
     if (result.fertilizer) {
-      return `${isHindi ? "उर्वरक" : "Fertilizer"}: ${
-        result.fertilizer
-      }`;
+      return result.fertilizer;
     }
 
     if (result.disease) {
-      return `${isHindi ? "रोग" : "Disease"}: ${result.disease}`;
+      return result.disease;
     }
 
     if (result.predicted_yield !== undefined) {
-      return `${isHindi ? "अनुमानित उपज" : "Predicted Yield"}: ${
-        result.predicted_yield
-      }`;
+      return `${result.predicted_yield}`;
     }
 
     if (result.yield !== undefined) {
-      return `${isHindi ? "उपज" : "Yield"}: ${result.yield}`;
+      return `${result.yield}`;
     }
 
     return "";
+  };
+
+  const getResultTitle = (type) => {
+    if (isHindi) {
+      switch (type) {
+        case "crop":
+          return "सुझाई गई फसल";
+
+        case "fertilizer":
+          return "अनुशंसित उर्वरक";
+
+        case "disease":
+          return "पहचाना गया रोग";
+
+        case "yield":
+          return "अनुमानित उपज";
+
+        default:
+          return "परिणाम";
+      }
+    }
+
+    switch (type) {
+      case "crop":
+        return "Recommended Crop";
+
+      case "fertilizer":
+        return "Recommended Fertilizer";
+
+      case "disease":
+        return "Detected Disease";
+
+      case "yield":
+        return "Predicted Yield";
+
+      default:
+        return "Result";
+    }
   };
 
   return (
@@ -244,7 +355,6 @@ function History() {
 
         </div>
 
-
         {/* ================= ERROR ================= */}
 
         {error && (
@@ -252,7 +362,6 @@ function History() {
             {error}
           </div>
         )}
-
 
         {/* ================= LOADING ================= */}
 
@@ -267,7 +376,6 @@ function History() {
             </h3>
           </div>
         )}
-
 
         {/* ================= EMPTY ================= */}
 
@@ -293,85 +401,318 @@ function History() {
           </div>
         )}
 
-
         {/* ================= HISTORY LIST ================= */}
 
         {!loading && history.length > 0 && (
           <div className="history-list">
 
-            {history.map((item) => (
+            {history.map((item) => {
 
-              <div
-                className="history-card"
-                key={item.id}
-              >
+              const isOpen = expanded[item.id];
+              const inputEntries = getInputEntries(item);
+              const resultDetails = getResultDetails(item);
+              const mainResult = getMainResult(item);
 
-                <div className={`history-card-icon ${item.type}`}>
-                  {getIcon(item.type)}
-                </div>
+              return (
+                <div
+                  className="history-card"
+                  key={item.id}
+                >
 
+                  {/* ================= ICON ================= */}
 
-                <div className="history-card-content">
+                  <div className={`history-card-icon ${item.type}`}>
+                    {getIcon(item.type)}
+                  </div>
 
-                  <div className="history-card-top">
+                  {/* ================= CONTENT ================= */}
 
-                    <div>
-                      <span className="history-type">
-                        {getTypeName(item.type)}
-                      </span>
+                  <div className="history-card-content">
 
-                      <h3>
-                        {isHindi
-                          ? getTypeName(item.type)
-                          : item.title}
-                      </h3>
+                    {/* TOP */}
+
+                    <div className="history-card-top">
+
+                      <div>
+                        <span className="history-type">
+                          {getTypeName(item.type)}
+                        </span>
+
+                        <h3>
+                          {item.title || getTypeName(item.type)}
+                        </h3>
+                      </div>
+
+                      <button
+                        className="delete-history-btn"
+                        onClick={() => deleteItem(item.id)}
+                        title={
+                          isHindi
+                            ? "हटाएं"
+                            : "Delete"
+                        }
+                      >
+                        <Trash2 size={17} />
+                      </button>
+
                     </div>
 
-                    <button
-                      className="delete-history-btn"
-                      onClick={() => deleteItem(item.id)}
-                      title={
-                        isHindi
-                          ? "हटाएं"
-                          : "Delete"
-                      }
-                    >
-                      <Trash2 size={17} />
-                    </button>
+                    {/* ================= MAIN RESULT ================= */}
+
+                    {mainResult && (
+                      <div className="history-result">
+
+                        <div>
+                          <strong>
+                            {getResultTitle(item.type)}
+                          </strong>
+
+                          <span>
+                            {mainResult}
+                          </span>
+                        </div>
+
+                      </div>
+                    )}
+
+                    {/* ================= DATE ================= */}
+
+                    <div className="history-date">
+                      <Clock size={14} />
+                      {formatDate(item.created_at)}
+                    </div>
+
+                    {/* ================= DETAILS BUTTON ================= */}
+
+                    {(inputEntries.length > 0 ||
+                      resultDetails.length > 0) && (
+
+                      <button
+                        className="history-details-btn"
+                        onClick={() => toggleExpanded(item.id)}
+                      >
+                        {isOpen
+                          ? (
+                            <>
+                              <ChevronUp size={17} />
+                              {isHindi
+                                ? "कम विवरण"
+                                : "Hide Details"}
+                            </>
+                          )
+                          : (
+                            <>
+                              <ChevronDown size={17} />
+                              {isHindi
+                                ? "पूरा विवरण"
+                                : "View Details"}
+                            </>
+                          )}
+                      </button>
+                    )}
+
+                    {/* ================= EXPANDED DETAILS ================= */}
+
+                    {isOpen && (
+                      <div className="history-details">
+
+                        {/* INPUT VALUES */}
+
+                        {inputEntries.length > 0 && (
+                          <div className="history-detail-section">
+
+                            <h4>
+                              {isHindi
+                                ? "इनपुट विवरण"
+                                : "Input Details"}
+                            </h4>
+
+                            <div className="history-detail-grid">
+
+                              {inputEntries.map(
+                                ([key, value]) => (
+                                  <div
+                                    className="history-detail-item"
+                                    key={key}
+                                  >
+                                    <span>
+                                      {formatLabel(key)}
+                                    </span>
+
+                                    <strong>
+                                      {formatValue(
+                                        key,
+                                        value
+                                      )}
+                                    </strong>
+                                  </div>
+                                )
+                              )}
+
+                            </div>
+
+                          </div>
+                        )}
+
+                        {/* RESULT DETAILS */}
+
+                        {resultDetails.length > 0 && (
+                          <div className="history-detail-section">
+
+                            <h4>
+                              {isHindi
+                                ? "परिणाम विवरण"
+                                : "Result Details"}
+                            </h4>
+
+                            <div className="history-detail-grid">
+
+                              {resultDetails.map(
+                                ([key, value]) => (
+                                  <div
+                                    className="history-detail-item"
+                                    key={key}
+                                  >
+                                    <span>
+                                      {formatLabel(key)}
+                                    </span>
+
+                                    <strong>
+                                      {formatValue(
+                                        key,
+                                        value
+                                      )}
+                                    </strong>
+                                  </div>
+                                )
+                              )}
+
+                            </div>
+
+                          </div>
+                        )}
+
+                        {/* TOP 3 CROPS */}
+
+                        {item.result?.top3 &&
+                          Array.isArray(item.result.top3) && (
+                            <div className="history-detail-section">
+
+                              <h4>
+                                {isHindi
+                                  ? "शीर्ष 3 फसलें"
+                                  : "Top 3 Recommendations"}
+                              </h4>
+
+                              <div className="history-top3">
+
+                                {item.result.top3.map(
+                                  (crop, index) => (
+                                    <div
+                                      className="history-top3-item"
+                                      key={index}
+                                    >
+                                      <span>
+                                        #{index + 1}
+                                      </span>
+
+                                      <strong>
+                                        {crop.crop}
+                                      </strong>
+
+                                      {crop.confidence !==
+                                        undefined && (
+                                        <small>
+                                          {crop.confidence}%
+                                        </small>
+                                      )}
+                                    </div>
+                                  )
+                                )}
+
+                              </div>
+
+                            </div>
+                          )}
+
+                        {/* BENEFITS */}
+
+                        {item.result?.benefits &&
+                          Array.isArray(item.result.benefits) && (
+                            <div className="history-detail-section">
+
+                              <h4>
+                                {isHindi
+                                  ? "लाभ"
+                                  : "Benefits"}
+                              </h4>
+
+                              <ul className="history-list-details">
+                                {item.result.benefits.map(
+                                  (benefit, index) => (
+                                    <li key={index}>
+                                      {benefit}
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+
+                            </div>
+                          )}
+
+                        {/* APPLICATION TIPS */}
+
+                        {item.result?.applicationTips &&
+                          Array.isArray(
+                            item.result.applicationTips
+                          ) && (
+                            <div className="history-detail-section">
+
+                              <h4>
+                                {isHindi
+                                  ? "उपयोग के सुझाव"
+                                  : "Application Tips"}
+                              </h4>
+
+                              <ul className="history-list-details">
+                                {item.result.applicationTips.map(
+                                  (tip, index) => (
+                                    <li key={index}>
+                                      {tip}
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+
+                            </div>
+                          )}
+
+                        {/* DESCRIPTION */}
+
+                        {item.result?.description && (
+                          <div className="history-detail-section">
+
+                            <h4>
+                              {isHindi
+                                ? "विवरण"
+                                : "Description"}
+                            </h4>
+
+                            <p className="history-description">
+                              {item.result.description}
+                            </p>
+
+                          </div>
+                        )}
+
+                      </div>
+                    )}
 
                   </div>
 
-
-                  {/* RESULT */}
-
-                  {getResultText(item) && (
-                    <div className="history-result">
-                      <strong>
-                        {isHindi
-                          ? "परिणाम"
-                          : "Result"}
-                      </strong>
-
-                      <span>
-                        {getResultText(item)}
-                      </span>
-                    </div>
-                  )}
-
-
-                  {/* DATE */}
-
-                  <div className="history-date">
-                    <Clock size={14} />
-
-                    {formatDate(item.created_at)}
-                  </div>
-
                 </div>
-
-              </div>
-
-            ))}
+              );
+            })}
 
           </div>
         )}

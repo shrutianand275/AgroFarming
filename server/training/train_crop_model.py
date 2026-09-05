@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATASET_PATH = os.path.join(
     BASE_DIR,
     "datasets",
-    "Crop_recommendation.csv"
+    "Crop_Recommendation_Data_Large.csv"
 )
 
 MODEL_DIR = os.path.join(BASE_DIR, "models")
@@ -74,8 +74,12 @@ X_train, X_test, y_train, y_test = train_test_split(
 # -----------------------------
 
 model = RandomForestClassifier(
-    n_estimators=300,
-    random_state=42
+    n_estimators=200,
+    max_depth=20,
+    min_samples_split=3,
+    min_samples_leaf=2,
+    random_state=42,
+    n_jobs=-1
 )
 
 model.fit(X_train, y_train)

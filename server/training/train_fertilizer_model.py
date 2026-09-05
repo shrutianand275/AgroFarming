@@ -8,7 +8,7 @@ import pickle
 import os
 
 # Paths
-DATASET_PATH = os.path.join(os.path.dirname(__file__), '..', 'datasets', 'Fertilizer_Prediction.csv')
+DATASET_PATH = os.path.join(os.path.dirname(__file__), '..', 'datasets', 'Fertilizer_Data_Large.csv')
 MODEL_DIR = os.path.join(os.path.dirname(__file__), '..', 'models')
 
 def train_fertilizer_model():
@@ -42,9 +42,9 @@ def train_fertilizer_model():
     le_crop = LabelEncoder()
     le_fertilizer = LabelEncoder()
     
-    df['Soil_Type_Encoded'] = le_soil.fit_transform(df['Soil Type'])
-    df['Crop_Type_Encoded'] = le_crop.fit_transform(df['Crop Type'])
-    df['Fertilizer_Encoded'] = le_fertilizer.fit_transform(df['Fertilizer Name'])
+    df['Soil_Type_Encoded'] = le_soil.fit_transform(df['Soil_Type'])
+    df['Crop_Type_Encoded'] = le_crop.fit_transform(df['Crop_Type'])
+    df['Fertilizer_Encoded'] = le_fertilizer.fit_transform(df['Fertilizer'])
     
     print(f"   Soil Types: {list(le_soil.classes_)}")
     print(f"   Crop Types: {list(le_crop.classes_)}")
@@ -52,9 +52,9 @@ def train_fertilizer_model():
     
     # Prepare features and target
     feature_columns = [
-        'Temparature', 'Humidity ', 'Moisture',
+        'Temperature', 'Humidity', 'Moisture',
         'Soil_Type_Encoded', 'Crop_Type_Encoded',
-        'Nitrogen', 'Potassium', 'Phosphorous'
+        'Nitrogen', 'Phosphorous', 'Potassium'
     ]
     
     X = df[feature_columns]
@@ -78,9 +78,9 @@ def train_fertilizer_model():
     # Train Random Forest model
     print("\n7. Training Random Forest Classifier...")
     model = RandomForestClassifier(
-        n_estimators=100,
-        max_depth=20,
-        min_samples_split=5,
+        n_estimators=200,
+        max_depth=25,
+        min_samples_split=3,
         min_samples_leaf=2,
         random_state=42,
         n_jobs=-1

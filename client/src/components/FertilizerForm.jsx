@@ -17,17 +17,12 @@ const soilTypes = [
 ];
 
 const cropTypes = [
-  "Maize",
-  "Sugarcane",
   "Cotton",
-  "Tobacco",
-  "Paddy",
-  "Barley",
-  "Wheat",
-  "Millets",
-  "Oil seeds",
-  "Pulses",
-  "Ground Nuts"
+  "Groundnut",
+  "Maize",
+  "Rice",
+  "Sugarcane",
+  "Wheat"
 ];
 
 export default function FertilizerForm({ onSubmit }) {
@@ -62,9 +57,7 @@ export default function FertilizerForm({ onSubmit }) {
       <div className="fertilizer-grid">
 
         {/* ================= TEMPERATURE ================= */}
-
         <div className="fertilizer-field">
-
           <label>
             <Thermometer />
             <span>{t("fertilizer.temperature")}</span>
@@ -79,14 +72,10 @@ export default function FertilizerForm({ onSubmit }) {
             placeholder={t("fertilizer.temperaturePlaceholder")}
             required
           />
-
         </div>
 
-
         {/* ================= HUMIDITY ================= */}
-
         <div className="fertilizer-field">
-
           <label>
             <Droplets />
             <span>{t("fertilizer.humidity")}</span>
@@ -101,14 +90,10 @@ export default function FertilizerForm({ onSubmit }) {
             placeholder={t("fertilizer.humidityPlaceholder")}
             required
           />
-
         </div>
 
-
         {/* ================= MOISTURE ================= */}
-
         <div className="fertilizer-field">
-
           <label>
             <Droplets />
             <span>{t("fertilizer.moisture")}</span>
@@ -123,14 +108,10 @@ export default function FertilizerForm({ onSubmit }) {
             placeholder={t("fertilizer.moisturePlaceholder")}
             required
           />
-
         </div>
 
-
         {/* ================= SOIL TYPE ================= */}
-
         <div className="fertilizer-field">
-
           <label>
             <Sprout />
             <span>{t("fertilizer.soilType")}</span>
@@ -142,7 +123,6 @@ export default function FertilizerForm({ onSubmit }) {
             onChange={handleChange}
             required
           >
-
             <option value="">
               {t("fertilizer.selectSoilType")}
             </option>
@@ -152,16 +132,11 @@ export default function FertilizerForm({ onSubmit }) {
                 {soil}
               </option>
             ))}
-
           </select>
-
         </div>
 
-
         {/* ================= CROP TYPE ================= */}
-
         <div className="fertilizer-field">
-
           <label>
             <Sprout />
             <span>{t("fertilizer.cropType")}</span>
@@ -173,7 +148,6 @@ export default function FertilizerForm({ onSubmit }) {
             onChange={handleChange}
             required
           >
-
             <option value="">
               {t("fertilizer.selectCropType")}
             </option>
@@ -183,16 +157,11 @@ export default function FertilizerForm({ onSubmit }) {
                 {crop}
               </option>
             ))}
-
           </select>
-
         </div>
 
-
         {/* ================= NITROGEN ================= */}
-
         <div className="fertilizer-field">
-
           <label>
             <FlaskConical />
             <span>{t("fertilizer.nitrogen")}</span>
@@ -206,14 +175,10 @@ export default function FertilizerForm({ onSubmit }) {
             placeholder={t("fertilizer.nitrogenPlaceholder")}
             required
           />
-
         </div>
 
-
         {/* ================= PHOSPHOROUS ================= */}
-
         <div className="fertilizer-field">
-
           <label>
             <FlaskConical />
             <span>{t("fertilizer.phosphorous")}</span>
@@ -227,14 +192,10 @@ export default function FertilizerForm({ onSubmit }) {
             placeholder={t("fertilizer.phosphorousPlaceholder")}
             required
           />
-
         </div>
 
-
         {/* ================= POTASSIUM ================= */}
-
         <div className="fertilizer-field">
-
           <label>
             <FlaskConical />
             <span>{t("fertilizer.potassium")}</span>
@@ -248,23 +209,18 @@ export default function FertilizerForm({ onSubmit }) {
             placeholder={t("fertilizer.potassiumPlaceholder")}
             required
           />
-
         </div>
 
       </div>
 
-
       {/* ================= BUTTON ================= */}
-
       <div className="fertilizer-action">
-
         <button
           type="submit"
           className="recommend-btn"
         >
           🌱 {t("fertilizer.recommend")}
         </button>
-
       </div>
 
     </form>

@@ -12,6 +12,7 @@ MODEL_PATH = os.path.join(BASE_DIR, "models", "crop_model.pkl")
 SCALER_PATH = os.path.join(BASE_DIR, "models", "scaler.pkl")
 ENCODER_PATH = os.path.join(BASE_DIR, "models", "label_encoder.pkl")
 
+
 # -----------------------------
 # Load ML Files
 # -----------------------------
@@ -19,6 +20,9 @@ ENCODER_PATH = os.path.join(BASE_DIR, "models", "label_encoder.pkl")
 model = joblib.load(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
 label_encoder = joblib.load(ENCODER_PATH)
+
+print("✅ Crop model loaded successfully!")
+print("Crop classes:", label_encoder.classes_)
 
 
 # -----------------------------
@@ -94,7 +98,17 @@ def recommend_crop(
     rainfall
 ):
 
-    features = np.array([[
+    # Convert everything to float
+    N = float(N)
+    P = float(P)
+    K = float(K)
+    temperature = float(temperature)
+    humidity = float(humidity)
+    ph = float(ph)
+    rainfall = float(rainfall)
+
+    # Original feature order used during training
+    raw_features = np.array([[
         N,
         P,
         K,
@@ -102,16 +116,49 @@ def recommend_crop(
         humidity,
         ph,
         rainfall
-    ]])
+    ]], dtype=float)
 
-    features = scaler.transform(features)
+    print("\n" + "=" * 70)
+    print("CROP PREDICTION")
+    print("=" * 70)
 
+    print("Input values:")
+    print("N:", N)
+    print("P:", P)
+    print("K:", K)
+    print("Temperature:", temperature)
+    print("Humidity:", humidity)
+    print("pH:", ph)
+    print("Rainfall:", rainfall)
+
+    # Apply SAME scaler used during training
+    features = scaler.transform(raw_features)
+
+    print("\nScaled features:")
+    print(features)
+
+    # Prediction
     prediction = model.predict(features)
+
+    print("\nEncoded prediction:", prediction)
 
     crop = label_encoder.inverse_transform(prediction)[0]
 
+    print("Recommended crop:", crop)
+
+    # Probabilities
     probabilities = model.predict_proba(features)[0]
 
+    print("\nAll probabilities:")
+
+    for index, probability in enumerate(probabilities):
+        crop_name = label_encoder.inverse_transform([index])[0]
+        print(
+            f"{crop_name}: "
+            f"{probability * 100:.2f}%"
+        )
+
+    # Top 3
     top3_index = np.argsort(probabilities)[::-1][:3]
 
     top3 = []
@@ -123,22 +170,29 @@ def recommend_crop(
         top3.append({
             "crop": crop_name,
             "confidence": round(
-                probabilities[index] * 100,
+                float(probabilities[index]) * 100,
                 2
             )
         })
 
     confidence = round(
-        np.max(probabilities) * 100,
+        float(np.max(probabilities)) * 100,
         2
     )
+
+    print("\nTop 3:", top3)
+    print("Confidence:", confidence)
+    print("=" * 70)
 
     return {
         "recommended_crop": crop,
         "confidence": confidence,
-        "season": crop_season.get(crop, "Suitable Season"),
+        "season": crop_season.get(
+            crop.lower(),
+            "Suitable Season"
+        ),
         "tips": crop_tips.get(
-            crop,
+            crop.lower(),
             "Follow recommended agricultural practices."
         ),
         "top3": top3
