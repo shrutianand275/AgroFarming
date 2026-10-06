@@ -171,7 +171,45 @@
         "noteTitle": "Important",
         "note": "Climate values are automatically fetched from historical climate records. You can edit them before submitting if required.",
         "predicting": "Analyzing soil and climate conditions...",
-        "serverError": "Unable to connect to the server. Please try again."
+        "serverError": "Unable to connect to the server. Please try again.",
+        "selectState": "Select State",
+        "selectCity": "Select City",
+        "selectMonth": "Select Month",
+        "selectSoilType": "Select Soil Type",
+
+        "autoFilled": "Auto Filled",
+
+        "nitrogenPlaceholder": "e.g. 90",
+        "phosphorusPlaceholder": "e.g. 42",
+        "potassiumPlaceholder": "e.g. 43",
+        "phPlaceholder": "6.5",
+
+        "recommendedCrop": "Recommended Crop",
+        "crop": "Crop",
+
+        "months": {
+            "1": "January",
+            "2": "February",
+            "3": "March",
+            "4": "April",
+            "5": "May",
+            "6": "June",
+            "7": "July",
+            "8": "August",
+            "9": "September",
+            "10": "October",
+            "11": "November",
+            "12": "December"
+        },
+
+        "soils": {
+            "Clay": "Clay",
+            "Loamy": "Loamy",
+            "Sandy": "Sandy",
+            "Black": "Black",
+            "Red": "Red",
+            "Alluvial": "Alluvial"
+        }
     },
 
     "fertilizer": {
@@ -202,32 +240,93 @@
         "recommendedFertilizer": "Recommended Fertilizer",
         "description": "Description",
         "benefits": "Benefits",
-        "applicationTips": "Application Tips"
+        "applicationTips": "Application Tips",
+
+        "soils": {
+            "sandy": "Sandy",
+            "loamy": "Loamy",
+            "black": "Black",
+            "red": "Red",
+            "clayey": "Clayey"
+        },
+
+        "crops": {
+            "cotton": "Cotton",
+            "groundnut": "Groundnut",
+            "maize": "Maize",
+            "rice": "Rice",
+            "sugarcane": "Sugarcane",
+            "wheat": "Wheat"
+        }
     },
 
     "disease": {
         "title": "AI Disease Prediction",
-        "subtitle": "Identify plant diseases using AI and environmental data",
-        "plant": "Select Plant",
+        "subtitle": "Predict plant diseases based on environmental conditions",
+
+        "noteTitle": "Important",
+        "note": "Enter accurate plant and environmental information to get a more reliable disease prediction and treatment recommendation.",
+
+        "plant": "Plant",
         "selectPlant": "Select Plant",
+
         "temperature": "Temperature (°C)",
+        "temperaturePlaceholder": "e.g. 26",
+
         "humidity": "Humidity (%)",
+        "humidityPlaceholder": "e.g. 80",
+
         "season": "Season",
         "selectSeason": "Select Season",
-        "severity": "Severity Level",
+
+        "severity": "Severity",
+        "severityLevel": "Severity Level",
+
         "predict": "Predict Disease",
-        "noteTitle": "Important",
-        "note": "Enter plant type and environmental conditions to identify potential diseases and get treatment recommendations.",
-        "predicting": "Analyzing plant conditions and symptoms...",
-        "serverError": "Unable to connect to the server. Please try again.",
+        "predicting": "Predicting...",
+
         "result": "Disease Prediction Result",
         "diseaseIdentified": "Disease Identified",
         "confidence": "Confidence",
-        "severityLevel": "Severity Level",
         "symptoms": "Symptoms",
         "treatment": "Treatment",
         "prevention": "Prevention",
-        "conditions": "Optimal Conditions"
+        "conditions": "Optimal Conditions",
+
+        "serverError": "Unable to connect to server. Please try again.",
+        "predictionError": "Unable to predict the disease. Please try again.",
+    
+    "plants": {
+            "tomato": "Tomato",
+            "potato": "Potato",
+            "rice": "Rice",
+            "wheat": "Wheat",
+            "maize": "Maize",
+            "cotton": "Cotton",
+            "sugarcane": "Sugarcane",
+            "grape": "Grape",
+            "apple": "Apple",
+            "mango": "Mango",
+            "banana": "Banana",
+            "chili": "Chili",
+            "soybean": "Soybean",
+            "groundnut": "Groundnut",
+            "onion": "Onion"
+        },
+
+        "seasons": {
+            "all": "All Seasons",
+            "monsoon": "Monsoon",
+            "summer": "Summer",
+            "winter": "Winter",
+            "spring": "Spring"
+        },
+
+        "severities": {
+            "low": "Low",
+            "moderate": "Moderate",
+            "high": "High"
+        }
     },
 
     "schemes": {
@@ -246,31 +345,67 @@
     "yield": {
         "title": "AI Yield Prediction",
         "subtitle": "Predict crop yield based on farming conditions and inputs",
+
         "crop": "Crop",
         "selectCrop": "Select Crop",
+
         "season": "Season",
         "selectSeason": "Select Season",
+
         "state": "State",
         "selectState": "Select State",
+
         "area": "Area (hectares)",
+        "areaPlaceholder": "e.g. 2.5",
+
         "rainfall": "Annual Rainfall (mm)",
+        "rainfallPlaceholder": "e.g. 1200",
+
         "fertilizer": "Fertilizer Used (kg)",
+        "fertilizerPlaceholder": "e.g. 180",
+
         "pesticide": "Pesticide Used (kg)",
+        "pesticidePlaceholder": "e.g. 5.2",
+
         "temperature": "Avg Temperature (°C)",
+        "temperaturePlaceholder": "e.g. 28",
+
         "irrigation": "Irrigation",
         "selectIrrigation": "Select Irrigation",
+
         "soilType": "Soil Type",
         "selectSoilType": "Select Soil Type",
+
         "predictButton": "Predict Yield",
+        "predicting": "Predicting...",
+
         "noteTitle": "Important",
+
         "note": "Enter accurate farming data to get precise yield predictions and recommendations for improving crop production.",
-        "predicting": "Analyzing farming conditions and predicting yield...",
-        "serverError": "Unable to connect to the server. Please try again.",
+
+        "serverError": "Unable to connect to server. Please try again.",
+
+        "predictionError": "Unable to predict crop yield.",
+
+        "areaError": "Area must be greater than 0.",
+
+        "rainfallError": "Rainfall cannot be negative.",
+
+        "fertilizerError": "Fertilizer cannot be negative.",
+
+        "pesticideError": "Pesticide cannot be negative.",
+
         "resultTitle": "Yield Prediction Result",
+
         "predictedYield": "Predicted Yield",
+
         "totalProduction": "Total Production",
+
         "yieldCategory": "Yield Category",
-        "recommendations": "Recommendations"
+
+        "recommendations": "Recommendations",
+
+        "noRecommendations": "No recommendations available."
     },
 
     
@@ -384,6 +519,100 @@
         "connectionError": "Sorry, I couldn't connect to the AgroFarming server. Please make sure the Flask backend is running.",
 
         "disclaimer": "🌱 AgroFarming AI provides farming information to assist you. Always consider local soil, weather and agricultural conditions before making important decisions."
-    }  
-}
+    },
 
+        "seasonalClimate": {
+        "title": "Seasonal Climate Analysis",
+        "subtitle": "Historical climate comparison using real weather data",
+        "seasonal": "Seasonal",
+        "monthly": "Monthly",
+        "quarterly": "Quarterly",
+
+        "seasonalAnalysis": "Seasonal Climate Analysis",
+        "monthlyAnalysis": "Monthly Climate Analysis",
+        "quarterlyAnalysis": "Quarterly Climate Analysis",
+        "currentPeriod": "Current Year-to-Date",
+        "climateComparison": "Climate Comparison",
+
+        "winter": "Winter",
+        "summer": "Summer",
+        "monsoon": "Monsoon",
+        "postMonsoon": "Post-Monsoon",
+
+        "temperature": "Temperature",
+        "humidity": "Humidity",
+        "rainfall": "Rainfall",
+        "windSpeed": "Wind Speed",
+
+        "previous": "Previous Year",
+        "normal": "Normal",
+        "increasing": "Increasing",
+        "decreasing": "Decreasing",
+        "notAvailable": "N/A",
+
+        "month": "Month",
+        "change": "Change",
+
+        "quarters": {
+            "q1": "Quarter 1 (Jan–Mar)",
+            "q2": "Quarter 2 (Apr–Jun)",
+            "q3": "Quarter 3 (Jul–Sep)",
+            "q4": "Quarter 4 (Oct–Dec)"
+        },
+
+        "months": {
+            "1": "January",
+            "2": "February",
+            "3": "March",
+            "4": "April",
+            "5": "May",
+            "6": "June",
+            "7": "July",
+            "8": "August",
+            "9": "September",
+            "10": "October",
+            "11": "November",
+            "12": "December"
+        },
+
+        "farmingAdvisory": "Seasonal Farming Advisory",
+        "advisoryBasedOnApi": "Suggestions are based on the available historical climate conditions.",
+
+        "cropsToConsider": "Crops to Consider",
+
+        "crops": {
+            "Pearl millet": "Pearl Millet",
+            "Sorghum": "Sorghum",
+            "Groundnut": "Groundnut",
+            "Chickpea": "Chickpea",
+            "Rice": "Rice",
+            "Maize": "Maize",
+            "Soybean": "Soybean",
+            "Wheat": "Wheat",
+            "Pulses": "Pulses"
+        },
+
+        "advice": {
+            "highTemperature": "Higher temperatures may increase crop water requirements. Plan irrigation carefully.",
+            "lowRainfall": "Lower rainfall conditions may require additional irrigation planning.",
+            "highRainfall": "High rainfall conditions require good field drainage and attention to waterlogging risk.",
+            "warmDry": "Consider crops and varieties that can tolerate relatively warm and dry conditions.",
+            "rainfallDisease": "Higher rainfall and humidity can increase fungal disease risk. Monitor crops regularly.",
+            "normal": "Climate conditions are relatively moderate. Continue normal seasonal farming practices."
+        },
+
+        "sourceNote": "Historical weather data provided by Open-Meteo. Current-year values represent the available year-to-date period.",
+
+        "loading": "Loading seasonal climate analysis...",
+        "error": "Unable to load seasonal climate analysis.",
+        "retry": "Retry",
+        "refresh": "Refresh",
+        "forecast": "Forecast",
+        "actual": "Actual",
+        "type": "Data Type",
+        "forecastTitle": "Coming-Month Climate Forecast",
+        "forecastDescription": "Future months use ECMWF seasonal forecast data. Forecast values indicate expected climate conditions and may differ from actual local weather.",
+        "advisoryBasedOnForecast": "Suggestions are based on the forecast climate conditions for the coming months.",
+        "balancedClimate": "Forecast conditions appear relatively balanced. Continue monitoring rainfall and temperature before final crop selection."
+    }
+}

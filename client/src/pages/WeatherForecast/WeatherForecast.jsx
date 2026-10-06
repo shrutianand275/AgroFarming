@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import SeasonalClimateAnalysis from "../../components/SeasonalClimateAnalysis/SeasonalClimateAnalysis";
 import Navbar from "../../components/Navbar/Navbar";
 
 import {
@@ -948,6 +948,13 @@ const WeatherForecast = () => {
                 </div>
 
               </section>
+
+              {/* ================= SEASONAL CLIMATE ANALYSIS ================= */}
+
+              <SeasonalClimateAnalysis
+                city={city}
+                state={state}
+              />
 
             </>
 

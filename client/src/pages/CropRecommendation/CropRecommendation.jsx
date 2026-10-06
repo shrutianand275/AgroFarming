@@ -87,7 +87,7 @@ const CropRecommendation = () => {
 
                         <strong>
                             {t("crop.noteTitle")}
-                         </strong>
+                        </strong>
                     
                         <span>
                             {t("crop.note")}

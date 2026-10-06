@@ -9,7 +9,7 @@
 .notifications-header {
   max-width: 1050px;
   margin: 0 auto 15px;
-  background: #198754;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border-radius: 12px;
   padding: 19px 23px;
@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 15px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
 }
 
 .notifications-title {
@@ -72,9 +73,10 @@
   max-width: 1050px;
   margin: 0 auto 13px;
   padding: 9px 12px;
-  border-radius: 7px;
-  background: #eaf6ef;
-  color: #198754;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -97,15 +99,22 @@
 .notification-card {
   background: white;
   border-radius: 10px;
-  padding: 16px 18px;
+  padding: 17px 19px;
   display: flex;
   gap: 14px;
-  border: 1px solid #edf0ee;
-  box-shadow: 0 4px 17px rgba(0,0,0,.045);
+  border: 1px solid #e5e9e7;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  transition: all 0.2s ease;
+}
+
+.notification-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  border-color: #10b981;
 }
 
 .notification-card.unread {
-  border-left: 3px solid #198754;
+  border-left: 4px solid #10b981;
+  background: linear-gradient(90deg, #f0fdf7 0%, #ffffff 100%);
 }
 
 .notification-card.read {
@@ -113,30 +122,27 @@
 }
 
 .notification-card-icon {
-  width: 43px;
-  height: 43px;
-  min-width: 43px;
-  border-radius: 9px;
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #198754;
-  background: #eaf6ef;
+  color: #10b981;
+  background: #ecfdf5;
 }
 
-.notification-card-icon.success {
-  color: #198754;
-  background: #eaf6ef;
+.notification-card-icon.success,
+.notification-card-icon.registration,
+.notification-card-icon.weather_update {
+  color: #10b981;
+  background: #ecfdf5;
 }
 
 .notification-card-icon.warning {
-  color: #997404;
-  background: #fff8df;
-}
-
-.notification-card-icon.farming {
-  color: #198754;
-  background: #eaf6ef;
+  color: #f59e0b;
+  background: #fffbeb;
 }
 
 /* ================= CONTENT ================= */
@@ -144,6 +150,7 @@
 .notification-content {
   flex: 1;
   min-width: 0;
+  overflow: hidden;
 }
 
 .notification-top {
@@ -151,14 +158,23 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
+  margin-bottom: 6px;
+}
+
+.notification-top > div:first-child {
+  flex: 1;
+  min-width: 0;
 }
 
 .notification-top h3 {
-  display: inline-block;
-  margin: 0;
-  color: #333;
+  display: block;
+  margin: 0 0 4px 0;
+  color: #1a1a1a;
   font-size: 15px;
   font-weight: 650;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* ================= NEW ================= */
@@ -166,22 +182,28 @@
 .new-badge {
   display: inline-block;
   margin-left: 7px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: #198754;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
   vertical-align: middle;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
 }
 
 /* ================= MESSAGE ================= */
 
 .notification-content p {
   margin: 6px 0 8px;
-  color: #666;
-  font-size: 12px;
-  line-height: 1.5;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  display: block;
 }
 
 /* ================= DELETE ================= */
@@ -219,15 +241,19 @@
   align-items: center;
   gap: 5px;
   border: none;
-  background: transparent;
-  color: #198754;
+  background: #ecfdf5;
+  color: #059669;
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 .mark-read-btn:hover {
-  text-decoration: underline;
+  background: #d1fae5;
+  color: #047857;
 }
 
 /* ================= EMPTY ================= */
@@ -252,8 +278,8 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background: #eaf6ef;
-  color: #198754;
+  background: #ecfdf5;
+  color: #10b981;
   display: flex;
   align-items: center;
   justify-content: center;

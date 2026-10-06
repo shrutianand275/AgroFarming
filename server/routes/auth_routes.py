@@ -145,12 +145,34 @@ def register():
         token = create_token(
             user["_id"]
         )
+        
+        # ================= SEND REGISTRATION NOTIFICATION =================
+        
+        try:
+            # Import services
+            from models.notification_model import create_notification
+            from services.email_service import email_service
+            
+            # Create in-app notification
+            create_notification(
+                user_id=str(user["_id"]),
+                title="🎉 Welcome to AgroFarming!",
+                message="Registration successful! You can now login and start using our AI-powered farming services. Add your location to receive weather alerts.",
+                notification_type="registration",
+                metadata={}
+            )
+            
+            # Send registration email
+            email_service.send_registration_email(name, email)
+            
+        except Exception as email_error:
+            print(f"Email/Notification error (non-critical): {str(email_error)}")
 
         return jsonify({
 
             "success": True,
 
-            "message": "Registration successful.",
+            "message": "Registration successful. Welcome email sent!",
 
             "token": token,
 
@@ -246,16 +268,58 @@ def login():
         token = create_token(
             user["_id"]
         )
+        
+        # ================= SEND WEATHER NOTIFICATION ON LOGIN (IF HAS LOCATION) =================
+        
+        weather_sent = False
+        if user.get('state') and user.get('district'):
+            try:
+                from services.real_weather_service import real_weather_service
+                from services.email_service import email_service
+                from models.notification_model import create_notification
+                
+                # Get weather for user's location
+                weather_data = real_weather_service.get_weather_for_location(
+                    user.get('state'),
+                    user.get('district')
+                )
+                
+                farming_advice = real_weather_service.get_farming_advice(weather_data)
+                
+                # Create in-app notification
+                create_notification(
+                    user_id=str(user["_id"]),
+                    title=f"🌤️ Welcome back! Weather Update - {user.get('district', '')}",
+                    message=f"{weather_data['description']} • {weather_data['temperature']}°C • {farming_advice[:100]}...",
+                    notification_type="weather_update",
+                    metadata=weather_data
+                )
+                
+                # Send email
+                email_service.send_daily_weather_email(
+                    user_name=user.get('name', 'User'),
+                    user_email=user.get('email'),
+                    weather_data=weather_data,
+                    farming_advice=farming_advice
+                )
+                
+                weather_sent = True
+                print(f"✅ Weather notification sent on login to {user.get('email')}")
+                
+            except Exception as weather_error:
+                print(f"⚠️ Weather notification error (non-critical): {str(weather_error)}")
 
         return jsonify({
 
             "success": True,
 
-            "message": "Login successful.",
+            "message": "Login successful." + (" Weather update sent!" if weather_sent else ""),
 
             "token": token,
 
-            "user": user_response(user)
+            "user": user_response(user),
+            
+            "weather_sent": weather_sent
 
         }), 200
 

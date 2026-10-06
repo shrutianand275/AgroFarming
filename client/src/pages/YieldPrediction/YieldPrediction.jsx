@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { predictYield } from "../../services/api";
 
 import {
@@ -19,6 +20,10 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./YieldPrediction.css";
 
 
+/* =====================================================
+   CROP VALUES
+===================================================== */
+
 const crops = [
   "Bajra",
   "Cotton",
@@ -32,11 +37,21 @@ const crops = [
   "Wheat"
 ];
 
+
+/* =====================================================
+   SEASON VALUES
+===================================================== */
+
 const seasons = [
   "Kharif",
   "Rabi",
   "Year-round"
 ];
+
+
+/* =====================================================
+   STATE VALUES
+===================================================== */
 
 const states = [
   "Andhra Pradesh",
@@ -53,7 +68,20 @@ const states = [
   "West Bengal"
 ];
 
-const irrigationTypes = ["Yes", "No"];
+
+/* =====================================================
+   IRRIGATION VALUES
+===================================================== */
+
+const irrigationTypes = [
+  "Yes",
+  "No"
+];
+
+
+/* =====================================================
+   SOIL VALUES
+===================================================== */
 
 const soilTypes = [
   "Sandy",
@@ -64,7 +92,91 @@ const soilTypes = [
 ];
 
 
+/* =====================================================
+   HINDI DISPLAY NAMES
+===================================================== */
+
+const cropHindiNames = {
+  "Bajra": "बाजरा",
+  "Cotton": "कपास",
+  "Groundnut": "मूंगफली",
+  "Jute": "जूट",
+  "Maize": "मक्का",
+  "Pulses": "दलहन",
+  "Rice": "धान",
+  "Soybean": "सोयाबीन",
+  "Sugarcane": "गन्ना",
+  "Wheat": "गेहूं"
+};
+
+
+const seasonHindiNames = {
+  "Kharif": "खरीफ",
+  "Rabi": "रबी",
+  "Year-round": "पूरे वर्ष"
+};
+
+
+const stateHindiNames = {
+  "Andhra Pradesh": "आंध्र प्रदेश",
+  "Bihar": "बिहार",
+  "Gujarat": "गुजरात",
+  "Haryana": "हरियाणा",
+  "Karnataka": "कर्नाटक",
+  "Madhya Pradesh": "मध्य प्रदेश",
+  "Maharashtra": "महाराष्ट्र",
+  "Punjab": "पंजाब",
+  "Rajasthan": "राजस्थान",
+  "Tamil Nadu": "तमिलनाडु",
+  "Uttar Pradesh": "उत्तर प्रदेश",
+  "West Bengal": "पश्चिम बंगाल"
+};
+
+
+const soilHindiNames = {
+  "Sandy": "रेतीली मिट्टी",
+  "Loamy": "दोमट मिट्टी",
+  "Black": "काली मिट्टी",
+  "Red": "लाल मिट्टी",
+  "Clayey": "चिकनी मिट्टी"
+};
+
+
+const irrigationHindiNames = {
+  "Yes": "हाँ",
+  "No": "नहीं"
+};
+
+
+/* =====================================================
+   YIELD CATEGORY HINDI
+===================================================== */
+
+const yieldCategoryHindiNames = {
+  "Low": "कम",
+  "Medium": "मध्यम",
+  "High": "अधिक",
+  "Excellent": "उत्कृष्ट"
+};
+
+
+/* =====================================================
+   COMPONENT
+===================================================== */
+
 export default function YieldPrediction() {
+
+  const { t, i18n } = useTranslation();
+
+  const language = String(i18n.language || "en")
+    .toLowerCase();
+
+  const isHindi = language.startsWith("hi");
+
+
+  /* =====================================================
+     FORM DATA
+  ===================================================== */
 
   const [formData, setFormData] = useState({
     crop: "",
@@ -79,14 +191,83 @@ export default function YieldPrediction() {
     soilType: ""
   });
 
+
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
 
-  // =====================================================
-  // HANDLE INPUT
-  // =====================================================
+  /* =====================================================
+     DISPLAY HELPERS
+  ===================================================== */
+
+  const getCropName = (crop) => {
+
+    if (!isHindi) {
+      return crop;
+    }
+
+    return cropHindiNames[crop] || crop;
+  };
+
+
+  const getSeasonName = (season) => {
+
+    if (!isHindi) {
+      return season;
+    }
+
+    return seasonHindiNames[season] || season;
+  };
+
+
+  const getStateName = (state) => {
+
+    if (!isHindi) {
+      return state;
+    }
+
+    return stateHindiNames[state] || state;
+  };
+
+
+  const getSoilName = (soil) => {
+
+    if (!isHindi) {
+      return soil;
+    }
+
+    return soilHindiNames[soil] || soil;
+  };
+
+
+  const getIrrigationName = (item) => {
+
+    if (!isHindi) {
+      return item;
+    }
+
+    return irrigationHindiNames[item] || item;
+  };
+
+
+  const getYieldCategoryName = (category) => {
+
+    if (!category) {
+      return "";
+    }
+
+    if (!isHindi) {
+      return category;
+    }
+
+    return yieldCategoryHindiNames[category] || category;
+  };
+
+
+  /* =====================================================
+     HANDLE INPUT
+  ===================================================== */
 
   const handleChange = (e) => {
 
@@ -99,9 +280,9 @@ export default function YieldPrediction() {
   };
 
 
-  // =====================================================
-  // CATEGORY COLOR
-  // =====================================================
+  /* =====================================================
+     CATEGORY COLOR
+  ===================================================== */
 
   const getCategoryColor = (category) => {
 
@@ -125,9 +306,9 @@ export default function YieldPrediction() {
   };
 
 
-  // =====================================================
-  // HANDLE SUBMIT
-  // =====================================================
+  /* =====================================================
+     HANDLE SUBMIT
+  ===================================================== */
 
   const handleSubmit = async (e) => {
 
@@ -137,11 +318,12 @@ export default function YieldPrediction() {
     setResult(null);
     setError("");
 
+
     try {
 
-      // =================================================
-      // VALIDATE NUMERIC VALUES
-      // =================================================
+      /* ================================================
+         VALIDATE NUMERIC VALUES
+      ================================================= */
 
       const area = Number(formData.area);
       const rainfall = Number(formData.rainfall);
@@ -151,36 +333,56 @@ export default function YieldPrediction() {
 
 
       if (area <= 0) {
-        setError("Area must be greater than 0.");
+
+        setError(
+          t("yield.areaError")
+        );
+
         setLoading(false);
+
         return;
       }
 
 
       if (rainfall < 0) {
-        setError("Rainfall cannot be negative.");
+
+        setError(
+          t("yield.rainfallError")
+        );
+
         setLoading(false);
+
         return;
       }
 
 
       if (fertilizer < 0) {
-        setError("Fertilizer cannot be negative.");
+
+        setError(
+          t("yield.fertilizerError")
+        );
+
         setLoading(false);
+
         return;
       }
 
 
       if (pesticide < 0) {
-        setError("Pesticide cannot be negative.");
+
+        setError(
+          t("yield.pesticideError")
+        );
+
         setLoading(false);
+
         return;
       }
 
 
-      // =================================================
-      // SEND TO BACKEND
-      // =================================================
+      /* ================================================
+         SEND TO BACKEND
+      ================================================= */
 
       const response = await predictYield({
 
@@ -203,17 +405,15 @@ export default function YieldPrediction() {
         irrigation: formData.irrigation,
 
         soil_type: formData.soilType
+
       });
 
 
-      // =================================================
-      // SUCCESS
-      // =================================================
+      /* ================================================
+         SUCCESS
+      ================================================= */
 
       if (response.success) {
-
-        // IMPORTANT:
-        // Backend returns "prediction", not "data"
 
         setResult(response.prediction);
 
@@ -221,8 +421,9 @@ export default function YieldPrediction() {
 
         setError(
           response.message ||
-          "Unable to predict crop yield."
+          t("yield.predictionError")
         );
+
       }
 
 
@@ -234,27 +435,35 @@ export default function YieldPrediction() {
       );
 
 
-      // Show actual backend error if available
-
       const backendMessage =
         err.response?.data?.message;
 
 
       setError(
         backendMessage ||
-        "Unable to connect to server. Please try again."
+        t("yield.serverError")
       );
+
 
     } finally {
 
       setLoading(false);
+
     }
+
   };
 
 
+  /* =====================================================
+     RENDER
+  ===================================================== */
+
   return (
+
     <>
+
       <Navbar />
+
 
       <main className="yield-page">
 
@@ -273,12 +482,13 @@ export default function YieldPrediction() {
                 <BarChart3 />
               </span>
 
-              AI Yield Prediction
+              {t("yield.title")}
 
             </h1>
 
+
             <p className="yield-subtitle">
-              Predict crop yield based on farming conditions and inputs
+              {t("yield.subtitle")}
             </p>
 
           </div>
@@ -291,13 +501,11 @@ export default function YieldPrediction() {
           <div className="yield-alert">
 
             <strong>
-              Important
+              {t("yield.noteTitle")}
             </strong>
 
             <span>
-              Enter accurate farming data to get precise yield
-              predictions and recommendations for improving crop
-              production.
+              {t("yield.note")}
             </span>
 
           </div>
@@ -322,9 +530,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <Sprout />
-                    <span>Crop</span>
+
+                    <span>
+                      {t("yield.crop")}
+                    </span>
+
                   </label>
+
 
                   <select
                     name="crop"
@@ -334,8 +548,9 @@ export default function YieldPrediction() {
                   >
 
                     <option value="">
-                      Select Crop
+                      {t("yield.selectCrop")}
                     </option>
+
 
                     {crops.map((crop) => (
 
@@ -343,7 +558,9 @@ export default function YieldPrediction() {
                         key={crop}
                         value={crop}
                       >
-                        {crop}
+
+                        {getCropName(crop)}
+
                       </option>
 
                     ))}
@@ -358,9 +575,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <CalendarDays />
-                    <span>Season</span>
+
+                    <span>
+                      {t("yield.season")}
+                    </span>
+
                   </label>
+
 
                   <select
                     name="season"
@@ -370,8 +593,9 @@ export default function YieldPrediction() {
                   >
 
                     <option value="">
-                      Select Season
+                      {t("yield.selectSeason")}
                     </option>
+
 
                     {seasons.map((season) => (
 
@@ -379,7 +603,9 @@ export default function YieldPrediction() {
                         key={season}
                         value={season}
                       >
-                        {season}
+
+                        {getSeasonName(season)}
+
                       </option>
 
                     ))}
@@ -394,9 +620,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <MapPin />
-                    <span>State</span>
+
+                    <span>
+                      {t("yield.state")}
+                    </span>
+
                   </label>
+
 
                   <select
                     name="state"
@@ -406,8 +638,9 @@ export default function YieldPrediction() {
                   >
 
                     <option value="">
-                      Select State
+                      {t("yield.selectState")}
                     </option>
+
 
                     {states.map((state) => (
 
@@ -415,7 +648,9 @@ export default function YieldPrediction() {
                         key={state}
                         value={state}
                       >
-                        {state}
+
+                        {getStateName(state)}
+
                       </option>
 
                     ))}
@@ -430,9 +665,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <Mountain />
-                    <span>Area (hectares)</span>
+
+                    <span>
+                      {t("yield.area")}
+                    </span>
+
                   </label>
+
 
                   <input
                     type="number"
@@ -441,7 +682,7 @@ export default function YieldPrediction() {
                     name="area"
                     value={formData.area}
                     onChange={handleChange}
-                    placeholder="e.g. 2.5"
+                    placeholder={t("yield.areaPlaceholder")}
                     required
                   />
 
@@ -453,9 +694,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <CloudRain />
-                    <span>Annual Rainfall (mm)</span>
+
+                    <span>
+                      {t("yield.rainfall")}
+                    </span>
+
                   </label>
+
 
                   <input
                     type="number"
@@ -464,7 +711,7 @@ export default function YieldPrediction() {
                     name="rainfall"
                     value={formData.rainfall}
                     onChange={handleChange}
-                    placeholder="e.g. 1200"
+                    placeholder={t("yield.rainfallPlaceholder")}
                     required
                   />
 
@@ -476,9 +723,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <FlaskConical />
-                    <span>Fertilizer Used (kg)</span>
+
+                    <span>
+                      {t("yield.fertilizer")}
+                    </span>
+
                   </label>
+
 
                   <input
                     type="number"
@@ -487,7 +740,7 @@ export default function YieldPrediction() {
                     name="fertilizer"
                     value={formData.fertilizer}
                     onChange={handleChange}
-                    placeholder="e.g. 180"
+                    placeholder={t("yield.fertilizerPlaceholder")}
                     required
                   />
 
@@ -499,9 +752,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <SprayCan />
-                    <span>Pesticide Used (kg)</span>
+
+                    <span>
+                      {t("yield.pesticide")}
+                    </span>
+
                   </label>
+
 
                   <input
                     type="number"
@@ -510,7 +769,7 @@ export default function YieldPrediction() {
                     name="pesticide"
                     value={formData.pesticide}
                     onChange={handleChange}
-                    placeholder="e.g. 5.2"
+                    placeholder={t("yield.pesticidePlaceholder")}
                     required
                   />
 
@@ -522,9 +781,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <Thermometer />
-                    <span>Avg Temperature (°C)</span>
+
+                    <span>
+                      {t("yield.temperature")}
+                    </span>
+
                   </label>
+
 
                   <input
                     type="number"
@@ -532,7 +797,7 @@ export default function YieldPrediction() {
                     name="temperature"
                     value={formData.temperature}
                     onChange={handleChange}
-                    placeholder="e.g. 28"
+                    placeholder={t("yield.temperaturePlaceholder")}
                     required
                   />
 
@@ -544,9 +809,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <Droplets />
-                    <span>Irrigation</span>
+
+                    <span>
+                      {t("yield.irrigation")}
+                    </span>
+
                   </label>
+
 
                   <select
                     name="irrigation"
@@ -556,8 +827,9 @@ export default function YieldPrediction() {
                   >
 
                     <option value="">
-                      Select Irrigation
+                      {t("yield.selectIrrigation")}
                     </option>
+
 
                     {irrigationTypes.map((item) => (
 
@@ -565,7 +837,9 @@ export default function YieldPrediction() {
                         key={item}
                         value={item}
                       >
-                        {item}
+
+                        {getIrrigationName(item)}
+
                       </option>
 
                     ))}
@@ -580,9 +854,15 @@ export default function YieldPrediction() {
                 <div className="yield-field">
 
                   <label>
+
                     <Mountain />
-                    <span>Soil Type</span>
+
+                    <span>
+                      {t("yield.soilType")}
+                    </span>
+
                   </label>
+
 
                   <select
                     name="soilType"
@@ -592,8 +872,9 @@ export default function YieldPrediction() {
                   >
 
                     <option value="">
-                      Select Soil Type
+                      {t("yield.selectSoilType")}
                     </option>
+
 
                     {soilTypes.map((soil) => (
 
@@ -601,7 +882,9 @@ export default function YieldPrediction() {
                         key={soil}
                         value={soil}
                       >
-                        {soil}
+
+                        {getSoilName(soil)}
+
                       </option>
 
                     ))}
@@ -609,6 +892,7 @@ export default function YieldPrediction() {
                   </select>
 
                 </div>
+
 
               </div>
 
@@ -626,13 +910,14 @@ export default function YieldPrediction() {
                 >
 
                   {loading
-                    ? "Predicting..."
-                    : "Predict Yield"
+                    ? t("yield.predicting")
+                    : t("yield.predictButton")
                   }
 
                 </button>
 
               </div>
+
 
             </form>
 
@@ -650,7 +935,7 @@ export default function YieldPrediction() {
               <div className="spinner-border text-success" />
 
               <span>
-                Predicting...
+                {t("yield.predicting")}
               </span>
 
             </div>
@@ -665,8 +950,10 @@ export default function YieldPrediction() {
           {error && (
 
             <div className="yield-error">
+
               {error}
-          </div>
+
+            </div>
 
           )}
 
@@ -687,7 +974,7 @@ export default function YieldPrediction() {
                 <BarChart3 className="result-icon" />
 
                 <h4>
-                  Yield Prediction Result
+                  {t("yield.resultTitle")}
                 </h4>
 
               </div>
@@ -707,8 +994,9 @@ export default function YieldPrediction() {
                   <div>
 
                     <h5>
-                      Predicted Yield
+                      {t("yield.predictedYield")}
                     </h5>
+
 
                     <p className="result-value">
 
@@ -734,8 +1022,9 @@ export default function YieldPrediction() {
                   <div>
 
                     <h5>
-                      Total Production
+                      {t("yield.totalProduction")}
                     </h5>
+
 
                     <p className="result-value">
 
@@ -761,8 +1050,9 @@ export default function YieldPrediction() {
                   <div>
 
                     <h5>
-                      Yield Category
+                      {t("yield.yieldCategory")}
                     </h5>
+
 
                     <p
                       className="result-value"
@@ -773,7 +1063,9 @@ export default function YieldPrediction() {
                       }}
                     >
 
-                      {result.yield_category}
+                      {getYieldCategoryName(
+                        result.yield_category
+                      )}
 
                     </p>
 
@@ -791,7 +1083,7 @@ export default function YieldPrediction() {
                   <div>
 
                     <h5>
-                      Recommendations
+                      {t("yield.recommendations")}
                     </h5>
 
 
@@ -801,8 +1093,16 @@ export default function YieldPrediction() {
                       <ul className="tips-list">
 
                         {(
-                          result.recommendations.en ||
-                          []
+                          isHindi
+                            ? (
+                                result.recommendations.hi ||
+                                result.recommendations.en ||
+                                []
+                              )
+                            : (
+                                result.recommendations.en ||
+                                []
+                              )
                         ).map(
                           (tip, index) => (
 
@@ -836,7 +1136,9 @@ export default function YieldPrediction() {
                     ) : (
 
                       <p className="result-text">
-                        No recommendations available.
+
+                        {t("yield.noRecommendations")}
+
                       </p>
 
                     )}
@@ -857,5 +1159,6 @@ export default function YieldPrediction() {
       </main>
 
     </>
+
   );
 }

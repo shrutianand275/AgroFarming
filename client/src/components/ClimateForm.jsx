@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   MapPin,
   Building2,
@@ -33,7 +35,309 @@ const soilTypes = [
   "Alluvial"
 ];
 
+/* ==========================================
+   STATE HINDI NAMES
+========================================== */
+
+const stateHindiNames = {
+  "Andhra Pradesh": "आंध्र प्रदेश",
+  "Arunachal Pradesh": "अरुणाचल प्रदेश",
+  "Assam": "असम",
+  "Bihar": "बिहार",
+  "Chhattisgarh": "छत्तीसगढ़",
+  "Goa": "गोवा",
+  "Gujarat": "गुजरात",
+  "Haryana": "हरियाणा",
+  "Himachal Pradesh": "हिमाचल प्रदेश",
+  "Jharkhand": "झारखंड",
+  "Karnataka": "कर्नाटक",
+  "Kerala": "केरल",
+  "Madhya Pradesh": "मध्य प्रदेश",
+  "Maharashtra": "महाराष्ट्र",
+  "Manipur": "मणिपुर",
+  "Meghalaya": "मेघालय",
+  "Mizoram": "मिज़ोरम",
+  "Nagaland": "नागालैंड",
+  "Odisha": "ओडिशा",
+  "Punjab": "पंजाब",
+  "Rajasthan": "राजस्थान",
+  "Sikkim": "सिक्किम",
+  "Tamil Nadu": "तमिलनाडु",
+  "Telangana": "तेलंगाना",
+  "Tripura": "त्रिपुरा",
+  "Uttar Pradesh": "उत्तर प्रदेश",
+  "Uttarakhand": "उत्तराखंड",
+  "West Bengal": "पश्चिम बंगाल",
+  "Delhi": "दिल्ली",
+  "Jammu and Kashmir": "जम्मू और कश्मीर",
+  "Ladakh": "लद्दाख",
+  "Puducherry": "पुडुचेरी",
+  "Chandigarh": "चंडीगढ़"
+};
+
+
+/* ==========================================
+   CITY HINDI NAMES
+========================================== */
+
+const cityHindiNames = {
+
+  /* Maharashtra */
+  "Mumbai": "मुंबई",
+  "Pune": "पुणे",
+  "Nagpur": "नागपुर",
+  "Nashik": "नासिक",
+  "Aurangabad": "औरंगाबाद",
+  "Solapur": "सोलापुर",
+  "Kolhapur": "कोल्हापुर",
+  "Amravati": "अमरावती",
+  "Nanded": "नांदेड",
+  "Sangli": "सांगली",
+  "Satara": "सातारा",
+  "Jalgaon": "जलगांव",
+  "Akola": "अकोला",
+  "Latur": "लातूर",
+  "Ahmednagar": "अहमदनगर",
+  "Dhule": "धुले",
+  "Chandrapur": "चंद्रपुर",
+  "Thane": "ठाणे",
+  "Raigad": "रायगढ़",
+
+  /* Delhi */
+  "Delhi": "दिल्ली",
+  "New Delhi": "नई दिल्ली",
+
+  /* Gujarat */
+  "Ahmedabad": "अहमदाबाद",
+  "Surat": "सूरत",
+  "Vadodara": "वडोदरा",
+  "Rajkot": "राजकोट",
+  "Bhavnagar": "भावनगर",
+  "Jamnagar": "जामनगर",
+  "Gandhinagar": "गांधीनगर",
+  "Junagadh": "जूनागढ़",
+  "Anand": "आनंद",
+  "Bharuch": "भरूच",
+  "Vapi": "वापी",
+
+  /* Karnataka */
+  "Bengaluru": "बेंगलुरु",
+  "Bangalore": "बेंगलुरु",
+  "Mysore": "मैसूर",
+  "Mysuru": "मैसूर",
+  "Mangalore": "मैंगलोर",
+  "Mangaluru": "मैंगलुरु",
+  "Hubli": "हुबली",
+  "Hubballi": "हुबली",
+  "Belgaum": "बेलगावी",
+  "Belagavi": "बेलगावी",
+  "Dharwad": "धारवाड़",
+  "Gulbarga": "गुलबर्गा",
+  "Kalaburagi": "कलबुर्गी",
+  "Davangere": "दावणगेरे",
+  "Shivamogga": "शिवमोग्गा",
+
+  /* Madhya Pradesh */
+  "Bhopal": "भोपाल",
+  "Indore": "इंदौर",
+  "Gwalior": "ग्वालियर",
+  "Jabalpur": "जबलपुर",
+  "Ujjain": "उज्जैन",
+  "Sagar": "सागर",
+  "Rewa": "रीवा",
+  "Satna": "सतना",
+  "Dewas": "देवास",
+  "Ratlam": "रतलाम",
+
+  /* Rajasthan */
+  "Jaipur": "जयपुर",
+  "Jodhpur": "जोधपुर",
+  "Udaipur": "उदयपुर",
+  "Kota": "कोटा",
+  "Ajmer": "अजमेर",
+  "Bikaner": "बीकानेर",
+  "Alwar": "अलवर",
+  "Bharatpur": "भरतपुर",
+  "Sikar": "सीकर",
+  "Pali": "पाली",
+
+  /* Tamil Nadu */
+  "Chennai": "चेन्नई",
+  "Coimbatore": "कोयंबटूर",
+  "Madurai": "मदुरै",
+  "Salem": "सेलम",
+  "Tiruchirappalli": "तिरुचिरापल्ली",
+  "Trichy": "तिरुचिरापल्ली",
+  "Tiruppur": "तिरुप्पुर",
+  "Erode": "इरोड",
+  "Vellore": "वेल्लोर",
+  "Thanjavur": "तंजावुर",
+
+  /* Telangana */
+  "Hyderabad": "हैदराबाद",
+  "Warangal": "वारंगल",
+  "Nizamabad": "निजामाबाद",
+  "Karimnagar": "करीमनगर",
+  "Khammam": "खम्मम",
+
+  /* Uttar Pradesh */
+  "Lucknow": "लखनऊ",
+  "Kanpur": "कानपुर",
+  "Agra": "आगरा",
+  "Varanasi": "वाराणसी",
+  "Prayagraj": "प्रयागराज",
+  "Allahabad": "प्रयागराज",
+  "Meerut": "मेरठ",
+  "Ghaziabad": "गाजियाबाद",
+  "Noida": "नोएडा",
+  "Bareilly": "बरेली",
+  "Moradabad": "मुरादाबाद",
+  "Aligarh": "अलीगढ़",
+  "Gorakhpur": "गोरखपुर",
+  "Jhansi": "झांसी",
+  "Mathura": "मथुरा",
+  "Ayodhya": "अयोध्या",
+
+  /* Bihar */
+  "Patna": "पटना",
+  "Gaya": "गया",
+  "Muzaffarpur": "मुजफ्फरपुर",
+  "Bhagalpur": "भागलपुर",
+  "Darbhanga": "दरभंगा",
+  "Purnia": "पूर्णिया",
+  "Ara": "आरा",
+  "Arrah": "आरा",
+  "Begusarai": "बेगूसराय",
+  "Katihar": "कटिहार",
+  "Munger": "मुंगेर",
+  "Chapra": "छपरा",
+  "Sasaram": "सासाराम",
+  "Hajipur": "हाजीपुर",
+  "Nawada": "नवादा",
+
+  /* West Bengal */
+  "Kolkata": "कोलकाता",
+  "Howrah": "हावड़ा",
+  "Durgapur": "दुर्गापुर",
+  "Siliguri": "सिलीगुड़ी",
+  "Asansol": "आसनसोल",
+
+  /* Punjab */
+  "Amritsar": "अमृतसर",
+  "Ludhiana": "लुधियाना",
+  "Jalandhar": "जालंधर",
+  "Patiala": "पटियाला",
+  "Bathinda": "बठिंडा",
+
+  /* Haryana */
+  "Gurgaon": "गुरुग्राम",
+  "Gurugram": "गुरुग्राम",
+  "Faridabad": "फरीदाबाद",
+  "Panipat": "पानीपत",
+  "Ambala": "अंबाला",
+  "Hisar": "हिसार",
+  "Rohtak": "रोहतक",
+
+  /* Jharkhand */
+  "Ranchi": "रांची",
+  "Jamshedpur": "जमशेदपुर",
+  "Dhanbad": "धनबाद",
+  "Bokaro": "बोकारो",
+  "Deoghar": "देवघर",
+
+  /* Chhattisgarh */
+  "Raipur": "रायपुर",
+  "Bhilai": "भिलाई",
+  "Bilaspur": "बिलासपुर",
+  "Durg": "दुर्ग",
+  "Korba": "कोरबा",
+
+  /* Odisha */
+  "Bhubaneswar": "भुवनेश्वर",
+  "Cuttack": "कटक",
+  "Rourkela": "राउरकेला",
+  "Puri": "पुरी",
+  "Sambalpur": "संबलपुर",
+
+  /* Kerala */
+  "Thiruvananthapuram": "तिरुवनंतपुरम",
+  "Kochi": "कोच्चि",
+  "Kozhikode": "कोझिकोड",
+  "Kollam": "कोल्लम",
+  "Thrissur": "त्रिशूर",
+
+  /* Andhra Pradesh */
+  "Visakhapatnam": "विशाखापत्तनम",
+  "Vijayawada": "विजयवाड़ा",
+  "Guntur": "गुंटूर",
+  "Tirupati": "तिरुपति",
+  "Nellore": "नेल्लोर",
+  "Kurnool": "कुरनूल",
+
+  /* Assam */
+  "Guwahati": "गुवाहाटी",
+  "Dibrugarh": "डिब्रूगढ़",
+  "Silchar": "सिलचर",
+  "Jorhat": "जोरहाट",
+
+  /* Himachal Pradesh */
+  "Shimla": "शिमला",
+  "Manali": "मनाली",
+  "Dharamshala": "धर्मशाला",
+  "Mandi": "मंडी",
+  "Solan": "सोलन",
+
+  /* Uttarakhand */
+  "Dehradun": "देहरादून",
+  "Haridwar": "हरिद्वार",
+  "Nainital": "नैनीताल",
+  "Rishikesh": "ऋषिकेश",
+  "Haldwani": "हल्द्वानी",
+
+  /* Goa */
+  "Panaji": "पणजी",
+  "Margao": "मडगांव",
+  "Vasco da Gama": "वास्को द गामा"
+};
+
+
+/* ==========================================
+   MONTH HINDI NAMES
+========================================== */
+
+const monthHindiNames = {
+  "January": "जनवरी",
+  "February": "फरवरी",
+  "March": "मार्च",
+  "April": "अप्रैल",
+  "May": "मई",
+  "June": "जून",
+  "July": "जुलाई",
+  "August": "अगस्त",
+  "September": "सितंबर",
+  "October": "अक्टूबर",
+  "November": "नवंबर",
+  "December": "दिसंबर"
+};
+
+
+/* ==========================================
+   SOIL HINDI NAMES
+========================================== */
+
+const soilHindiNames = {
+  "Clay": "चिकनी मिट्टी",
+  "Loamy": "दोमट मिट्टी",
+  "Sandy": "रेतीली मिट्टी",
+  "Black": "काली मिट्टी",
+  "Red": "लाल मिट्टी",
+  "Alluvial": "जलोढ़ मिट्टी"
+};
+
+
 const ClimateForm = ({ onSubmit }) => {
+
+  const { t, i18n } = useTranslation();
 
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -53,9 +357,11 @@ const ClimateForm = ({ onSubmit }) => {
     ph: ""
   });
 
+
   useEffect(() => {
     loadStates();
   }, []);
+
 
   const loadStates = async () => {
     try {
@@ -65,6 +371,7 @@ const ClimateForm = ({ onSubmit }) => {
       console.log(error);
     }
   };
+
 
   const handleStateChange = async (e) => {
 
@@ -88,6 +395,7 @@ const ClimateForm = ({ onSubmit }) => {
     }
   };
 
+
   const handleChange = (e) => {
 
     setFormData(prev => ({
@@ -96,6 +404,7 @@ const ClimateForm = ({ onSubmit }) => {
     }));
 
   };
+
 
   useEffect(() => {
 
@@ -114,6 +423,7 @@ const ClimateForm = ({ onSubmit }) => {
     formData.city,
     formData.month
   ]);
+
 
   const fetchClimate = async () => {
 
@@ -142,13 +452,63 @@ const ClimateForm = ({ onSubmit }) => {
 
   };
 
+
   const submit = (e) => {
     e.preventDefault();
     onSubmit(formData);
   };
 
+
+  /* ==========================================
+     TRANSLATION HELPERS
+  ========================================== */
+
+  const getStateName = (state) => {
+
+    if (i18n.language === "hi") {
+      return stateHindiNames[state] || state;
+    }
+
+    return state;
+  };
+
+
+  const getCityName = (city) => {
+
+    if (i18n.language === "hi") {
+      return cityHindiNames[city] || city;
+    }
+
+    return city;
+  };
+
+
+  const getMonthName = (month) => {
+
+    if (i18n.language === "hi") {
+      return monthHindiNames[month] || month;
+    }
+
+    return month;
+  };
+
+
+  const getSoilName = (soil) => {
+
+    if (i18n.language === "hi") {
+      return soilHindiNames[soil] || soil;
+    }
+
+    return soil;
+  };
+
+
   return (
-    <form className="climate-form" onSubmit={submit}>
+
+    <form
+      className="climate-form"
+      onSubmit={submit}
+    >
 
       <div className="climate-grid">
 
@@ -157,7 +517,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <MapPin />
-            <span>State</span>
+            <span>{t("crop.state")}</span>
           </label>
 
           <select
@@ -165,12 +525,20 @@ const ClimateForm = ({ onSubmit }) => {
             value={formData.state}
             onChange={handleStateChange}
           >
-            <option value="">Select State</option>
+
+            <option value="">
+              {t("crop.selectState")}
+            </option>
 
             {states.map(state => (
-              <option key={state} value={state}>
-                {state}
+
+              <option
+                key={state}
+                value={state}
+              >
+                {getStateName(state)}
               </option>
+
             ))}
 
           </select>
@@ -183,7 +551,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <Building2 />
-            <span>City</span>
+            <span>{t("crop.city")}</span>
           </label>
 
           <select
@@ -192,12 +560,20 @@ const ClimateForm = ({ onSubmit }) => {
             onChange={handleChange}
             disabled={!formData.state}
           >
-            <option value="">Select City</option>
+
+            <option value="">
+              {t("crop.selectCity")}
+            </option>
 
             {cities.map(city => (
-              <option key={city} value={city}>
-                {city}
+
+              <option
+                key={city}
+                value={city}
+              >
+                {getCityName(city)}
               </option>
+
             ))}
 
           </select>
@@ -210,7 +586,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <CalendarDays />
-            <span>Month</span>
+            <span>{t("crop.month")}</span>
           </label>
 
           <select
@@ -218,12 +594,20 @@ const ClimateForm = ({ onSubmit }) => {
             value={formData.month}
             onChange={handleChange}
           >
-            <option value="">Select Month</option>
+
+            <option value="">
+              {t("crop.selectMonth")}
+            </option>
 
             {months.map(month => (
-              <option key={month} value={month}>
-                {month}
+
+              <option
+                key={month}
+                value={month}
+              >
+                {getMonthName(month)}
               </option>
+
             ))}
 
           </select>
@@ -236,7 +620,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <Sprout />
-            <span>Soil Type</span>
+            <span>{t("crop.soilType")}</span>
           </label>
 
           <select
@@ -244,12 +628,20 @@ const ClimateForm = ({ onSubmit }) => {
             value={formData.soilType}
             onChange={handleChange}
           >
-            <option value="">Select Soil Type</option>
+
+            <option value="">
+              {t("crop.selectSoilType")}
+            </option>
 
             {soilTypes.map(soil => (
-              <option key={soil} value={soil}>
-                {soil}
+
+              <option
+                key={soil}
+                value={soil}
+              >
+                {getSoilName(soil)}
               </option>
+
             ))}
 
           </select>
@@ -262,7 +654,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <Thermometer />
-            <span>Temperature (°C)</span>
+            <span>{t("crop.temperature")} (°C)</span>
           </label>
 
           <input
@@ -270,7 +662,7 @@ const ClimateForm = ({ onSubmit }) => {
             name="temperature"
             value={formData.temperature}
             onChange={handleChange}
-            placeholder="Auto Filled"
+            placeholder={t("crop.autoFilled")}
           />
 
         </div>
@@ -281,7 +673,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <Droplets />
-            <span>Humidity (%)</span>
+            <span>{t("crop.humidity")} (%)</span>
           </label>
 
           <input
@@ -289,7 +681,7 @@ const ClimateForm = ({ onSubmit }) => {
             name="humidity"
             value={formData.humidity}
             onChange={handleChange}
-            placeholder="Auto Filled"
+            placeholder={t("crop.autoFilled")}
           />
 
         </div>
@@ -300,7 +692,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <CloudRain />
-            <span>Rainfall (mm)</span>
+            <span>{t("crop.rainfall")} (mm)</span>
           </label>
 
           <input
@@ -308,7 +700,7 @@ const ClimateForm = ({ onSubmit }) => {
             name="rainfall"
             value={formData.rainfall}
             onChange={handleChange}
-            placeholder="Auto Filled"
+            placeholder={t("crop.autoFilled")}
           />
 
         </div>
@@ -319,7 +711,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <FlaskConical />
-            <span>Nitrogen (N)</span>
+            <span>{t("crop.nitrogen")}</span>
           </label>
 
           <input
@@ -327,7 +719,7 @@ const ClimateForm = ({ onSubmit }) => {
             name="N"
             value={formData.N}
             onChange={handleChange}
-            placeholder="e.g. 90"
+            placeholder={t("crop.nitrogenPlaceholder")}
           />
 
         </div>
@@ -338,7 +730,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <TestTube />
-            <span>Phosphorus (P)</span>
+            <span>{t("crop.phosphorus")}</span>
           </label>
 
           <input
@@ -346,7 +738,7 @@ const ClimateForm = ({ onSubmit }) => {
             name="P"
             value={formData.P}
             onChange={handleChange}
-            placeholder="e.g. 42"
+            placeholder={t("crop.phosphorusPlaceholder")}
           />
 
         </div>
@@ -357,7 +749,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <TestTube />
-            <span>Potassium (K)</span>
+            <span>{t("crop.potassium")}</span>
           </label>
 
           <input
@@ -365,7 +757,7 @@ const ClimateForm = ({ onSubmit }) => {
             name="K"
             value={formData.K}
             onChange={handleChange}
-            placeholder="e.g. 43"
+            placeholder={t("crop.potassiumPlaceholder")}
           />
 
         </div>
@@ -376,7 +768,7 @@ const ClimateForm = ({ onSubmit }) => {
 
           <label>
             <Gauge />
-            <span>Soil pH</span>
+            <span>{t("crop.ph")}</span>
           </label>
 
           <input
@@ -385,27 +777,31 @@ const ClimateForm = ({ onSubmit }) => {
             name="ph"
             value={formData.ph}
             onChange={handleChange}
-            placeholder="6.5"
+            placeholder={t("crop.phPlaceholder")}
           />
 
         </div>
 
 
-        {/* BUTTON - FULL WIDTH NEW ROW */}
+        {/* BUTTON */}
         <div className="recommend-action">
+
           <button
             type="submit"
             className="recommend-btn"
             disabled={loadingClimate}
           >
-            🌱 Recommend Crop
+            🌱 {t("crop.recommend")}
           </button>
+
         </div>
 
       </div>
 
     </form>
+
   );
+
 };
 
 export default ClimateForm;
