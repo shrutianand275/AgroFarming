@@ -482,6 +482,107 @@ class EmailService:
         """
         
         return self.send_email(user_email, subject, html_content)
+    
+    def send_password_reset_email(self, user_name, user_email, reset_token):
+        """Send password reset email with token link"""
+        subject = "🔐 Reset Your AgroFarming Password"
+        
+        # Construct reset link (adjust frontend URL as needed)
+        reset_link = f"http://localhost:5173/reset-password?token={reset_token}"
+        
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    line-height: 1.6;
+                    color: #333;
+                }}
+                .container {{
+                    max-width: 600px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background-color: #f8f9fa;
+                }}
+                .header {{
+                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    color: white;
+                    padding: 30px 20px;
+                    text-align: center;
+                    border-radius: 8px 8px 0 0;
+                }}
+                .content {{
+                    background: white;
+                    padding: 30px 20px;
+                    border-radius: 0 0 8px 8px;
+                }}
+                .button {{
+                    display: inline-block;
+                    padding: 14px 32px;
+                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    color: white !important;
+                    text-decoration: none;
+                    border-radius: 25px;
+                    margin: 20px 0;
+                    font-weight: 600;
+                }}
+                .warning-box {{
+                    background: #fff3cd;
+                    border-left: 4px solid #ffc107;
+                    padding: 15px;
+                    border-radius: 6px;
+                    margin: 20px 0;
+                }}
+                .footer {{
+                    text-align: center;
+                    margin-top: 20px;
+                    font-size: 12px;
+                    color: #666;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h1>🔐 Password Reset Request</h1>
+                </div>
+                <div class="content">
+                    <h2>Hello {user_name}!</h2>
+                    
+                    <p>We received a request to reset your password for your AgroFarming account.</p>
+                    
+                    <p>Click the button below to create a new password:</p>
+                    
+                    <div style="text-align: center;">
+                        <a href="{reset_link}" class="button">Reset Password</a>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <p style="margin: 0;"><strong>⚠️ Important:</strong></p>
+                        <ul style="margin: 10px 0 0 0; padding-left: 20px;">
+                            <li>This link will expire in <strong>1 hour</strong></li>
+                            <li>If you didn't request this, please ignore this email</li>
+                            <li>Your password won't change until you create a new one</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="font-size: 13px; color: #666; margin-top: 25px;">
+                        If the button doesn't work, copy and paste this link into your browser:<br/>
+                        <span style="word-break: break-all; color: #10b981;">{reset_link}</span>
+                    </p>
+                </div>
+                <div class="footer">
+                    <p>© 2026 AgroFarming • Smart Farming System</p>
+                    <p>This is an automated email. Please do not reply.</p>
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+        
+        return self.send_email(user_email, subject, html_content)
 
 # Create singleton instance
 email_service = EmailService()

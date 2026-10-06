@@ -94,7 +94,7 @@
 }
 
 .about-page .section-title h2 {
-    margin: 0 0 7px;
+    margin: 10px 10px 7px;
 
     color: #087b3e;
 
@@ -118,7 +118,7 @@
 ========================================================= */
 
 .about-section {
-    padding: 10px 10px 40px;
+    padding: 10px 20px 40px;
 }
 
 .about-section .row {
@@ -131,7 +131,7 @@
     width: 100%;
 
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 30px !important;
 
     align-items: center;
 }
@@ -141,7 +141,7 @@
     max-width: 100%;
 
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 30px !important;
 
     box-sizing: border-box;
 }
@@ -421,51 +421,6 @@
     color: #159c4d;
 }
 
-
-/* =========================================================
-   TECHNOLOGY STACK
-========================================================= */
-
-.tech-section {
-    padding: 40px 10px 30px;
-}
-
-.tech-stack {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-}
-
-.tech-stack span {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 6px;
-
-    padding: 9px 15px;
-
-    background: #ffffff;
-
-    border: 1px solid #dce9e2;
-    border-radius: 7px;
-
-    color: #087b3e;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    box-shadow: 0 2px 7px rgba(30, 100, 65, 0.035);
-}
-
-.tech-stack svg {
-    width: 14px;
-    height: 14px;
-}
 
 
 /* =========================================================

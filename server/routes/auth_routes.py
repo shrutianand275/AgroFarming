@@ -383,3 +383,146 @@ def me():
             "success": False,
             "message": "Unable to get user."
         }), 500
+
+
+# =========================================================
+# FORGOT PASSWORD - REQUEST RESET
+# =========================================================
+
+@auth_bp.route("/forgot-password", methods=["POST"])
+def forgot_password():
+    """Send password reset email with token"""
+    try:
+        data = request.get_json() or {}
+        email = data.get("email", "").strip().lower()
+        
+        if not email:
+            return jsonify({
+                "success": False,
+                "message": "Email is required."
+            }), 400
+        
+        # Find user by email
+        user = find_user_by_email(email)
+        
+        if not user:
+            # Don't reveal if email exists or not (security)
+            return jsonify({
+                "success": True,
+                "message": "If an account exists with this email, you will receive a password reset link."
+            }), 200
+        
+        # Generate reset token
+        import secrets
+        from datetime import datetime, timedelta, timezone
+        from models.user_model import set_password_reset_token
+        
+        reset_token = secrets.token_urlsafe(32)
+        expiry = datetime.now(timezone.utc) + timedelta(hours=1)
+        
+        # Store token in database
+        set_password_reset_token(user["_id"], reset_token, expiry)
+        
+        # Send email
+        try:
+            from services.email_service import email_service
+            email_service.send_password_reset_email(
+                user.get("name", "User"),
+                email,
+                reset_token
+            )
+        except Exception as email_error:
+            print(f"Email sending error: {str(email_error)}")
+            # Continue even if email fails
+        
+        return jsonify({
+            "success": True,
+            "message": "If an account exists with this email, you will receive a password reset link."
+        }), 200
+        
+    except Exception as e:
+        print("FORGOT PASSWORD ERROR:", repr(e))
+        return jsonify({
+            "success": False,
+            "message": "Unable to process request."
+        }), 500
+
+
+# =========================================================
+# RESET PASSWORD - VERIFY TOKEN AND UPDATE PASSWORD
+# =========================================================
+
+@auth_bp.route("/reset-password", methods=["POST"])
+def reset_password():
+    """Reset password using valid token"""
+    try:
+        data = request.get_json() or {}
+        token = data.get("token", "").strip()
+        new_password = data.get("password", "")
+        
+        if not token:
+            return jsonify({
+                "success": False,
+                "message": "Reset token is required."
+            }), 400
+        
+        if not new_password:
+            return jsonify({
+                "success": False,
+                "message": "New password is required."
+            }), 400
+        
+        if len(new_password) < 6:
+            return jsonify({
+                "success": False,
+                "message": "Password must be at least 6 characters."
+            }), 400
+        
+        # Find user by valid token
+        from models.user_model import find_user_by_reset_token, clear_password_reset_token
+        
+        user = find_user_by_reset_token(token)
+        
+        if not user:
+            return jsonify({
+                "success": False,
+                "message": "Invalid or expired reset token."
+            }), 400
+        
+        # Hash new password
+        password_hash = bcrypt.hashpw(
+            new_password.encode("utf-8"),
+            bcrypt.gensalt()
+        ).decode("utf-8")
+        
+        # Update password
+        from models.user_model import update_user
+        update_user(user["_id"], {"password": password_hash})
+        
+        # Clear reset token
+        clear_password_reset_token(user["_id"])
+        
+        # Send confirmation notification
+        try:
+            from models.notification_model import create_notification
+            create_notification(
+                user_id=str(user["_id"]),
+                title="🔐 Password Changed Successfully",
+                message="Your password has been updated. If you didn't make this change, please contact support immediately.",
+                notification_type="security",
+                metadata={}
+            )
+        except Exception as notif_error:
+            print(f"Notification error (non-critical): {str(notif_error)}")
+        
+        return jsonify({
+            "success": True,
+            "message": "Password reset successful. You can now login with your new password."
+        }), 200
+        
+    except Exception as e:
+        print("RESET PASSWORD ERROR:", repr(e))
+        return jsonify({
+            "success": False,
+            "message": "Unable to reset password."
+        }), 500

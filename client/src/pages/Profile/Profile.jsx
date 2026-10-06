@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   User,
   Mail,
@@ -18,6 +19,7 @@ import "./Profile.css";
 
 function Profile() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -65,7 +67,7 @@ function Profile() {
       if (err.response?.status === 401) {
         navigate("/login");
       } else {
-        setError("Unable to load profile.");
+        setError(t("profile.loadError"));
       }
     } finally {
       setLoading(false);
@@ -88,7 +90,7 @@ function Profile() {
     // ================= PHONE VALIDATION =================
 
     if (!/^[6-9]\d{9}$/.test(formData.phone)) {
-      setError("Enter a valid 10-digit mobile number.");
+      setError(t("profile.phoneError"));
       setMessage("");
       return;
     }
@@ -111,7 +113,7 @@ function Profile() {
       });
 
       if (response.success) {
-        setMessage("Profile updated successfully.");
+        setMessage(t("profile.profileUpdated"));
 
         localStorage.setItem(
           "agroUser",
@@ -119,13 +121,13 @@ function Profile() {
         );
       } else {
         setError(
-          response.message || "Unable to update profile."
+          response.message || t("profile.updateError")
         );
       }
     } catch (err) {
       setError(
         err.response?.data?.message ||
-        "Unable to update profile."
+        t("profile.updateError")
       );
     } finally {
       setSaving(false);
@@ -138,7 +140,7 @@ function Profile() {
         <Navbar />
 
         <div className="profile-loading">
-          Loading profile...
+          {t("profile.loading")}
         </div>
       </>
     );
@@ -159,8 +161,8 @@ function Profile() {
           </div>
 
           <div>
-            <h1>My Profile</h1>
-            <p>Manage your personal and farming information</p>
+            <h1>{t("profile.title")}</h1>
+            <p>{t("profile.subtitle")}</p>
           </div>
 
           <div className="profile-edit-icon">
@@ -182,7 +184,7 @@ function Profile() {
 
               <div className="section-heading">
                 <User size={19} />
-                <h2>Personal Information</h2>
+                <h2>{t("profile.personalInfo")}</h2>
               </div>
 
               <div className="profile-grid">
@@ -191,7 +193,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>Full Name</label>
+                  <label>{t("profile.fullName")}</label>
 
                   <div className="profile-input">
 
@@ -202,7 +204,7 @@ function Profile() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Enter your name"
+                      placeholder={t("profile.namePlaceholder")}
                       required
                     />
 
@@ -215,7 +217,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>Email Address</label>
+                  <label>{t("profile.emailAddress")}</label>
 
                   <div className="profile-input disabled">
 
@@ -229,7 +231,7 @@ function Profile() {
 
                   </div>
 
-                  <small>Email cannot be changed</small>
+                  <small>{t("profile.emailNote")}</small>
 
                 </div>
 
@@ -238,7 +240,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>Phone Number</label>
+                  <label>{t("profile.phoneNumber")}</label>
 
                   <div className="profile-input">
 
@@ -264,7 +266,7 @@ function Profile() {
                         setError("");
 
                       }}
-                      placeholder="Enter 10-digit mobile number"
+                      placeholder={t("profile.phonePlaceholder")}
                       maxLength={10}
                       required
                     />
@@ -284,7 +286,7 @@ function Profile() {
 
               <div className="section-heading">
                 <MapPin size={19} />
-                <h2>Farm Location</h2>
+                <h2>{t("profile.farmLocation")}</h2>
               </div>
 
               <div className="profile-grid">
@@ -293,7 +295,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>State</label>
+                  <label>{t("profile.state")}</label>
 
                   <div className="profile-input">
 
@@ -304,7 +306,7 @@ function Profile() {
                       name="state"
                       value={formData.state}
                       onChange={handleChange}
-                      placeholder="e.g. Bihar"
+                      placeholder={t("profile.statePlaceholder")}
                     />
 
                   </div>
@@ -316,7 +318,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>District</label>
+                  <label>{t("profile.district")}</label>
 
                   <div className="profile-input">
 
@@ -327,7 +329,7 @@ function Profile() {
                       name="district"
                       value={formData.district}
                       onChange={handleChange}
-                      placeholder="e.g. Patna"
+                      placeholder={t("profile.districtPlaceholder")}
                     />
 
                   </div>
@@ -339,7 +341,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>Village / Town</label>
+                  <label>{t("profile.village")}</label>
 
                   <div className="profile-input">
 
@@ -350,7 +352,7 @@ function Profile() {
                       name="village"
                       value={formData.village}
                       onChange={handleChange}
-                      placeholder="Enter village or town"
+                      placeholder={t("profile.villagePlaceholder")}
                     />
 
                   </div>
@@ -368,7 +370,7 @@ function Profile() {
 
               <div className="section-heading">
                 <Sprout size={19} />
-                <h2>Farm Information</h2>
+                <h2>{t("profile.farmInfo")}</h2>
               </div>
 
               <div className="profile-grid">
@@ -377,7 +379,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>Farm Size</label>
+                  <label>{t("profile.farmSize")}</label>
 
                   <div className="profile-input">
 
@@ -388,12 +390,12 @@ function Profile() {
                       name="farmSize"
                       value={formData.farmSize}
                       onChange={handleChange}
-                      placeholder="Farm area"
+                      placeholder={t("profile.farmSizePlaceholder")}
                       min="0"
                       step="0.01"
                     />
 
-                    <span>acres</span>
+                    <span>{t("profile.acres")}</span>
 
                   </div>
 
@@ -404,7 +406,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>Soil Type</label>
+                  <label>{t("profile.soilType")}</label>
 
                   <div className="profile-input">
 
@@ -417,35 +419,35 @@ function Profile() {
                     >
 
                       <option value="">
-                        Select soil type
+                        {t("profile.selectSoilType")}
                       </option>
 
                       <option value="Alluvial">
-                        Alluvial
+                        {t("profile.soilTypes.alluvial")}
                       </option>
 
                       <option value="Black">
-                        Black Soil
+                        {t("profile.soilTypes.black")}
                       </option>
 
                       <option value="Red">
-                        Red Soil
+                        {t("profile.soilTypes.red")}
                       </option>
 
                       <option value="Loamy">
-                        Loamy
+                        {t("profile.soilTypes.loamy")}
                       </option>
 
                       <option value="Sandy">
-                        Sandy
+                        {t("profile.soilTypes.sandy")}
                       </option>
 
                       <option value="Clay">
-                        Clay
+                        {t("profile.soilTypes.clay")}
                       </option>
 
                       <option value="Laterite">
-                        Laterite
+                        {t("profile.soilTypes.laterite")}
                       </option>
 
                     </select>
@@ -459,7 +461,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>Irrigation Method</label>
+                  <label>{t("profile.irrigation")}</label>
 
                   <div className="profile-input">
 
@@ -472,27 +474,27 @@ function Profile() {
                     >
 
                       <option value="">
-                        Select irrigation
+                        {t("profile.selectIrrigation")}
                       </option>
 
                       <option value="Rainfed">
-                        Rainfed
+                        {t("profile.irrigationTypes.rainfed")}
                       </option>
 
                       <option value="Drip">
-                        Drip Irrigation
+                        {t("profile.irrigationTypes.drip")}
                       </option>
 
                       <option value="Sprinkler">
-                        Sprinkler
+                        {t("profile.irrigationTypes.sprinkler")}
                       </option>
 
                       <option value="Canal">
-                        Canal
+                        {t("profile.irrigationTypes.canal")}
                       </option>
 
                       <option value="Tube Well">
-                        Tube Well
+                        {t("profile.irrigationTypes.tubeWell")}
                       </option>
 
                     </select>
@@ -506,7 +508,7 @@ function Profile() {
 
                 <div className="profile-field">
 
-                  <label>Main Crop</label>
+                  <label>{t("profile.mainCrop")}</label>
 
                   <div className="profile-input">
 
@@ -517,7 +519,7 @@ function Profile() {
                       name="mainCrop"
                       value={formData.mainCrop}
                       onChange={handleChange}
-                      placeholder="e.g. Rice, Wheat"
+                      placeholder={t("profile.mainCropPlaceholder")}
                     />
 
                   </div>
@@ -557,8 +559,8 @@ function Profile() {
                 <Save size={17} />
 
                 {saving
-                  ? "Saving..."
-                  : "Save Changes"}
+                  ? t("profile.saving")
+                  : t("profile.saveChanges")}
 
               </button>
 

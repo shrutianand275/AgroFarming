@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -16,6 +16,12 @@ const FertilizerRecommendation = () => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
+
+  // Clear result when language changes
+  useEffect(() => {
+    setResult(null);
+    setError("");
+  }, [i18n.language]);
 
 
   const handleRecommendation = async (formData) => {

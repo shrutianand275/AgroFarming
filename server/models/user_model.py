@@ -78,6 +78,48 @@ def update_user(user_id, data):
         }
     )
 
+
+def set_password_reset_token(user_id, token, expiry):
+    """Store password reset token and expiry time"""
+    from bson import ObjectId
+    
+    users_collection.update_one(
+        {"_id": ObjectId(user_id)},
+        {
+            "$set": {
+                "reset_token": token,
+                "reset_token_expiry": expiry,
+                "updated_at": datetime.now(timezone.utc)
+            }
+        }
+    )
+
+
+def find_user_by_reset_token(token):
+    """Find user by valid reset token"""
+    return users_collection.find_one({
+        "reset_token": token,
+        "reset_token_expiry": {"$gt": datetime.now(timezone.utc)}
+    })
+
+
+def clear_password_reset_token(user_id):
+    """Clear reset token after use"""
+    from bson import ObjectId
+    
+    users_collection.update_one(
+        {"_id": ObjectId(user_id)},
+        {
+            "$unset": {
+                "reset_token": "",
+                "reset_token_expiry": ""
+            },
+            "$set": {
+                "updated_at": datetime.now(timezone.utc)
+            }
+        }
+    )
+
     return find_user_by_id(user_id)
 
 

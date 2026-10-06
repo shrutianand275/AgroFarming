@@ -18,7 +18,7 @@ import API from "../../services/api";
 import "./History.css";
 
 function History() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const [history, setHistory] = useState([]);
@@ -26,7 +26,7 @@ function History() {
   const [error, setError] = useState("");
   const [expanded, setExpanded] = useState({});
 
-  const isHindi = i18n.language === "hi";
+  const isHindi = String(i18n.language || "en").toLowerCase().startsWith("hi");
 
   useEffect(() => {
     loadHistory();
@@ -43,11 +43,7 @@ function History() {
       if (err.response?.status === 401) {
         navigate("/login");
       } else {
-        setError(
-          isHindi
-            ? "इतिहास लोड नहीं हो सका।"
-            : "Unable to load history."
-        );
+        setError(t("history.loadError"));
       }
     } finally {
       setLoading(false);
@@ -62,20 +58,12 @@ function History() {
         previous.filter((item) => item.id !== id)
       );
     } catch (err) {
-      setError(
-        isHindi
-          ? "इतिहास हटाया नहीं जा सका।"
-          : "Unable to delete history."
-      );
+      setError(t("history.deleteError"));
     }
   };
 
   const clearHistory = async () => {
-    const confirmed = window.confirm(
-      isHindi
-        ? "क्या आप पूरा इतिहास हटाना चाहते हैं?"
-        : "Are you sure you want to clear all history?"
-    );
+    const confirmed = window.confirm(t("history.clearConfirm"));
 
     if (!confirmed) return;
 
@@ -83,11 +71,7 @@ function History() {
       await API.delete("/history");
       setHistory([]);
     } catch (err) {
-      setError(
-        isHindi
-          ? "इतिहास साफ नहीं किया जा सका।"
-          : "Unable to clear history."
-      );
+      setError(t("history.clearError"));
     }
   };
 
@@ -118,41 +102,9 @@ function History() {
   };
 
   const getTypeName = (type) => {
-    if (isHindi) {
-      switch (type) {
-        case "crop":
-          return "फसल सिफारिश";
-
-        case "fertilizer":
-          return "उर्वरक सिफारिश";
-
-        case "disease":
-          return "रोग पहचान";
-
-        case "yield":
-          return "उपज अनुमान";
-
-        default:
-          return "गतिविधि";
-      }
-    }
-
-    switch (type) {
-      case "crop":
-        return "Crop Recommendation";
-
-      case "fertilizer":
-        return "Fertilizer Recommendation";
-
-      case "disease":
-        return "Disease Prediction";
-
-      case "yield":
-        return "Yield Prediction";
-
-      default:
-        return "Activity";
-    }
+    const key = `history.types.${type}`;
+    const translated = t(key);
+    return translated !== key ? translated : t("history.types.activity");
   };
 
   const formatDate = (date) => {
@@ -168,31 +120,9 @@ function History() {
   };
 
   const formatLabel = (key) => {
-    const labels = {
-      N: "Nitrogen",
-      P: "Phosphorus",
-      K: "Potassium",
-      ph: "pH",
-      temperature: "Temperature",
-      humidity: "Humidity",
-      rainfall: "Rainfall",
-      moisture: "Moisture",
-      soilType: "Soil Type",
-      cropType: "Crop Type",
-      fertilizer: "Fertilizer",
-      pesticide: "Pesticide",
-      area: "Area",
-      season: "Season",
-      state: "State",
-      irrigation: "Irrigation",
-      soil_type: "Soil Type",
-      predicted_yield: "Predicted Yield",
-      total_production: "Total Production",
-      yield_category: "Yield Category",
-      confidence: "Confidence"
-    };
-
-    return labels[key] || key;
+    const translationKey = `history.labels.${key}`;
+    const translated = t(translationKey);
+    return translated !== translationKey ? translated : key;
   };
 
   const formatValue = (key, value) => {
@@ -273,41 +203,9 @@ function History() {
   };
 
   const getResultTitle = (type) => {
-    if (isHindi) {
-      switch (type) {
-        case "crop":
-          return "सुझाई गई फसल";
-
-        case "fertilizer":
-          return "अनुशंसित उर्वरक";
-
-        case "disease":
-          return "पहचाना गया रोग";
-
-        case "yield":
-          return "अनुमानित उपज";
-
-        default:
-          return "परिणाम";
-      }
-    }
-
-    switch (type) {
-      case "crop":
-        return "Recommended Crop";
-
-      case "fertilizer":
-        return "Recommended Fertilizer";
-
-      case "disease":
-        return "Detected Disease";
-
-      case "yield":
-        return "Predicted Yield";
-
-      default:
-        return "Result";
-    }
+    const key = `history.resultTitles.${type}`;
+    const translated = t(key);
+    return translated !== key ? translated : t("history.resultTitles.result");
   };
 
   return (
@@ -327,15 +225,9 @@ function History() {
             </div>
 
             <div>
-              <h1>
-                {isHindi ? "मेरा इतिहास" : "My History"}
-              </h1>
+              <h1>{t("history.title")}</h1>
 
-              <p>
-                {isHindi
-                  ? "अपनी पिछली कृषि गतिविधियों और परिणामों को देखें"
-                  : "View your previous farming activities and results"}
-              </p>
+              <p>{t("history.subtitle")}</p>
             </div>
 
           </div>
@@ -346,10 +238,7 @@ function History() {
               onClick={clearHistory}
             >
               <Trash2 size={16} />
-
-              {isHindi
-                ? "सभी हटाएं"
-                : "Clear All"}
+              {t("history.clearAll")}
             </button>
           )}
 
@@ -368,12 +257,7 @@ function History() {
         {loading && (
           <div className="history-empty">
             <HistoryIcon size={38} />
-
-            <h3>
-              {isHindi
-                ? "इतिहास लोड हो रहा है..."
-                : "Loading history..."}
-            </h3>
+            <h3>{t("history.loading")}</h3>
           </div>
         )}
 
@@ -386,17 +270,9 @@ function History() {
               <HistoryIcon size={42} />
             </div>
 
-            <h2>
-              {isHindi
-                ? "अभी कोई इतिहास नहीं है"
-                : "No History Yet"}
-            </h2>
+            <h2>{t("history.noHistory")}</h2>
 
-            <p>
-              {isHindi
-                ? "आपकी फसल, उर्वरक, रोग और उपज की गतिविधियां यहां दिखाई देंगी।"
-                : "Your crop, fertilizer, disease and yield activities will appear here."}
-            </p>
+            <p>{t("history.noHistoryText")}</p>
 
           </div>
         )}
@@ -446,11 +322,7 @@ function History() {
                       <button
                         className="delete-history-btn"
                         onClick={() => deleteItem(item.id)}
-                        title={
-                          isHindi
-                            ? "हटाएं"
-                            : "Delete"
-                        }
+                        title={t("history.delete")}
                       >
                         <Trash2 size={17} />
                       </button>
@@ -468,7 +340,7 @@ function History() {
                           </strong>
 
                           <span>
-                            {mainResult}
+                             {mainResult}
                           </span>
                         </div>
 
@@ -495,17 +367,13 @@ function History() {
                           ? (
                             <>
                               <ChevronUp size={17} />
-                              {isHindi
-                                ? "कम विवरण"
-                                : "Hide Details"}
+                              {t("history.hideDetails")}
                             </>
                           )
                           : (
                             <>
                               <ChevronDown size={17} />
-                              {isHindi
-                                ? "पूरा विवरण"
-                                : "View Details"}
+                              {t("history.viewDetails")}
                             </>
                           )}
                       </button>
@@ -521,11 +389,7 @@ function History() {
                         {inputEntries.length > 0 && (
                           <div className="history-detail-section">
 
-                            <h4>
-                              {isHindi
-                                ? "इनपुट विवरण"
-                                : "Input Details"}
-                            </h4>
+                            <h4>{t("history.inputDetails")}</h4>
 
                             <div className="history-detail-grid">
 
@@ -559,11 +423,7 @@ function History() {
                         {resultDetails.length > 0 && (
                           <div className="history-detail-section">
 
-                            <h4>
-                              {isHindi
-                                ? "परिणाम विवरण"
-                                : "Result Details"}
-                            </h4>
+                            <h4>{t("history.resultDetails")}</h4>
 
                             <div className="history-detail-grid">
 
@@ -598,11 +458,7 @@ function History() {
                           Array.isArray(item.result.top3) && (
                             <div className="history-detail-section">
 
-                              <h4>
-                                {isHindi
-                                  ? "शीर्ष 3 फसलें"
-                                  : "Top 3 Recommendations"}
-                              </h4>
+                              <h4>{t("history.top3")}</h4>
 
                               <div className="history-top3">
 
@@ -641,11 +497,7 @@ function History() {
                           Array.isArray(item.result.benefits) && (
                             <div className="history-detail-section">
 
-                              <h4>
-                                {isHindi
-                                  ? "लाभ"
-                                  : "Benefits"}
-                              </h4>
+                              <h4>{t("history.benefits")}</h4>
 
                               <ul className="history-list-details">
                                 {item.result.benefits.map(
@@ -668,11 +520,7 @@ function History() {
                           ) && (
                             <div className="history-detail-section">
 
-                              <h4>
-                                {isHindi
-                                  ? "उपयोग के सुझाव"
-                                  : "Application Tips"}
-                              </h4>
+                              <h4>{t("history.applicationTips")}</h4>
 
                               <ul className="history-list-details">
                                 {item.result.applicationTips.map(
@@ -692,11 +540,7 @@ function History() {
                         {item.result?.description && (
                           <div className="history-detail-section">
 
-                            <h4>
-                              {isHindi
-                                ? "विवरण"
-                                : "Description"}
-                            </h4>
+                            <h4>{t("history.description")}</h4>
 
                             <p className="history-description">
                               {item.result.description}

@@ -336,7 +336,17 @@
     "eligibility": "पात्रता",
     "howToApply": "कैसे आवेदन करें",
     "visitWebsite": "आधिकारिक वेबसाइट पर जाएं",
-    "noResults": "आपकी खोज से मेल खाने वाली कोई योजना नहीं मिली"
+    "noResults": "आपकी खोज से मेल खाने वाली कोई योजना नहीं मिली",
+    "categories": {
+      "All": "सभी",
+      "Financial Support": "वित्तीय सहायता",
+      "Credit": "ऋण",
+      "Insurance": "बीमा",
+      "Subsidy": "सब्सिडी",
+      "Technical Support": "तकनीकी सहायता",
+      "Marketing": "विपणन",
+      "Digital Service": "डिजिटल सेवा"
+    }
   },
 
   "yield": {
@@ -518,6 +528,138 @@
         "connectionError": "क्षमा करें, मैं AgroFarming सर्वर से कनेक्ट नहीं हो सका। कृपया सुनिश्चित करें कि Flask बैकएंड चल रहा है।",
 
         "disclaimer": "🌱 AgroFarming AI कृषि संबंधी जानकारी प्रदान करता है। महत्वपूर्ण निर्णय लेने से पहले स्थानीय मिट्टी, मौसम और कृषि परिस्थितियों को ध्यान में रखें।"
+    },
+
+    "history": {
+        "title": "मेरा इतिहास",
+        "subtitle": "अपनी पिछली कृषि गतिविधियों और परिणामों को देखें",
+        "clearAll": "सभी हटाएं",
+        "delete": "हटाएं",
+        "loading": "इतिहास लोड हो रहा है...",
+        "noHistory": "अभी कोई इतिहास नहीं है",
+        "noHistoryText": "आपकी फसल, उर्वरक, रोग और उपज की गतिविधियां यहां दिखाई देंगी।",
+        "loadError": "इतिहास लोड नहीं हो सका।",
+        "deleteError": "इतिहास हटाया नहीं जा सका।",
+        "clearError": "इतिहास साफ नहीं किया जा सका।",
+        "clearConfirm": "क्या आप पूरा इतिहास हटाना चाहते हैं?",
+        "hideDetails": "कम विवरण",
+        "viewDetails": "पूरा विवरण",
+        "inputDetails": "इनपुट विवरण",
+        "resultDetails": "परिणाम विवरण",
+        "top3": "शीर्ष 3 फसलें",
+        "benefits": "लाभ",
+        "applicationTips": "उपयोग के सुझाव",
+        "description": "विवरण",
+        
+        "types": {
+            "crop": "फसल सिफारिश",
+            "fertilizer": "उर्वरक सिफारिश",
+            "disease": "रोग पहचान",
+            "yield": "उपज अनुमान",
+            "activity": "गतिविधि"
+        },
+        
+        "resultTitles": {
+            "crop": "सुझाई गई फसल",
+            "fertilizer": "अनुशंसित उर्वरक",
+            "disease": "पहचाना गया रोग",
+            "yield": "अनुमानित उपज",
+            "result": "परिणाम"
+        },
+        
+        "labels": {
+            "N": "नाइट्रोजन",
+            "P": "फॉस्फोरस",
+            "K": "पोटैशियम",
+            "ph": "पीएच",
+            "temperature": "तापमान",
+            "humidity": "नमी",
+            "rainfall": "वर्षा",
+            "moisture": "नमी",
+            "soilType": "मिट्टी का प्रकार",
+            "cropType": "फसल का प्रकार",
+            "fertilizer": "उर्वरक",
+            "pesticide": "कीटनाशक",
+            "area": "क्षेत्र",
+            "season": "मौसम",
+            "state": "राज्य",
+            "irrigation": "सिंचाई",
+            "soil_type": "मिट्टी का प्रकार",
+            "predicted_yield": "अनुमानित उपज",
+            "total_production": "कुल उत्पादन",
+            "yield_category": "उपज श्रेणी",
+            "confidence": "विश्वास",
+            "crop": "फसल",
+            "disease": "रोग",
+            "Plant": "पौधा",
+            "Severity": "गंभीरता",
+            "Temperature": "तापमान",
+            "Humidity": "नमी",
+            "Nitrogen": "नाइट्रोजन",
+            "Phosphorous": "फॉस्फोरस",
+            "Potassium": "पोटैशियम",
+            "Moisture": "नमी",
+            "Soil_Type": "मिट्टी का प्रकार",
+            "Crop_Type": "फसल का प्रकार"
+        }
+    },
+
+    "profile": {
+        "title": "मेरी प्रोफ़ाइल",
+        "subtitle": "अपनी व्यक्तिगत और कृषि जानकारी प्रबंधित करें",
+        "loading": "प्रोफ़ाइल लोड हो रही है...",
+        "saving": "सहेजा जा रहा है...",
+        "saveChanges": "परिवर्तन सहेजें",
+        "profileUpdated": "प्रोफ़ाइल सफलतापूर्वक अपडेट हो गई।",
+        "updateError": "प्रोफ़ाइल अपडेट नहीं हो सकी।",
+        "loadError": "प्रोफ़ाइल लोड नहीं हो सकी।",
+        "phoneError": "एक मान्य 10 अंकों का मोबाइल नंबर दर्ज करें।",
+        
+        "personalInfo": "व्यक्तिगत जानकारी",
+        "farmLocation": "खेत का स्थान",
+        "farmInfo": "खेत की जानकारी",
+        
+        "fullName": "पूरा नाम",
+        "namePlaceholder": "अपना नाम दर्ज करें",
+        "emailAddress": "ईमेल पता",
+        "emailNote": "ईमेल बदला नहीं जा सकता",
+        "phoneNumber": "फ़ोन नंबर",
+        "phonePlaceholder": "10 अंकों का मोबाइल नंबर दर्ज करें",
+        
+        "state": "राज्य",
+        "statePlaceholder": "उदा. बिहार",
+        "district": "जिला",
+        "districtPlaceholder": "उदा. पटना",
+        "village": "गाँव / शहर",
+        "villagePlaceholder": "गाँव या शहर दर्ज करें",
+        
+        "farmSize": "खेत का आकार",
+        "farmSizePlaceholder": "खेत का क्षेत्रफल",
+        "acres": "एकड़",
+        "soilType": "मिट्टी का प्रकार",
+        "selectSoilType": "मिट्टी का प्रकार चुनें",
+        "irrigation": "सिंचाई विधि",
+        "selectIrrigation": "सिंचाई चुनें",
+        "mainCrop": "मुख्य फसल",
+        "mainCropPlaceholder": "उदा. धान, गेहूं",
+        
+        "soilTypes": {
+            "alluvial": "जलोढ़",
+            "black": "काली मिट्टी",
+            "red": "लाल मिट्टी",
+            "loamy": "दोमट",
+            "sandy": "रेतीली",
+            "clay": "चिकनी",
+            "laterite": "लैटेराइट"
+        },
+        
+        "irrigationTypes": {
+            "rainfed": "वर्षा आधारित",
+            "drip": "ड्रिप सिंचाई",
+            "sprinkler": "स्प्रिंकलर",
+            "canal": "नहर",
+            "tubeWell": "ट्यूबवेल"
+        }
     },
 
     "seasonalClimate": {

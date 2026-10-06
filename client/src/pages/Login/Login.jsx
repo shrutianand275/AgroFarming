@@ -77,6 +77,12 @@ function Login() {
   };
 
 
+  const handleGuestLogin = () => {
+    // Navigate to home page without authentication
+    navigate("/");
+  };
+
+
   return (
 
     <div className="login-page">
@@ -84,10 +90,6 @@ function Login() {
       <div className="login-card">
 
         <div className="login-header">
-
-          <div className="login-icon">
-            🌿
-          </div>
 
           <h2>Welcome Back</h2>
 
@@ -142,6 +144,12 @@ function Login() {
               required
             />
 
+            <div className="forgot-password-link">
+              <Link to="/forgot-password">
+                Forgot Password?
+              </Link>
+            </div>
+
           </div>
 
 
@@ -159,6 +167,23 @@ function Login() {
           </button>
 
         </form>
+
+
+        <div className="guest-option">
+
+          <div className="divider">
+            <span>OR</span>
+          </div>
+
+          <button
+            type="button"
+            className="guest-btn"
+            onClick={handleGuestLogin}
+          >
+            Continue as Guest
+          </button>
+
+        </div>
 
 
         <div className="login-footer">

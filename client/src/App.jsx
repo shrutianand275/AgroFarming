@@ -11,6 +11,8 @@ import WeatherForecast from "./pages/WeatherForecast/WeatherForecast";
 import Chatbot from "./pages/Chatbot/Chatbot";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import Profile from "./pages/Profile/Profile";
 import History from "./pages/History/History";
 import Notifications from "./pages/Notifications/Notifications";
@@ -40,6 +42,10 @@ function App() {
       <Route path="/login" element={<Login />} />
 
       <Route path="/signup" element={<Signup />} />
+
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+
+      <Route path="/reset-password" element={<ResetPassword />} />
 
       <Route path="/profile" element={<Profile />} />
 

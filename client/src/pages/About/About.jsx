@@ -218,34 +218,6 @@ const About = () => {
 
         </div>
 
-        {/* Technology */}
-
-        <div className="container tech-section">
-
-          <div className="section-title">
-
-            <h2>{t("about.techTitle")}</h2>
-
-          </div>
-
-          <div className="tech-stack">
-
-            <span><FaCode /> React</span>
-
-            <span><FaCode /> Node.js</span>
-
-            <span><FaCode /> Express</span>
-
-            <span><FaCode /> MongoDB</span>
-
-            <span><FaCode /> Python</span>
-
-            <span><FaCode /> Machine Learning</span>
-
-          </div>
-
-        </div>
-
 
       </section>
 

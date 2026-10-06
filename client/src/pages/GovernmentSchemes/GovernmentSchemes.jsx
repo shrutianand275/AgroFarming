@@ -23,9 +23,11 @@ const GovernmentSchemes = () => {
   ];
 
   const filteredSchemes = schemesData.filter((scheme) => {
+    const isHindi = String(i18n.language || "en").toLowerCase().startsWith("hi");
+    
     const matchesSearch = 
       scheme.Scheme_Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (i18n.language === 'hi' ? scheme.Description_HI : scheme.Description_EN)
+      (isHindi ? scheme.Description_HI : scheme.Description_EN)
         .toLowerCase().includes(searchTerm.toLowerCase());
     
     const matchesCategory = 
@@ -66,7 +68,7 @@ const GovernmentSchemes = () => {
                   className={`category-btn ${selectedCategory === category ? 'active' : ''}`}
                   onClick={() => setSelectedCategory(category)}
                 >
-                  {category}
+                  {t(`schemes.categories.${category}`)}
                 </button>
               ))}
             </div>
@@ -78,28 +80,28 @@ const GovernmentSchemes = () => {
               <div key={index} className="scheme-card">
                 <div className="scheme-header">
                   <h5 className="scheme-name">{scheme.Scheme_Name}</h5>
-                  <span className="scheme-category">{scheme.Category}</span>
+                  <span className="scheme-category">{t(`schemes.categories.${scheme.Category}`)}</span>
                 </div>
 
                 <div className="scheme-body">
                   <p className="scheme-description">
-                    {i18n.language === 'hi' ? scheme.Description_HI : scheme.Description_EN}
+                    {String(i18n.language || "en").toLowerCase().startsWith("hi") ? scheme.Description_HI : scheme.Description_EN}
                   </p>
 
                   <div className="scheme-details">
                     <div className="detail-item">
                       <strong>💰 {t("schemes.benefits")}:</strong>
-                      <p>{i18n.language === 'hi' ? scheme.Benefits_HI : scheme.Benefits_EN}</p>
+                      <p>{String(i18n.language || "en").toLowerCase().startsWith("hi") ? scheme.Benefits_HI : scheme.Benefits_EN}</p>
                     </div>
 
                     <div className="detail-item">
                       <strong>✅ {t("schemes.eligibility")}:</strong>
-                      <p>{i18n.language === 'hi' ? scheme.Eligibility_HI : scheme.Eligibility_EN}</p>
+                      <p>{String(i18n.language || "en").toLowerCase().startsWith("hi") ? scheme.Eligibility_HI : scheme.Eligibility_EN}</p>
                     </div>
 
                     <div className="detail-item">
                       <strong>📝 {t("schemes.howToApply")}:</strong>
-                      <p>{i18n.language === 'hi' ? scheme.How_To_Apply_HI : scheme.How_To_Apply_EN}</p>
+                      <p>{String(i18n.language || "en").toLowerCase().startsWith("hi") ? scheme.How_To_Apply_HI : scheme.How_To_Apply_EN}</p>
                     </div>
 
                     <div className="scheme-meta">

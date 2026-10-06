@@ -24,6 +24,9 @@ const fertilizerHindi = {
   "MOP":
     "एमओपी",
 
+  "TSP":
+    "टीएसपी",
+
   "Potassium":
     "पोटैशियम",
 
@@ -57,6 +60,12 @@ const fertilizerHindi = {
   "NPK 20-20-20":
     "एनपीके 20-20-20",
 
+  "20-20":
+    "20-20",
+
+  "28-28":
+    "28-28",
+
   "20-20-20":
     "20-20-20",
 
@@ -67,85 +76,17 @@ const fertilizerHindi = {
     "28-28-0",
 
   "17-17-17":
-    "17-17-17"
+    "17-17-17",
+
+  "10-26-26":
+    "10-26-26"
 
 };
 
 
 /* =====================================================
-   SOIL / CROP RELATED TEXT
+   TRANSLATION HELPER FOR FERTILIZER NAME ONLY
 ===================================================== */
-
-const textHindi = {
-
-  "Improves nitrogen availability":
-    "नाइट्रोजन की उपलब्धता में सुधार करता है।",
-
-  "Improves phosphorus availability":
-    "फॉस्फोरस की उपलब्धता में सुधार करता है।",
-
-  "Improves potassium availability":
-    "पोटैशियम की उपलब्धता में सुधार करता है।",
-
-  "Provides essential nutrients":
-    "आवश्यक पोषक तत्व प्रदान करता है।",
-
-  "Promotes healthy crop growth":
-    "फसल की स्वस्थ वृद्धि को बढ़ावा देता है।",
-
-  "Improves plant growth":
-    "पौधे की वृद्धि में सुधार करता है।",
-
-  "Improves root development":
-    "जड़ों के विकास में सुधार करता है।",
-
-  "Supports flowering and fruiting":
-    "फूल और फल बनने में सहायता करता है।",
-
-  "Improves yield":
-    "उपज में सुधार करता है।",
-
-  "Apply as recommended":
-    "अनुशंसित मात्रा के अनुसार प्रयोग करें।",
-
-  "Apply near the root zone":
-    "जड़ क्षेत्र के पास प्रयोग करें।",
-
-  "Apply fertilizer evenly":
-    "उर्वरक को समान रूप से डालें।",
-
-  "Avoid excessive application":
-    "अधिक मात्रा में प्रयोग करने से बचें।",
-
-  "Water the crop after application":
-    "प्रयोग के बाद फसल में पानी दें।",
-
-  "Apply during active crop growth":
-    "फसल की सक्रिय वृद्धि के दौरान प्रयोग करें।"
-
-};
-
-
-/* =====================================================
-   TRANSLATION HELPER
-===================================================== */
-
-const translateText = (value, isHindi) => {
-
-  if (!value) {
-    return "";
-  }
-
-  if (!isHindi) {
-    return value;
-  }
-
-  const text = String(value).trim();
-
-  return textHindi[text] || text;
-
-};
-
 
 const translateFertilizer = (value, isHindi) => {
 
@@ -270,12 +211,7 @@ export default function FertilizerResultCard({ result }) {
 
 
                 <p>
-
-                  {translateText(
-                    result.description,
-                    isHindi
-                  )}
-
+                  {result.description}
                 </p>
 
               </div>
@@ -316,12 +252,7 @@ export default function FertilizerResultCard({ result }) {
                       (benefit, index) => (
 
                         <li key={index}>
-
-                          {translateText(
-                            benefit,
-                            isHindi
-                          )}
-
+                          {benefit}
                         </li>
 
                       )
@@ -367,12 +298,7 @@ export default function FertilizerResultCard({ result }) {
                       (tip, index) => (
 
                         <li key={index}>
-
-                          {translateText(
-                            tip,
-                            isHindi
-                          )}
-
+                          {tip}
                         </li>
 
                       )

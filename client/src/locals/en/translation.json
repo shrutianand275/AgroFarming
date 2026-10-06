@@ -339,7 +339,17 @@
         "eligibility": "Eligibility",
         "howToApply": "How to Apply",
         "visitWebsite": "Visit Official Website",
-        "noResults": "No schemes found matching your search"
+        "noResults": "No schemes found matching your search",
+        "categories": {
+            "All": "All",
+            "Financial Support": "Financial Support",
+            "Credit": "Credit",
+            "Insurance": "Insurance",
+            "Subsidy": "Subsidy",
+            "Technical Support": "Technical Support",
+            "Marketing": "Marketing",
+            "Digital Service": "Digital Service"
+        }
     },
 
     "yield": {
@@ -521,7 +531,139 @@
         "disclaimer": "🌱 AgroFarming AI provides farming information to assist you. Always consider local soil, weather and agricultural conditions before making important decisions."
     },
 
-        "seasonalClimate": {
+        "history": {
+        "title": "My History",
+        "subtitle": "View your previous farming activities and results",
+        "clearAll": "Clear All",
+        "delete": "Delete",
+        "loading": "Loading history...",
+        "noHistory": "No History Yet",
+        "noHistoryText": "Your crop, fertilizer, disease and yield activities will appear here.",
+        "loadError": "Unable to load history.",
+        "deleteError": "Unable to delete history.",
+        "clearError": "Unable to clear history.",
+        "clearConfirm": "Are you sure you want to clear all history?",
+        "hideDetails": "Hide Details",
+        "viewDetails": "View Details",
+        "inputDetails": "Input Details",
+        "resultDetails": "Result Details",
+        "top3": "Top 3 Recommendations",
+        "benefits": "Benefits",
+        "applicationTips": "Application Tips",
+        "description": "Description",
+        
+        "types": {
+            "crop": "Crop Recommendation",
+            "fertilizer": "Fertilizer Recommendation",
+            "disease": "Disease Prediction",
+            "yield": "Yield Prediction",
+            "activity": "Activity"
+        },
+        
+        "resultTitles": {
+            "crop": "Recommended Crop",
+            "fertilizer": "Recommended Fertilizer",
+            "disease": "Detected Disease",
+            "yield": "Predicted Yield",
+            "result": "Result"
+        },
+        
+        "labels": {
+            "N": "Nitrogen",
+            "P": "Phosphorus",
+            "K": "Potassium",
+            "ph": "pH",
+            "temperature": "Temperature",
+            "humidity": "Humidity",
+            "rainfall": "Rainfall",
+            "moisture": "Moisture",
+            "soilType": "Soil Type",
+            "cropType": "Crop Type",
+            "fertilizer": "Fertilizer",
+            "pesticide": "Pesticide",
+            "area": "Area",
+            "season": "Season",
+            "state": "State",
+            "irrigation": "Irrigation",
+            "soil_type": "Soil Type",
+            "predicted_yield": "Predicted Yield",
+            "total_production": "Total Production",
+            "yield_category": "Yield Category",
+            "confidence": "Confidence",
+            "crop": "Crop",
+            "disease": "Disease",
+            "Plant": "Plant",
+            "Severity": "Severity",
+            "Temperature": "Temperature",
+            "Humidity": "Humidity",
+            "Nitrogen": "Nitrogen",
+            "Phosphorous": "Phosphorous",
+            "Potassium": "Potassium",
+            "Moisture": "Moisture",
+            "Soil_Type": "Soil Type",
+            "Crop_Type": "Crop Type"
+        }
+    },
+
+    "profile": {
+        "title": "My Profile",
+        "subtitle": "Manage your personal and farming information",
+        "loading": "Loading profile...",
+        "saving": "Saving...",
+        "saveChanges": "Save Changes",
+        "profileUpdated": "Profile updated successfully.",
+        "updateError": "Unable to update profile.",
+        "loadError": "Unable to load profile.",
+        "phoneError": "Enter a valid 10-digit mobile number.",
+        
+        "personalInfo": "Personal Information",
+        "farmLocation": "Farm Location",
+        "farmInfo": "Farm Information",
+        
+        "fullName": "Full Name",
+        "namePlaceholder": "Enter your name",
+        "emailAddress": "Email Address",
+        "emailNote": "Email cannot be changed",
+        "phoneNumber": "Phone Number",
+        "phonePlaceholder": "Enter 10-digit mobile number",
+        
+        "state": "State",
+        "statePlaceholder": "e.g. Bihar",
+        "district": "District",
+        "districtPlaceholder": "e.g. Patna",
+        "village": "Village / Town",
+        "villagePlaceholder": "Enter village or town",
+        
+        "farmSize": "Farm Size",
+        "farmSizePlaceholder": "Farm area",
+        "acres": "acres",
+        "soilType": "Soil Type",
+        "selectSoilType": "Select soil type",
+        "irrigation": "Irrigation Method",
+        "selectIrrigation": "Select irrigation",
+        "mainCrop": "Main Crop",
+        "mainCropPlaceholder": "e.g. Rice, Wheat",
+        
+        "soilTypes": {
+            "alluvial": "Alluvial",
+            "black": "Black Soil",
+            "red": "Red Soil",
+            "loamy": "Loamy",
+            "sandy": "Sandy",
+            "clay": "Clay",
+            "laterite": "Laterite"
+        },
+        
+        "irrigationTypes": {
+            "rainfed": "Rainfed",
+            "drip": "Drip Irrigation",
+            "sprinkler": "Sprinkler",
+            "canal": "Canal",
+            "tubeWell": "Tube Well"
+        }
+    },
+
+    "seasonalClimate": {
         "title": "Seasonal Climate Analysis",
         "subtitle": "Historical climate comparison using real weather data",
         "seasonal": "Seasonal",
