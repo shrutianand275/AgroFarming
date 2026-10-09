@@ -25,15 +25,14 @@ export default function SeasonalClimateAnalysis({
   state = ""
 }) {
   const { t, i18n } = useTranslation();
-
   const [analysis, setAnalysis] = useState(null);
   const [view, setView] = useState("seasonal");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // ----------------------------------------------------------
+  // -----------------------
   // Load real API data
-  // ----------------------------------------------------------
+  // -----------------------
   const loadAnalysis = async () => {
     if (!city) return;
 
@@ -125,9 +124,9 @@ export default function SeasonalClimateAnalysis({
     return null;
   };
 
-  // ----------------------------------------------------------
+  // ------------
   // Icons
-  // ----------------------------------------------------------
+  // ------------
   const getMetricIcon = (type) => {
     if (type === "temperature") {
       return <Thermometer size={22} />;
@@ -144,9 +143,9 @@ export default function SeasonalClimateAnalysis({
     return <Wind size={22} />;
   };
 
-  // ----------------------------------------------------------
+  // ------------
   // Status icon
-  // ----------------------------------------------------------
+  // ------------
   const getStatusIcon = (status) => {
     if (status === "increasing") {
       return <TrendingUp size={17} />;
@@ -159,9 +158,9 @@ export default function SeasonalClimateAnalysis({
     return <Minus size={17} />;
   };
 
-  // ----------------------------------------------------------
+  // ------------
   // Status text
-  // ----------------------------------------------------------
+  // ------------
   const getStatusText = (status) => {
     if (status === "increasing") {
       return t("seasonalClimate.increasing");
@@ -178,9 +177,9 @@ export default function SeasonalClimateAnalysis({
     return t("seasonalClimate.notAvailable");
   };
 
-  // ----------------------------------------------------------
+  // ------------
   // Metric formatter
-  // ----------------------------------------------------------
+  // ------------
   const formatMetric = (
     value,
     unit
@@ -198,9 +197,9 @@ export default function SeasonalClimateAnalysis({
     return `${value} ${unit}`;
   };
 
-  // ----------------------------------------------------------
+  // ------------
   // Metric Card
-  // ----------------------------------------------------------
+  // ------------
   const MetricCard = ({
     type,
     title,
@@ -262,9 +261,9 @@ export default function SeasonalClimateAnalysis({
     );
   };
 
-  // ----------------------------------------------------------
+  // ------------
   // Period cards
-  // ----------------------------------------------------------
+  // ------------
   const renderMetricGrid = (
     current,
     previous,
@@ -329,9 +328,9 @@ export default function SeasonalClimateAnalysis({
     );
   };
 
-  // ----------------------------------------------------------
+  // ------------
   // Seasonal section
-  // ----------------------------------------------------------
+  // ------------
   const renderSeasonal = () => {
     if (!analysis) return null;
 
@@ -401,9 +400,9 @@ export default function SeasonalClimateAnalysis({
     );
   };
 
-  // ----------------------------------------------------------
+  // ------------
   // Monthly section
-  // ----------------------------------------------------------
+  // ------------
   const renderMonthly = () => {
     if (!analysis) return null;
 
@@ -550,9 +549,9 @@ export default function SeasonalClimateAnalysis({
     );
   };
 
-  // ----------------------------------------------------------
+  // ------------------------
   // Quarterly section
-  // ----------------------------------------------------------
+  // ------------------------
   const renderQuarterly = () => {
     if (!analysis) return null;
 
@@ -692,9 +691,9 @@ export default function SeasonalClimateAnalysis({
     );
   };
 
-  // ----------------------------------------------------------
+  // ------------------------
   // Loading
-  // ----------------------------------------------------------
+  // ------------------------
   if (loading) {
     return (
       <section className="sca-container">
@@ -718,9 +717,9 @@ export default function SeasonalClimateAnalysis({
     );
   }
 
-  // ----------------------------------------------------------
+  // --------------
   // Error
-  // ----------------------------------------------------------
+  // --------------
   if (error) {
     return (
       <section className="sca-container">
@@ -752,9 +751,9 @@ export default function SeasonalClimateAnalysis({
     return null;
   }
 
-  // ----------------------------------------------------------
+  // ----------------
   // Main UI
-  // ----------------------------------------------------------
+  // ----------------
   return (
     <section className="sca-container">
 

@@ -3,13 +3,11 @@ from flask import Blueprint, request, jsonify
 from models.user_model import find_user_by_id, update_user, user_response
 from utils.auth import login_required
 
-
 profile_bp = Blueprint("profile", __name__)
 
-
-# ==========================================
+# =================
 # GET PROFILE
-# ==========================================
+# =================
 
 @profile_bp.route("", methods=["GET"])
 @login_required
@@ -39,9 +37,9 @@ def get_profile():
         }), 500
 
 
-# ==========================================
+# =================
 # UPDATE PROFILE
-# ==========================================
+# =================
 
 @profile_bp.route("", methods=["PUT"])
 @login_required

@@ -78,6 +78,12 @@ def update_user(user_id, data):
         }
     )
 
+    return users_collection.find_one(
+        {
+            "_id": ObjectId(user_id)
+        }
+    )
+
 
 def set_password_reset_token(user_id, token, expiry):
     """Store password reset token and expiry time"""
